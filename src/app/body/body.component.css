@@ -1,0 +1,15 @@
+#body {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+}
+
+h4{
+    color: black;
+}
+
+p{
+    color:black;
+    text-decoration: underline;
+}

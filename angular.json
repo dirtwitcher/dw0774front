@@ -23,9 +23,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "/home/Vladislav/angular/diplomFront/node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": ["/home/Vladislav/angular/diplomFront/node_modules/jquery/dist/jquery.min.js","/home/Vladislav/angular/diplomFront/node_modules/bootstrap/dist/js/bootstrap.min.js"],
             "es5BrowserSupport": true
           },
           "configurations": {
