@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms'; // connect forms
 import { Routes, RouterModule } from '@angular/router'; //connect routes
-import { HttpClientModule } from '@angular/common/http';//htttp connect
+import { HttpClientModule } from '@angular/common/http';//http connect
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,12 +13,14 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { WorkComponent } from './work/work.component';
-import { ResumeComponent } from './resume/resume.component'; 
+import { ResumeComponent } from './resume/resume.component';
+import { MarkaModelComponent } from './marka-model/marka-model.component'; 
 
 const appRoutes: Routes = [
   {path:'', component: BodyComponent},  
   {path:'work', component: WorkComponent},
   {path:'resume', component: ResumeComponent},
+  {path:'markaModel', component: MarkaModelComponent},
 ]
 
 @NgModule({
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     BodyComponent,
     FooterComponent,
     WorkComponent,
-    ResumeComponent
+    ResumeComponent,
+    MarkaModelComponent
   ],
   imports: [
     BrowserModule,
