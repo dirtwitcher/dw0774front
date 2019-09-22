@@ -8,7 +8,8 @@ import { HttpClientModule } from '@angular/common/http';//http connect
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; //connect bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; //connect bootstrap
+import { DataTablesModule } from 'angular-datatables'; // connect dat atable
 import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     HttpClientModule, //connect http
     AppRoutingModule,
     NgbModule.forRoot(), //connect bootstrap
-    RouterModule.forRoot(appRoutes) //connect routes
+    RouterModule.forRoot(appRoutes), //connect routes
+    DataTablesModule // datatable
   ],
   providers: [],
   bootstrap: [AppComponent]
