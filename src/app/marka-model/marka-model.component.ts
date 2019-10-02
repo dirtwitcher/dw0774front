@@ -10,7 +10,21 @@ export class MarkaModelComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  dtOptions: DataTables.Settings = {};
 
+  ngOnInit(): void {
+    this.dtOptions = {
+      ajax: 'data/dataMarkaModel.json',
+      columns: [{
+        title: 'ID',
+        data: 'id'
+      }, {
+        title: 'First name',
+        data: 'firstName'
+      }, {
+        title: 'Last name',
+        data: 'lastName'
+      }]
+    };
+  }
 }
