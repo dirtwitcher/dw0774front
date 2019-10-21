@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MarkaModelComponent } from './marka-model.component';
+import { AutoComponent } from './auto.component';
 
-describe('MarkaModelComponent', () => {
-  let component: MarkaModelComponent;
-  let fixture: ComponentFixture<MarkaModelComponent>;
+describe('AutoComponent', () => {
+  let component: AutoComponent;
+  let fixture: ComponentFixture<AutoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MarkaModelComponent ]
+      declarations: [ AutoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MarkaModelComponent);
+    fixture = TestBed.createComponent(AutoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

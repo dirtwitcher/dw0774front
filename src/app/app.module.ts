@@ -15,13 +15,13 @@ import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { WorkComponent } from './work/work.component';
 import { ResumeComponent } from './resume/resume.component';
-import { MarkaModelComponent } from './marka-model/marka-model.component'; 
+import { AutoComponent } from './auto/auto.component'; 
 
 const appRoutes: Routes = [
   {path:'', component: BodyComponent},  
   {path:'work', component: WorkComponent},
   {path:'resume', component: ResumeComponent},
-  {path:'markaModel', component: MarkaModelComponent},
+  {path:'auto', component: AutoComponent},
 ]
 
 @NgModule({
@@ -32,7 +32,7 @@ const appRoutes: Routes = [
     FooterComponent,
     WorkComponent,
     ResumeComponent,
-    MarkaModelComponent
+    AutoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,75 @@
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dobavitModal"> dobavit </button>
+
+<div class="modal fade" id="dobavitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Authorization</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">win:</label>
+            <input type="text" [(ngModel)] = "win" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+              <label class="col-form-label">toplivo:</label>
+              <input type="text" [(ngModel)] = "toplivo" [ngModelOptions]="{standalone: true}" class="form-control">
+            </div>
+          <div class="form-group">
+            <label class="col-form-label">privod:</label>
+            <input type="text" [(ngModel)] = "privod" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">probeg:</label>
+            <input type="text" [(ngModel)] = "probeg" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">cvet:</label>
+            <input type="text" [(ngModel)] = "cvet" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">dopComment:</label>
+            <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click) = "addAuto()">Enter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table datatable [dtOptions]="dtOptions" class="row-border hover">
+  <thead>
+    <tr>
+      <th>win</th>
+      <th>toplivo</th>
+      <th>privod</th>
+      <th>probeg</th>
+      <th>cvet</th>
+      <th>dopComment</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="autos?.length != 0">
+      <tr *ngFor="let auto of autos">
+          <td>{{ Auto.win }}</td>
+          <td>{{ Auto.toplivo }}</td>
+          <td>{{ Auto.privod }}</td>
+          <td>{{ Auto.probeg }}</td>
+          <td>{{ Auto.cvet }}</td>
+          <td>{{ Auto.dopComment }}</td>
+      </tr>
+  </tbody>
+  <tbody *ngIf="autos?.length == 0">
+    <tr>
+      <td colspan="6" class="no-data-available">No data!</td>
+    </tr>
+  <tbody>
+</table>
