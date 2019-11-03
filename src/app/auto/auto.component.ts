@@ -1,7 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-
 export class Auto {
   win: string;
   toplivo: string;
@@ -19,7 +18,7 @@ export class Auto {
 
 export class AutoComponent implements OnInit {
 
-  private autos: Auto[] = [];
+  private autos: any = [];
 
   win: string;
   toplivo: string;
@@ -28,36 +27,51 @@ export class AutoComponent implements OnInit {
   cvet: string;
   dopComment: string;
 
-  dtOptions: DataTables.Settings = {};
+  dtOptions: DataTables.Settings = {
+    pagingType: 'full_numbers',
+    pageLength: 25,
+    processing: true,
+  };
 
   constructor(private http: HttpClient) {}
 
   addAuto(){
-    var myData = {"win": this.win,
-    "toplivo": this.toplivo,
-    "privod": this.privod,
-    "probeg": this.probeg,
-    "cvet": this.cvet,
-    "dopComment": this.dopComment
+
+    var myData = {
+      "win": this.win,
+      "toplivo": this.toplivo,
+      "privod": this.privod,
+      "probeg": this.probeg,
+      "cvet": this.cvet,
+      "dopComment": this.dopComment
     };        
 
     jQuery.ajax({
-        url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
-        data: JSON.stringify(myData),
-        success: function(data){
-          alert(data)
+      url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
+      data: JSON.stringify(myData),
+      success: function(data){
+        console.log("success post data auto: ", data);
       }, 
-        error: function(data) {
-            console.log("Error: ", data);
-        },
-        type: "post",
-        dataType: "text",
-        timeout: 30000
+      error: function(data) {
+        console.log("error post data auto: ", data);
+      },
+      type: "post",
+      dataType: "text",
+      timeout: 30000
     });
-    // console.log("list: ", this.autos);
+
+    this.getAllToTable();
   }
 
+  getAllToTable():void{
+    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/Auto").subscribe(
+      (data) => {
+      this.autos= data;
+    });
+  }
+ 
   ngOnInit(): void {
+   this.getAllToTable();
   }
-
+    
 }

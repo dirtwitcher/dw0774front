@@ -46,30 +46,19 @@
   </div>
 </div>
 
-<table datatable [dtOptions]="dtOptions" class="row-border hover">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
   <thead>
     <tr>
+      <th>id</th>
       <th>win</th>
-      <th>toplivo</th>
-      <th>privod</th>
-      <th>probeg</th>
       <th>cvet</th>
-      <th>dopComment</th>
     </tr>
   </thead>
-  <tbody *ngIf="autos?.length != 0">
-      <tr *ngFor="let auto of autos">
-          <td>{{ Auto.win }}</td>
-          <td>{{ Auto.toplivo }}</td>
-          <td>{{ Auto.privod }}</td>
-          <td>{{ Auto.probeg }}</td>
-          <td>{{ Auto.cvet }}</td>
-          <td>{{ Auto.dopComment }}</td>
-      </tr>
-  </tbody>
-  <tbody *ngIf="autos?.length == 0">
-    <tr>
-      <td colspan="6" class="no-data-available">No data!</td>
-    </tr>
   <tbody>
-</table>
+    <tr *ngFor="let Auto of autos">
+      <td>{{ Auto.id_auto }}</td>
+      <td>{{ Auto.win }}</td>
+      <td>{{ Auto.cvet }}</td>
+    </tr>
+  </tbody>
+  </table>
