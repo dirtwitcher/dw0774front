@@ -36,7 +36,6 @@ export class AutoComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   addAuto(){
-
     var myData = {
       "win": this.win,
       "toplivo": this.toplivo,
@@ -44,8 +43,7 @@ export class AutoComponent implements OnInit {
       "probeg": this.probeg,
       "cvet": this.cvet,
       "dopComment": this.dopComment
-    };        
-
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
       data: JSON.stringify(myData),
@@ -59,7 +57,6 @@ export class AutoComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-
     this.getAllToTable();
   }
 

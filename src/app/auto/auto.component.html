@@ -1,11 +1,11 @@
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dobavitModal"> dobavit </button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"> add auto </button>
 
-<div class="modal fade" id="dobavitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Authorization</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add auto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -51,14 +51,22 @@
     <tr>
       <th>id</th>
       <th>win</th>
+      <th>toplivo</th>
+      <th>privod</th>
+      <th>probeg</th>
       <th>cvet</th>
+      <th>dopComment</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let Auto of autos">
       <td>{{ Auto.id_auto }}</td>
       <td>{{ Auto.win }}</td>
+      <td>{{ Auto.toplivo }}</td>
+      <td>{{ Auto.privod }}</td>
+      <td>{{ Auto.probeg }}</td>
       <td>{{ Auto.cvet }}</td>
+      <td>{{ Auto.dopComment }}</td>
     </tr>
   </tbody>
   </table>
