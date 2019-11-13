@@ -1,5 +1,7 @@
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"> add auto </button>
+<p>Polzovatel:  {{ polzovatel }}.  press on zapis to update delete
+<button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add auto </button>
+ </p>
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -19,7 +21,7 @@
           <div class="form-group">
               <label class="col-form-label">toplivo:</label>
               <input type="text" [(ngModel)] = "toplivo" [ngModelOptions]="{standalone: true}" class="form-control">
-            </div>
+          </div>
           <div class="form-group">
             <label class="col-form-label">privod:</label>
             <input type="text" [(ngModel)] = "privod" [ngModelOptions]="{standalone: true}" class="form-control">
@@ -46,7 +48,57 @@
   </div>
 </div>
 
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+<div class="modal fade" id="updateDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update/Delete auto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">id:</label>
+            <label class="col-form-label">{{ id }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">win:</label>
+            <label class="col-form-label">{{ win }}</label>
+          </div>
+          <div class="form-group">
+              <label class="col-form-label">toplivo:</label>
+              <label class="col-form-label">{{ toplivo }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">privod:</label>
+            <label class="col-form-label">{{ privod }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">probeg:</label>
+            <label class="col-form-label">{{ probeg }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">cvet:</label>
+            <label class="col-form-label">{{ cvet }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">{{ dopComment }}</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click) = "updateAuto()">Update</button>
+        <button type="button" class="btn btn-primary" (click) = "deleteAuto()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
   <thead>
     <tr>
       <th>id</th>
@@ -69,4 +121,4 @@
       <td>{{ Auto.dopComment }}</td>
     </tr>
   </tbody>
-  </table>
+</table>
