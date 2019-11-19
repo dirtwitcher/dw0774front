@@ -11,7 +11,7 @@
     <label class="form-check-label" for="deleteRadio">deleteRadio</label>
   </div>
 
-  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add auto </button>
+  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add kpp </button>
 </div>
 
 
@@ -19,7 +19,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add auto</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add kpp</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -27,34 +27,30 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">win:</label>
-            <input type="text" [(ngModel)] = "win" [ngModelOptions]="{standalone: true}" class="form-control">
+            <label class="col-form-label">typeDetali:</label>
+            <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-              <label class="col-form-label">toplivo:</label>
-              <input type="text" [(ngModel)] = "toplivo" [ngModelOptions]="{standalone: true}" class="form-control">
+            <label class="col-form-label">kolvoStupeney:</label>
+            <input type="text" [(ngModel)] = "kolvoStupeney" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">privod:</label>
-            <input type="text" [(ngModel)] = "privod" [ngModelOptions]="{standalone: true}" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">probeg:</label>
-            <input type="text" [(ngModel)] = "probeg" [ngModelOptions]="{standalone: true}" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">cvet:</label>
-            <input type="text" [(ngModel)] = "cvet" [ngModelOptions]="{standalone: true}" class="form-control">
+              <label class="col-form-label">garantiya:</label>
+              <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
             <label class="col-form-label">dopComment:</label>
             <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
+          <div class="form-group">
+            <label class="col-form-label">cena:</label>
+            <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "addAuto()">Enter</button>
+        <button type="submit" class="btn btn-primary" (click) = "addKpp()">Enter</button>
       </div>
     </div>
   </div>
@@ -64,7 +60,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update auto</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update kpp</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -72,38 +68,34 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id:</label>
-            <label class="col-form-label">{{ id_auto }}</label>
+            <label class="col-form-label">id_kpp:</label>
+            <label class="col-form-label">{{ id_kpp }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">win:</label>
-            <input type="text" [(ngModel)] = "win" [ngModelOptions]="{standalone: true}" class="form-control">
+            <label class="col-form-label">typeDetali:</label>
+            <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">toplivo:</label>
-            <input type="text" [(ngModel)] = "toplivo" [ngModelOptions]="{standalone: true}" class="form-control">
+            <label class="col-form-label">kolvoStupeney:</label>
+            <input type="text" [(ngModel)] = "kolvoStupeney" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">privod:</label>
-            <input type="text" [(ngModel)] = "privod" [ngModelOptions]="{standalone: true}" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">probeg:</label>
-            <input type="text" [(ngModel)] = "probeg" [ngModelOptions]="{standalone: true}" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">cvet:</label>
-            <input type="text" [(ngModel)] = "cvet" [ngModelOptions]="{standalone: true}" class="form-control">
+            <label class="col-form-label">garantiya:</label>
+            <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
             <label class="col-form-label">dopComment:</label>
             <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
+          <div class="form-group">
+            <label class="col-form-label">cena:</label>
+            <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "updateAuto()">Update</button>
+        <button type="submit" class="btn btn-primary" (click) = "updateKpp()">Update</button>
       </div>
     </div>
   </div>
@@ -113,7 +105,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete auto</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Delete kpp</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -121,38 +113,34 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id:</label>
-            <label class="col-form-label">{{ id_auto }}</label>
+            <label class="col-form-label">id_kpp:</label>
+            <label class="col-form-label">{{ id_kpp }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">win:</label>
-            <label class="col-form-label">{{ win }}</label>
+            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">{{ typeDetali }}</label>
           </div>
           <div class="form-group">
-              <label class="col-form-label">toplivo:</label>
-              <label class="col-form-label">{{ toplivo }}</label>
+              <label class="col-form-label">kolvoStupeney:</label>
+              <label class="col-form-label">{{ kolvoStupeney }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">privod:</label>
-            <label class="col-form-label">{{ privod }}</label>
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">probeg:</label>
-            <label class="col-form-label">{{ probeg }}</label>
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">cvet:</label>
-            <label class="col-form-label">{{ cvet }}</label>
+            <label class="col-form-label">garantiya:</label>
+            <label class="col-form-label">{{ garantiya }}</label>
           </div>
           <div class="form-group">
             <label class="col-form-label">dopComment:</label>
             <label class="col-form-label">{{ dopComment }}</label>
           </div>
+          <div class="form-group">
+            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">{{ cena }}</label>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "deleteAuto()">Delete</button>
+        <button type="submit" class="btn btn-primary" (click) = "deleteKpp()">Delete</button>
       </div>
     </div>
   </div>
@@ -161,24 +149,22 @@
 <table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
   <thead>
     <tr>
-      <th>id_auto</th>
-      <th>win</th>
-      <th>toplivo</th>
-      <th>privod</th>
-      <th>probeg</th>
-      <th>cvet</th>
+      <th>id_kpp</th>
+      <th>typeDetali</th>
+      <th>kolvoStupeney</th>
+      <th>garantiya</th>
       <th>dopComment</th>
+      <th>cena</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let Auto of autos">
-      <td>{{ Auto.id_auto }}</td>
-      <td>{{ Auto.win }}</td>
-      <td>{{ Auto.toplivo }}</td>
-      <td>{{ Auto.privod }}</td>
-      <td>{{ Auto.probeg }}</td>
-      <td>{{ Auto.cvet }}</td>
-      <td>{{ Auto.dopComment }}</td>
+    <tr *ngFor="let Kpp of kpps">
+      <td>{{ Kpp.id_kpp }}</td>
+      <td>{{ Kpp.typeDetali }}</td>
+      <td>{{ Kpp.kolvoStupeney }}</td>
+      <td>{{ Kpp.garantiya }}</td>
+      <td>{{ Kpp.dopComment }}</td>
+      <td>{{ Kpp.cena }}</td>
     </tr>
   </tbody>
 </table>

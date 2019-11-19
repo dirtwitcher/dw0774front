@@ -1,0 +1,128 @@
+
+<div>
+  Polzovatel: {{ polzovatel }}.  press on zapis to update delete 
+
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update">
+    <label class="form-check-label" for="updateRadio">updateRadio</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete" checked>
+    <label class="form-check-label" for="deleteRadio">deleteRadio</label>
+  </div>
+
+  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add type auto </button>
+</div>
+
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add type auto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">marka:</label>
+            <input type="text" [(ngModel)] = "marka" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+              <label class="col-form-label">model:</label>
+              <input type="text" [(ngModel)] = "model" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click) = "addTypeAuto()">Enter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update type auto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">id:</label>
+            <label class="col-form-label">{{ id_typeAuto }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">marka:</label>
+            <input type="text" [(ngModel)] = "marka" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">model:</label>
+            <input type="text" [(ngModel)] = "model" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click) = "updateTypeAuto()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete type auto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">id:</label>
+            <label class="col-form-label">{{ id_typeAuto }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">marka:</label>
+            <label class="col-form-label">{{ marka }}</label>
+          </div>
+          <div class="form-group">
+              <label class="col-form-label">model:</label>
+              <label class="col-form-label">{{ model }}</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click) = "deleteTypeAuto()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table datatable id="markaModelTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>id type auto</th>
+      <th>marka</th>
+      <th>model</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let TypeAuto of typeAutos">
+      <td>{{ TypeAuto.id_typeAuto }}</td>
+      <td>{{ TypeAuto.marka }}</td>
+      <td>{{ TypeAuto.model }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,19 +1,9 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <b class="navbar-brand a1" href="#">Баерн Бел Сервис</b>
+  <a class="navbar-brand a1" href="#"> Баерн Бел Сервис </a>
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
-          </li>
-    <!--  
-          <li class="nav-item">
-              <a class="nav-link" href="/work">Bank</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="/resume">Resume</a>
-          </li>  
-    -->
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Авто
@@ -87,10 +77,10 @@
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#authModal"> Authorization </button>
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#authModal"> Авторизация </button>
           </li>
           <li class="nav-item">
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#registrModal"> Rigistration </button>
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#registrModal"> Регистрация </button>
           </li>
       </ul>
   </div>
@@ -101,7 +91,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Authorization</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Авторизация</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -109,18 +99,18 @@
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label class="col-form-label">Login:</label>
+                  <label class="col-form-label">Логин:</label>
                   <input type="text" [(ngModel)] = "authLog" [ngModelOptions]="{standalone: true}" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label class="col-form-label">Password:</label>
+                    <label class="col-form-label">Пароль:</label>
                     <input type="password" [(ngModel)] = "authPass" [ngModelOptions]="{standalone: true}" class="form-control">
                   </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" (click) = "auth()">Enter</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+              <button type="button" class="btn btn-primary" (click) = "auth()">Ввод</button>
             </div>
           </div>
         </div>
@@ -131,7 +121,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Registration</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Регистрация</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -139,22 +129,22 @@
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label class="col-form-label">Login:</label>
+                  <label class="col-form-label">Логин:</label>
                   <input type="text" [(ngModel)] = "regLog" [ngModelOptions]="{standalone: true}" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label class="col-form-label">Password:</label>
+                  <label class="col-form-label">Пароль:</label>
                   <input type="password" [(ngModel)] = "regPass" [ngModelOptions]="{standalone: true}" class="form-control">
                   </div>
                 <div class="form-group">
-                  <label class="col-form-label">Repeat password:</label>
+                  <label class="col-form-label">Повторите пароль:</label>
                   <input type="password" [(ngModel)] = "regRepPass" [ngModelOptions]="{standalone: true}" class="form-control">
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" (click) = "registr()">Enter</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+              <button type="button" class="btn btn-primary" (click) = "registr()">Ввод</button>
             </div>
           </div>
         </div>

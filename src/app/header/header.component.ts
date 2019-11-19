@@ -3,7 +3,6 @@ import { FormGroup } from '@angular/forms';
 import { DomSanitizer} from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { WorkComponent } from '../work/work.component';
 
 interface accTable {
   idHeader : number;
@@ -34,8 +33,8 @@ export class HeaderComponent implements OnInit {
     .subscribe(data => {
       console.log('id: ' + data.idHeader);
       console.log('auth sucsess 0 - false, 1 - true: ' + data.iAmInAcc);
-      WorkComponent.inputId = data.idHeader.toString();
-      WorkComponent.inAcc = data.iAmInAcc;
+      // WorkComponent.inputId = data.idHeader.toString();
+      // WorkComponent.inAcc = data.iAmInAcc;
       this.myDataHeader = data;});
       //WorkComponent.inputId = this.myDataHeader.idHeader;
       //WorkComponent.inAcc = this.myDataHeader.iAmInAcc;

@@ -4,23 +4,20 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-auto',
-  templateUrl: './auto.component.html',
-  styleUrls: ['./auto.component.css']
+  selector: 'app-dop-tovari',
+  templateUrl: './dop-tovari.component.html',
+  styleUrls: ['./dop-tovari.component.css']
 })
+export class DopTovariComponent implements OnInit {
 
-export class AutoComponent implements OnInit {
-
-  private autos: any = [];
+  private dopTovars: any = [];
   private polzovatel: String = "!NONE!";
 
-  id_auto: number;
-  win: string;
-  toplivo: string;
-  privod: string;
-  probeg: number;
-  cvet: string;
+  id_dopTovari: number;
+  typeDetali: string;
+  garantiya: string;
   dopComment: string;
+  cena: number;
 
   dtOptions: DataTables.Settings = {
     pagingType: 'full_numbers',
@@ -38,36 +35,32 @@ export class AutoComponent implements OnInit {
   };
 
   private openModal(info: any): void {
-    this.id_auto = info[0];
-    this.win = info[1];
-    this.toplivo = info[2];
-    this.privod = info[3];
-    this.probeg = info[4];
-    this.cvet = info[5];
-    this.dopComment = info[6];
+    this.id_dopTovari = info[0];
+    this.typeDetali = info[1];
+    this.garantiya = info[2];
+    this.dopComment = info[3];
+    this.cena = info[4];
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
   constructor(private http: HttpClient) {}
 
-  private addAuto(){
+  private addDopTovari(){
     var myData = {
-      "win": this.win,
-      "toplivo": this.toplivo,
-      "privod": this.privod,
-      "probeg": this.probeg,
-      "cvet": this.cvet,
-      "dopComment": this.dopComment
+      "typeDetali": this.typeDetali,
+      "garantiya": this.garantiya,
+      "dopComment": this.dopComment,
+      "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
+      url: "http://127.0.0.1:8080/diplomBackEnd/DopTovari",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success post data auto: ", data);
+        console.log("success post data DopTovari: ", data);
       }, 
       error: function(data) {
-        console.log("error post data auto: ", data);
+        console.log("error post data DopTovari: ", data);
       },
       type: "post",
       dataType: "text",
@@ -78,24 +71,22 @@ export class AutoComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private updateAuto(){
+  private updateDopTovari(){
     var myData = {
-      "id_auto": this.id_auto,
-      "win": this.win,
-      "toplivo": this.toplivo,
-      "privod": this.privod,
-      "probeg": this.probeg,
-      "cvet": this.cvet,
-      "dopComment": this.dopComment
+      "id_dopTovari": this.id_dopTovari,
+      "typeDetali": this.typeDetali,
+      "garantiya": this.garantiya,
+      "dopComment": this.dopComment,
+      "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
+      url: "http://127.0.0.1:8080/diplomBackEnd/DopTovari",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success update data auto: ", data);
+        console.log("success update data DopTovari: ", data);
       }, 
       error: function(data) {
-        console.log("error update data auto: ", data);
+        console.log("error update data DopTovari: ", data);
       },
       type: "PUT",
       dataType: "text",
@@ -106,14 +97,14 @@ export class AutoComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private deleteAuto(){
+  private deleteDopTovari(){
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto"+ '?' + $.param({"id_auto": this.id_auto}),
+      url: "http://127.0.0.1:8080/diplomBackEnd/DopTovari"+ '?' + $.param({"id_dopTovari": this.id_dopTovari}),
       success: function(data){
-        console.log("success delete data auto: ", data);
+        console.log("success delete data DopTovari: ", data);
       }, 
       error: function(data) {
-        console.log("error delete data auto: ", data);
+        console.log("error delete data DopTovari: ", data);
       },
       type: "delete",
       dataType: "text",
@@ -125,9 +116,9 @@ export class AutoComponent implements OnInit {
   }
 
   private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/Auto").subscribe(
+    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/DopTovari").subscribe(
       (data) => {
-      this.autos = data;
+      this.dopTovars = data;
     });
   }
  
@@ -136,13 +127,11 @@ export class AutoComponent implements OnInit {
   }
 
   clearData(): void {
-    this.id_auto = null;
-    this.win = null;
-    this.toplivo = null;
-    this.privod = null;
-    this.probeg = null;
-    this.cvet = null;
+    this.id_dopTovari = null;
+    this.typeDetali = null;
+    this.garantiya = null;
     this.dopComment = null;
+    this.cena = null;
   }
     
 }

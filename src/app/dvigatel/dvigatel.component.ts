@@ -4,23 +4,21 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-auto',
-  templateUrl: './auto.component.html',
-  styleUrls: ['./auto.component.css']
+  selector: 'app-dvigatel',
+  templateUrl: './dvigatel.component.html',
+  styleUrls: ['./dvigatel.component.css']
 })
 
-export class AutoComponent implements OnInit {
+export class DvigatelComponent implements OnInit {
 
-  private autos: any = [];
+  private dvigatels: any = [];
   private polzovatel: String = "!NONE!";
 
-  id_auto: number;
-  win: string;
-  toplivo: string;
-  privod: string;
-  probeg: number;
-  cvet: string;
+  id_dvigatel: number;
+  obem: string;
+  garantiya: string;
   dopComment: string;
+  cena: number;
 
   dtOptions: DataTables.Settings = {
     pagingType: 'full_numbers',
@@ -38,36 +36,32 @@ export class AutoComponent implements OnInit {
   };
 
   private openModal(info: any): void {
-    this.id_auto = info[0];
-    this.win = info[1];
-    this.toplivo = info[2];
-    this.privod = info[3];
-    this.probeg = info[4];
-    this.cvet = info[5];
-    this.dopComment = info[6];
+    this.id_dvigatel = info[0];
+    this.obem = info[1];
+    this.garantiya = info[2];
+    this.dopComment = info[3];
+    this.cena = info[4];
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
   constructor(private http: HttpClient) {}
 
-  private addAuto(){
+  private addDvigatel(){
     var myData = {
-      "win": this.win,
-      "toplivo": this.toplivo,
-      "privod": this.privod,
-      "probeg": this.probeg,
-      "cvet": this.cvet,
-      "dopComment": this.dopComment
+      "obem": this.obem,
+      "garantiya": this.garantiya,
+      "dopComment": this.dopComment,
+      "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
+      url: "http://127.0.0.1:8080/diplomBackEnd/Dvigatel",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success post data auto: ", data);
+        console.log("success post data dvigatel: ", data);
       }, 
       error: function(data) {
-        console.log("error post data auto: ", data);
+        console.log("error post data dvigatel: ", data);
       },
       type: "post",
       dataType: "text",
@@ -78,24 +72,22 @@ export class AutoComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private updateAuto(){
+  private updateDvigatel(){
     var myData = {
-      "id_auto": this.id_auto,
-      "win": this.win,
-      "toplivo": this.toplivo,
-      "privod": this.privod,
-      "probeg": this.probeg,
-      "cvet": this.cvet,
-      "dopComment": this.dopComment
+      "id_dvigatel": this.id_dvigatel,
+      "obem": this.obem,
+      "garantiya": this.garantiya,
+      "dopComment": this.dopComment,
+      "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
+      url: "http://127.0.0.1:8080/diplomBackEnd/Dvigatel",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success update data auto: ", data);
+        console.log("success update data dvigatel: ", data);
       }, 
       error: function(data) {
-        console.log("error update data auto: ", data);
+        console.log("error update data dvigatel: ", data);
       },
       type: "PUT",
       dataType: "text",
@@ -106,14 +98,14 @@ export class AutoComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private deleteAuto(){
+  private deleteDvigatel(){
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto"+ '?' + $.param({"id_auto": this.id_auto}),
+      url: "http://127.0.0.1:8080/diplomBackEnd/Dvigatel"+ '?' + $.param({"id_dvigatel": this.id_dvigatel}),
       success: function(data){
-        console.log("success delete data auto: ", data);
+        console.log("success delete data dvigatel: ", data);
       }, 
       error: function(data) {
-        console.log("error delete data auto: ", data);
+        console.log("error delete data dvigatel: ", data);
       },
       type: "delete",
       dataType: "text",
@@ -125,9 +117,9 @@ export class AutoComponent implements OnInit {
   }
 
   private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/Auto").subscribe(
+    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/Dvigatel").subscribe(
       (data) => {
-      this.autos = data;
+      this.dvigatels = data;
     });
   }
  
@@ -136,13 +128,11 @@ export class AutoComponent implements OnInit {
   }
 
   clearData(): void {
-    this.id_auto = null;
-    this.win = null;
-    this.toplivo = null;
-    this.privod = null;
-    this.probeg = null;
-    this.cvet = null;
+    this.id_dvigatel = null;
+    this.obem = null;
+    this.garantiya = null;
     this.dopComment = null;
+    this.cena = null;
   }
     
 }

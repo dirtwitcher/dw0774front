@@ -4,23 +4,22 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-auto',
-  templateUrl: './auto.component.html',
-  styleUrls: ['./auto.component.css']
+  selector: 'app-kpp',
+  templateUrl: './kpp.component.html',
+  styleUrls: ['./kpp.component.css']
 })
 
-export class AutoComponent implements OnInit {
+export class KppComponent implements OnInit {
 
-  private autos: any = [];
+  private kpps: any = [];
   private polzovatel: String = "!NONE!";
 
-  id_auto: number;
-  win: string;
-  toplivo: string;
-  privod: string;
-  probeg: number;
-  cvet: string;
+  id_kpp: number;
+  typeDetali: string;
+  kolvoStupeney: string;
+  garantiya: string;
   dopComment: string;
+  cena: number;
 
   dtOptions: DataTables.Settings = {
     pagingType: 'full_numbers',
@@ -38,36 +37,34 @@ export class AutoComponent implements OnInit {
   };
 
   private openModal(info: any): void {
-    this.id_auto = info[0];
-    this.win = info[1];
-    this.toplivo = info[2];
-    this.privod = info[3];
-    this.probeg = info[4];
-    this.cvet = info[5];
-    this.dopComment = info[6];
+    this.id_kpp = info[0];
+    this.typeDetali = info[1];
+    this.kolvoStupeney = info[2];
+    this.garantiya = info[3];
+    this.dopComment = info[4];
+    this.cena = info[5];
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
   constructor(private http: HttpClient) {}
 
-  private addAuto(){
+  private addKpp(){
     var myData = {
-      "win": this.win,
-      "toplivo": this.toplivo,
-      "privod": this.privod,
-      "probeg": this.probeg,
-      "cvet": this.cvet,
-      "dopComment": this.dopComment
+      "typeDetali": this.typeDetali,
+      "kolvoStupeney": this.kolvoStupeney,
+      "garantiya": this.garantiya,
+      "dopComment": this.dopComment,
+      "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
+      url: "http://127.0.0.1:8080/diplomBackEnd/Kpp",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success post data auto: ", data);
+        console.log("success post data Kpp: ", data);
       }, 
       error: function(data) {
-        console.log("error post data auto: ", data);
+        console.log("error post data Kpp: ", data);
       },
       type: "post",
       dataType: "text",
@@ -78,24 +75,23 @@ export class AutoComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private updateAuto(){
+  private updateKpp(){
     var myData = {
-      "id_auto": this.id_auto,
-      "win": this.win,
-      "toplivo": this.toplivo,
-      "privod": this.privod,
-      "probeg": this.probeg,
-      "cvet": this.cvet,
-      "dopComment": this.dopComment
+      "id_kpp": this.id_kpp,
+      "typeDetali": this.typeDetali,
+      "kolvoStupeney": this.kolvoStupeney,
+      "garantiya": this.garantiya,
+      "dopComment": this.dopComment,
+      "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
+      url: "http://127.0.0.1:8080/diplomBackEnd/Kpp",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success update data auto: ", data);
+        console.log("success update data Kpp: ", data);
       }, 
       error: function(data) {
-        console.log("error update data auto: ", data);
+        console.log("error update data Kpp: ", data);
       },
       type: "PUT",
       dataType: "text",
@@ -106,14 +102,14 @@ export class AutoComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private deleteAuto(){
+  private deleteKpp(){
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto"+ '?' + $.param({"id_auto": this.id_auto}),
+      url: "http://127.0.0.1:8080/diplomBackEnd/Kpp"+ '?' + $.param({"id_kpp": this.id_kpp}),
       success: function(data){
-        console.log("success delete data auto: ", data);
+        console.log("success delete data Kpp: ", data);
       }, 
       error: function(data) {
-        console.log("error delete data auto: ", data);
+        console.log("error delete data Kpp: ", data);
       },
       type: "delete",
       dataType: "text",
@@ -125,9 +121,9 @@ export class AutoComponent implements OnInit {
   }
 
   private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/Auto").subscribe(
+    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/Kpp").subscribe(
       (data) => {
-      this.autos = data;
+      this.kpps = data;
     });
   }
  
@@ -136,13 +132,12 @@ export class AutoComponent implements OnInit {
   }
 
   clearData(): void {
-    this.id_auto = null;
-    this.win = null;
-    this.toplivo = null;
-    this.privod = null;
-    this.probeg = null;
-    this.cvet = null;
+    this.id_kpp = null;
+    this.typeDetali = null;
+    this.kolvoStupeney = null;
+    this.garantiya = null;
     this.dopComment = null;
+    this.cena = null;
   }
     
 }

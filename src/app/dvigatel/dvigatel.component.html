@@ -1,0 +1,156 @@
+
+<div>
+  Polzovatel: {{ polzovatel }}.  press on zapis to update delete 
+
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update">
+    <label class="form-check-label" for="updateRadio">updateRadio</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete" checked>
+    <label class="form-check-label" for="deleteRadio">deleteRadio</label>
+  </div>
+
+  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add dvigatel </button>
+</div>
+
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add dvigatel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">obem:</label>
+            <input type="text" [(ngModel)] = "obem" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+              <label class="col-form-label">garantiya:</label>
+              <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">dopComment:</label>
+            <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">cena:</label>
+            <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click) = "addDvigatel()">Enter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update dvigatel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">id_dvigatel:</label>
+            <label class="col-form-label">{{ id_dvigatel }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">obem:</label>
+            <input type="text" [(ngModel)] = "obem" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">garantiya:</label>
+            <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">dopComment:</label>
+            <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">cena:</label>
+            <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click) = "updateDvigatel()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete dvigatel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">id_dvigatel:</label>
+            <label class="col-form-label">{{ id_dvigatel }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">obem:</label>
+            <label class="col-form-label">{{ obem }}</label>
+          </div>
+          <div class="form-group">
+              <label class="col-form-label">garantiya:</label>
+              <label class="col-form-label">{{ garantiya }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">{{ dopComment }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">{{ cena }}</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click) = "deleteDvigatel()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>id_dvigatel</th>
+      <th>obem</th>
+      <th>garantiya</th>
+      <th>dopComment</th>
+      <th>cena</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let Dvigatel of dvigatels">
+      <td>{{ Dvigatel.id_dvigatel }}</td>
+      <td>{{ Dvigatel.obem }}</td>
+      <td>{{ Dvigatel.garantiya }}</td>
+      <td>{{ Dvigatel.dopComment }}</td>
+      <td>{{ Dvigatel.cena }}</td>
+    </tr>
+  </tbody>
+</table>
