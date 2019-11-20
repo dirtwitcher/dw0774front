@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './dop-tovari.component.html',
   styleUrls: ['./dop-tovari.component.css']
 })
+
 export class DopTovariComponent implements OnInit {
 
   private dopTovars: any = [];

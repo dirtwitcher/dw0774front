@@ -11,7 +11,7 @@
     <label class="form-check-label" for="deleteRadio">deleteRadio</label>
   </div>
 
-  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add kpp </button>
+  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add Podveska </button>
 </div>
 
 
@@ -19,7 +19,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add kpp</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Podveska</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -31,8 +31,12 @@
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">kolvoStupeney:</label>
-            <input type="text" [(ngModel)] = "kolvoStupeney" [ngModelOptions]="{standalone: true}" class="form-control">
+            <label class="col-form-label">storona:</label>
+            <input type="text" [(ngModel)] = "storona" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">proizvoditel:</label>
+            <input type="text" [(ngModel)] = "proizvoditel" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
               <label class="col-form-label">garantiya:</label>
@@ -50,7 +54,7 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "addKpp()">Enter</button>
+        <button type="submit" class="btn btn-primary" (click) = "addPodveska()">Enter</button>
       </div>
     </div>
   </div>
@@ -60,7 +64,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update kpp</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update Podveska</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -68,16 +72,20 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_kpp:</label>
-            <label class="col-form-label">{{ id_kpp }}</label>
+            <label class="col-form-label">id_podveska:</label>
+            <label class="col-form-label">{{ id_podveska }}</label>
           </div>
           <div class="form-group">
             <label class="col-form-label">typeDetali:</label>
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">kolvoStupeney:</label>
-            <input type="text" [(ngModel)] = "kolvoStupeney" [ngModelOptions]="{standalone: true}" class="form-control">
+            <label class="col-form-label">storona:</label>
+            <input type="text" [(ngModel)] = "storona" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">proizvoditel:</label>
+            <input type="text" [(ngModel)] = "proizvoditel" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
             <label class="col-form-label">garantiya:</label>
@@ -95,7 +103,7 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "updateKpp()">Update</button>
+        <button type="submit" class="btn btn-primary" (click) = "updatePodveska()">Update</button>
       </div>
     </div>
   </div>
@@ -105,7 +113,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete kpp</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Delete Podveska</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -113,16 +121,20 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_kpp:</label>
-            <label class="col-form-label">{{ id_kpp }}</label>
+            <label class="col-form-label">id_podveska:</label>
+            <label class="col-form-label">{{ id_podveska }}</label>
           </div>
           <div class="form-group">
             <label class="col-form-label">typeDetali:</label>
             <label class="col-form-label">{{ typeDetali }}</label>
           </div>
           <div class="form-group">
-              <label class="col-form-label">kolvoStupeney:</label>
-              <label class="col-form-label">{{ kolvoStupeney }}</label>
+            <label class="col-form-label">storona:</label>
+            <label class="col-form-label">{{ storona }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">proizvoditel:</label>
+            <label class="col-form-label">{{ proizvoditel }}</label>
           </div>
           <div class="form-group">
             <label class="col-form-label">garantiya:</label>
@@ -140,7 +152,7 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "deleteKpp()">Delete</button>
+        <button type="submit" class="btn btn-primary" (click) = "deletePodveska()">Delete</button>
       </div>
     </div>
   </div>
@@ -149,22 +161,24 @@
 <table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="word-break: break-all;">
   <thead>
     <tr>
-      <th>id_kpp</th>
+      <th>id_podveska</th>
       <th>typeDetali</th>
-      <th>kolvoStupeney</th>
+      <th>storona</th>
+      <th>proizvoditel</th>
       <th>garantiya</th>
       <th>dopComment</th>
       <th>cena</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let Kpp of kpps">
-      <td>{{ Kpp.id_kpp }}</td>
-      <td>{{ Kpp.typeDetali }}</td>
-      <td>{{ Kpp.kolvoStupeney }}</td>
-      <td>{{ Kpp.garantiya }}</td>
-      <td>{{ Kpp.dopComment }}</td>
-      <td>{{ Kpp.cena }}</td>
+    <tr *ngFor="let Podveska of podveskas">
+      <td>{{ Podveska.id_podveska }}</td>
+      <td>{{ Podveska.typeDetali }}</td>
+      <td>{{ Podveska.storona }}</td>
+      <td>{{ Podveska.proizvoditel }}</td>
+      <td>{{ Podveska.garantiya }}</td>
+      <td>{{ Podveska.dopComment }}</td>
+      <td>{{ Podveska.cena }}</td>
     </tr>
   </tbody>
 </table>

@@ -83,7 +83,7 @@ export class KuzovnieDetaliComponent implements OnInit {
 
   private updateKuzovnieDetali(){
     var myData = {
-      "id_elektrika": this.id_kuzovnieDetali,
+      "id_kuzovnieDetali": this.id_kuzovnieDetali,
       "typeDetali": this.typeDetali,
       "kuzov": this.kuzov,
       "cvetDetali": this.cvetDetali,

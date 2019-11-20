@@ -4,19 +4,18 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-osnasch-kuzova',
-  templateUrl: './osnasch-kuzova.component.html',
-  styleUrls: ['./osnasch-kuzova.component.css']
+  selector: 'app-toplivnaya-sistema',
+  templateUrl: './toplivnaya-sistema.component.html',
+  styleUrls: ['./toplivnaya-sistema.component.css']
 })
 
-export class OsnaschKuzovaComponent implements OnInit {
-
-  private osnaschKuzovs: any = [];
+export class ToplivnayaSistemaComponent implements OnInit {
+  private toplivnayaSistems: any = [];
   private polzovatel: String = "!NONE!";
 
-  id_osnaschKuzova: number;
-  typeDetali: string; 
-  storona: string;
+  id_toplivnayaSistema: number;
+  typeDetali: string;
+  proizvoditel: string;
   garantiya: string;
   dopComment: string;
   cena: number;
@@ -37,9 +36,9 @@ export class OsnaschKuzovaComponent implements OnInit {
   };
 
   private openModal(info: any): void {
-    this.id_osnaschKuzova = info[0];
+    this.id_toplivnayaSistema = info[0];
     this.typeDetali = info[1];
-    this.storona = info[2];
+    this.proizvoditel = info[2];
     this.garantiya = info[3];
     this.dopComment = info[4];
     this.cena = info[5];
@@ -49,49 +48,49 @@ export class OsnaschKuzovaComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  private addOsnaschKuzova(){
+  private addToplivnayaSistema(){
     var myData = {
       "typeDetali": this.typeDetali,
-      "storona": this.storona,
+      "proizvoditel": this.proizvoditel,
       "garantiya": this.garantiya,
       "dopComment": this.dopComment,
       "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova",
+      url: "http://127.0.0.1:8080/diplomBackEnd/ToplivnayaSistema",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success post data OsnaschKuzova: ", data);
+        console.log("success post data ToplivnayaSistema: ", data);
       }, 
       error: function(data) {
-        console.log("error post data OsnaschKuzova: ", data);
+        console.log("error post data ToplivnayaSistema: ", data);
       },
       type: "post",
       dataType: "text",
       timeout: 30000
     });
     // this.getAllToTable();
-    $('#addModal').modal('hide');
+    // $('#addModal').modal('hide');
     window.location.reload(false);
   }
 
-  private updateOsnaschKuzova(){
+  private updateToplivnayaSistema(){
     var myData = {
-      "id_osnaschKuzova": this.id_osnaschKuzova,
+      "id_toplivnayaSistema": this.id_toplivnayaSistema,
       "typeDetali": this.typeDetali,
-      "storona": this.storona,
+      "proizvoditel": this.proizvoditel,
       "garantiya": this.garantiya,
       "dopComment": this.dopComment,
       "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova",
+      url: "http://127.0.0.1:8080/diplomBackEnd/ToplivnayaSistema",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success update data OsnaschKuzova: ", data);
+        console.log("success update data ToplivnayaSistema: ", data);
       }, 
       error: function(data) {
-        console.log("error update data OsnaschKuzova: ", data);
+        console.log("error update data ToplivnayaSistema: ", data);
       },
       type: "PUT",
       dataType: "text",
@@ -102,14 +101,14 @@ export class OsnaschKuzovaComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private deleteOsnaschKuzova(){
+  private deleteToplivnayaSistema(){
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova"+ '?' + $.param({"id_osnaschKuzova": this.id_osnaschKuzova}),
+      url: "http://127.0.0.1:8080/diplomBackEnd/ToplivnayaSistema"+ '?' + $.param({"id_toplivnayaSistema": this.id_toplivnayaSistema}),
       success: function(data){
-        console.log("success delete data OsnaschKuzova: ", data);
+        console.log("success delete data ToplivnayaSistema: ", data);
       }, 
       error: function(data) {
-        console.log("error delete data OsnaschKuzova: ", data);
+        console.log("error delete data ToplivnayaSistema: ", data);
       },
       type: "delete",
       dataType: "text",
@@ -121,9 +120,9 @@ export class OsnaschKuzovaComponent implements OnInit {
   }
 
   private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova").subscribe(
+    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/ToplivnayaSistema").subscribe(
       (data) => {
-      this.osnaschKuzovs = data;
+      this.toplivnayaSistems = data;
     });
   }
  
@@ -132,9 +131,9 @@ export class OsnaschKuzovaComponent implements OnInit {
   }
 
   clearData(): void {
-    this.id_osnaschKuzova = null;
+    this.id_toplivnayaSistema = null;
     this.typeDetali = null;
-    this.storona = null;
+    this.proizvoditel = null;
     this.garantiya = null;
     this.dopComment = null;
     this.cena = null;

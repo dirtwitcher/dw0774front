@@ -11,7 +11,7 @@
     <label class="form-check-label" for="deleteRadio">deleteRadio</label>
   </div>
 
-  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add kpp </button>
+  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add Transmissiya </button>
 </div>
 
 
@@ -19,7 +19,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add kpp</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Transmissiya</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -29,10 +29,6 @@
           <div class="form-group">
             <label class="col-form-label">typeDetali:</label>
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">kolvoStupeney:</label>
-            <input type="text" [(ngModel)] = "kolvoStupeney" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
               <label class="col-form-label">garantiya:</label>
@@ -50,7 +46,7 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "addKpp()">Enter</button>
+        <button type="submit" class="btn btn-primary" (click) = "addTransmissiya()">Enter</button>
       </div>
     </div>
   </div>
@@ -60,7 +56,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update kpp</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update Transmissiya</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -68,16 +64,12 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_kpp:</label>
-            <label class="col-form-label">{{ id_kpp }}</label>
+            <label class="col-form-label">id_transmissiya:</label>
+            <label class="col-form-label">{{ id_transmissiya }}</label>
           </div>
           <div class="form-group">
             <label class="col-form-label">typeDetali:</label>
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">kolvoStupeney:</label>
-            <input type="text" [(ngModel)] = "kolvoStupeney" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
             <label class="col-form-label">garantiya:</label>
@@ -95,7 +87,7 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "updateKpp()">Update</button>
+        <button type="submit" class="btn btn-primary" (click) = "updateTransmissiya()">Update</button>
       </div>
     </div>
   </div>
@@ -105,7 +97,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete kpp</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Delete Transmissiya</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -113,20 +105,16 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_kpp:</label>
-            <label class="col-form-label">{{ id_kpp }}</label>
+            <label class="col-form-label">id_transmissiya:</label>
+            <label class="col-form-label">{{ id_transmissiya }}</label>
           </div>
           <div class="form-group">
             <label class="col-form-label">typeDetali:</label>
             <label class="col-form-label">{{ typeDetali }}</label>
           </div>
           <div class="form-group">
-              <label class="col-form-label">kolvoStupeney:</label>
-              <label class="col-form-label">{{ kolvoStupeney }}</label>
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">garantiya:</label>
-            <label class="col-form-label">{{ garantiya }}</label>
+              <label class="col-form-label">garantiya:</label>
+              <label class="col-form-label">{{ garantiya }}</label>
           </div>
           <div class="form-group">
             <label class="col-form-label">dopComment:</label>
@@ -140,7 +128,7 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "deleteKpp()">Delete</button>
+        <button type="submit" class="btn btn-primary" (click) = "deleteTransmissiya()">Delete</button>
       </div>
     </div>
   </div>
@@ -149,22 +137,20 @@
 <table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="word-break: break-all;">
   <thead>
     <tr>
-      <th>id_kpp</th>
+      <th>id_transmissiya</th>
       <th>typeDetali</th>
-      <th>kolvoStupeney</th>
       <th>garantiya</th>
       <th>dopComment</th>
       <th>cena</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let Kpp of kpps">
-      <td>{{ Kpp.id_kpp }}</td>
-      <td>{{ Kpp.typeDetali }}</td>
-      <td>{{ Kpp.kolvoStupeney }}</td>
-      <td>{{ Kpp.garantiya }}</td>
-      <td>{{ Kpp.dopComment }}</td>
-      <td>{{ Kpp.cena }}</td>
+    <tr *ngFor="let Transmissiya of transmissiyas">
+      <td>{{ Transmissiya.id_transmissiya }}</td>
+      <td>{{ Transmissiya.typeDetali }}</td>
+      <td>{{ Transmissiya.garantiya }}</td>
+      <td>{{ Transmissiya.dopComment }}</td>
+      <td>{{ Transmissiya.cena }}</td>
     </tr>
   </tbody>
 </table>

@@ -60,7 +60,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update elektrika</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update KorpusaPatrubki</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -146,7 +146,7 @@
   </div>
 </div>
 
-<table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+<table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="word-break: break-all;">
   <thead>
     <tr>
       <th>id_korpusaPatrubki</th>
@@ -158,13 +158,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let Elektrika of elektrikas">
-      <td>{{ Elektrika.id_korpusaPatrubki }}</td>
-      <td>{{ Elektrika.typeDetali }}</td>
-      <td>{{ Elektrika.proizvoditel }}</td>
-      <td>{{ Elektrika.garantiya }}</td>
-      <td>{{ Elektrika.dopComment }}</td>
-      <td>{{ Elektrika.cena }}</td>
+    <tr *ngFor="let KorpusaPatrubki of korpusaPatrubkis">
+      <td>{{ KorpusaPatrubki.id_korpusaPatrubki }}</td>
+      <td>{{ KorpusaPatrubki.typeDetali }}</td>
+      <td>{{ KorpusaPatrubki.proizvoditel }}</td>
+      <td>{{ KorpusaPatrubki.garantiya }}</td>
+      <td>{{ KorpusaPatrubki.dopComment }}</td>
+      <td>{{ KorpusaPatrubki.cena }}</td>
     </tr>
   </tbody>
 </table>

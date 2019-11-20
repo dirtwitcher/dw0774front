@@ -70,7 +70,7 @@ export class MarkaModelComponent implements OnInit {
     var myData = {
       "id_typeAuto": this.id_typeAuto,
       "marka": this.marka,
-      "modek": this.model,
+      "model": this.model,
     };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/TypeAuto",
@@ -92,7 +92,7 @@ export class MarkaModelComponent implements OnInit {
 
   private deleteTypeAuto(){
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/TypeAuto"+ '?' + $.param({"id_auto": this.id_typeAuto}),
+      url: "http://127.0.0.1:8080/diplomBackEnd/TypeAuto"+ '?' + $.param({"id_typeAuto": this.id_typeAuto}),
       success: function(data){
         console.log("success delete data marka model: ", data);
       }, 

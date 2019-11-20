@@ -22,7 +22,15 @@ import { KolesaDiskiComponent } from './kolesa-diski/kolesa-diski.component';
 import { KorpusaPatrubkiComponent } from './korpusa-patrubki/korpusa-patrubki.component';
 import { KppComponent } from './kpp/kpp.component';
 import { KuzovnieDetaliComponent } from './kuzovnie-detali/kuzovnie-detali.component';
-import { OsnaschKuzovaComponent } from './osnasch-kuzova/osnasch-kuzova.component'; 
+import { OsnaschKuzovaComponent } from './osnasch-kuzova/osnasch-kuzova.component';
+import { OsvetPriboryComponent } from './osvet-pribory/osvet-pribory.component';
+import { OtoplenieKondeiComponent } from './otoplenie-kondei/otoplenie-kondei.component';
+import { PodveskaComponent } from './podveska/podveska.component';
+import { RulevoeUpravlenieComponent } from './rulevoe-upravlenie/rulevoe-upravlenie.component';
+import { SistemaOhlajdeniyaComponent } from './sistema-ohlajdeniya/sistema-ohlajdeniya.component';
+import { ToplivnayaSistemaComponent } from './toplivnaya-sistema/toplivnaya-sistema.component';
+import { TormozaComponent } from './tormoza/tormoza.component';
+import { TransmissiyaComponent } from './transmissiya/transmissiya.component'; 
 
 const appRoutes: Routes = [
   {path:'', component: BodyComponent},  
@@ -36,6 +44,14 @@ const appRoutes: Routes = [
   {path:'kpp', component: KppComponent},
   {path:'kuzovnieDetali', component: KuzovnieDetaliComponent},
   {path:'osnaschKuzova', component: OsnaschKuzovaComponent},
+  {path:'osvetPribory', component: OsvetPriboryComponent},
+  {path:'otoplenieKondei', component: OtoplenieKondeiComponent},
+  {path:'podveska', component: PodveskaComponent},
+  {path:'rulevoeUpravlenie', component: RulevoeUpravlenieComponent},
+  {path:'sistemaOhlajdeniya', component: SistemaOhlajdeniyaComponent},
+  {path:'toplivnayaSistema', component: ToplivnayaSistemaComponent},
+  {path:'tormoza', component: TormozaComponent},
+  {path:'transmissiya', component: TransmissiyaComponent}
 ]
 
 @NgModule({
@@ -53,7 +69,15 @@ const appRoutes: Routes = [
     KorpusaPatrubkiComponent,
     KppComponent,
     KuzovnieDetaliComponent,
-    OsnaschKuzovaComponent
+    OsnaschKuzovaComponent,
+    OsvetPriboryComponent,
+    OtoplenieKondeiComponent,
+    PodveskaComponent,
+    RulevoeUpravlenieComponent,
+    SistemaOhlajdeniyaComponent,
+    ToplivnayaSistemaComponent,
+    TormozaComponent,
+    TransmissiyaComponent
   ],
   imports: [
     BrowserModule,

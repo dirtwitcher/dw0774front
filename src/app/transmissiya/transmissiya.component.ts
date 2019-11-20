@@ -4,19 +4,18 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-osnasch-kuzova',
-  templateUrl: './osnasch-kuzova.component.html',
-  styleUrls: ['./osnasch-kuzova.component.css']
+  selector: 'app-transmissiya',
+  templateUrl: './transmissiya.component.html',
+  styleUrls: ['./transmissiya.component.css']
 })
 
-export class OsnaschKuzovaComponent implements OnInit {
+export class TransmissiyaComponent implements OnInit {
 
-  private osnaschKuzovs: any = [];
+  private transmissiyas: any = [];
   private polzovatel: String = "!NONE!";
 
-  id_osnaschKuzova: number;
-  typeDetali: string; 
-  storona: string;
+  id_transmissiya: number;
+  typeDetali: string;
   garantiya: string;
   dopComment: string;
   cena: number;
@@ -37,34 +36,32 @@ export class OsnaschKuzovaComponent implements OnInit {
   };
 
   private openModal(info: any): void {
-    this.id_osnaschKuzova = info[0];
+    this.id_transmissiya = info[0];
     this.typeDetali = info[1];
-    this.storona = info[2];
-    this.garantiya = info[3];
-    this.dopComment = info[4];
-    this.cena = info[5];
+    this.garantiya = info[2];
+    this.dopComment = info[3];
+    this.cena = info[4];
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
   constructor(private http: HttpClient) {}
 
-  private addOsnaschKuzova(){
+  private addTransmissiya(){
     var myData = {
       "typeDetali": this.typeDetali,
-      "storona": this.storona,
       "garantiya": this.garantiya,
       "dopComment": this.dopComment,
       "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova",
+      url: "http://127.0.0.1:8080/diplomBackEnd/Transmissiya",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success post data OsnaschKuzova: ", data);
+        console.log("success post data Transmissiya: ", data);
       }, 
       error: function(data) {
-        console.log("error post data OsnaschKuzova: ", data);
+        console.log("error post data Transmissiya: ", data);
       },
       type: "post",
       dataType: "text",
@@ -75,23 +72,22 @@ export class OsnaschKuzovaComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private updateOsnaschKuzova(){
+  private updateTransmissiya(){
     var myData = {
-      "id_osnaschKuzova": this.id_osnaschKuzova,
+      "id_transmissiya": this.id_transmissiya,
       "typeDetali": this.typeDetali,
-      "storona": this.storona,
       "garantiya": this.garantiya,
       "dopComment": this.dopComment,
       "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova",
+      url: "http://127.0.0.1:8080/diplomBackEnd/Transmissiya",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success update data OsnaschKuzova: ", data);
+        console.log("success update data Transmissiya: ", data);
       }, 
       error: function(data) {
-        console.log("error update data OsnaschKuzova: ", data);
+        console.log("error update data Transmissiya: ", data);
       },
       type: "PUT",
       dataType: "text",
@@ -102,14 +98,14 @@ export class OsnaschKuzovaComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private deleteOsnaschKuzova(){
+  private deleteTransmissiya(){
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova"+ '?' + $.param({"id_osnaschKuzova": this.id_osnaschKuzova}),
+      url: "http://127.0.0.1:8080/diplomBackEnd/Transmissiya"+ '?' + $.param({"id_transmissiya": this.id_transmissiya}),
       success: function(data){
-        console.log("success delete data OsnaschKuzova: ", data);
+        console.log("success delete data Transmissiya: ", data);
       }, 
       error: function(data) {
-        console.log("error delete data OsnaschKuzova: ", data);
+        console.log("error delete data Transmissiya: ", data);
       },
       type: "delete",
       dataType: "text",
@@ -121,9 +117,9 @@ export class OsnaschKuzovaComponent implements OnInit {
   }
 
   private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova").subscribe(
+    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/Transmissiya").subscribe(
       (data) => {
-      this.osnaschKuzovs = data;
+      this.transmissiyas = data;
     });
   }
  
@@ -132,9 +128,8 @@ export class OsnaschKuzovaComponent implements OnInit {
   }
 
   clearData(): void {
-    this.id_osnaschKuzova = null;
+    this.id_transmissiya = null;
     this.typeDetali = null;
-    this.storona = null;
     this.garantiya = null;
     this.dopComment = null;
     this.cena = null;

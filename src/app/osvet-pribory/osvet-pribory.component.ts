@@ -4,19 +4,19 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-osnasch-kuzova',
-  templateUrl: './osnasch-kuzova.component.html',
-  styleUrls: ['./osnasch-kuzova.component.css']
+  selector: 'app-osvet-pribory',
+  templateUrl: './osvet-pribory.component.html',
+  styleUrls: ['./osvet-pribory.component.css']
 })
+export class OsvetPriboryComponent implements OnInit {
 
-export class OsnaschKuzovaComponent implements OnInit {
-
-  private osnaschKuzovs: any = [];
+  private osvetPribors: any = [];
   private polzovatel: String = "!NONE!";
 
-  id_osnaschKuzova: number;
+  id_osvetPribory: number;
   typeDetali: string; 
   storona: string;
+  proizvoditel: string;
   garantiya: string;
   dopComment: string;
   cena: number;
@@ -37,34 +37,36 @@ export class OsnaschKuzovaComponent implements OnInit {
   };
 
   private openModal(info: any): void {
-    this.id_osnaschKuzova = info[0];
+    this.id_osvetPribory = info[0];
     this.typeDetali = info[1];
     this.storona = info[2];
-    this.garantiya = info[3];
-    this.dopComment = info[4];
-    this.cena = info[5];
+    this.proizvoditel = info[3];
+    this.garantiya = info[4];
+    this.dopComment = info[5];
+    this.cena = info[6];
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
   constructor(private http: HttpClient) {}
 
-  private addOsnaschKuzova(){
+  private addOsvetPribory(){
     var myData = {
       "typeDetali": this.typeDetali,
       "storona": this.storona,
+      "proizvoditel": this.proizvoditel,
       "garantiya": this.garantiya,
       "dopComment": this.dopComment,
       "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova",
+      url: "http://127.0.0.1:8080/diplomBackEnd/OsvetPribory",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success post data OsnaschKuzova: ", data);
+        console.log("success post data OsvetPribory: ", data);
       }, 
       error: function(data) {
-        console.log("error post data OsnaschKuzova: ", data);
+        console.log("error post data OsvetPribory: ", data);
       },
       type: "post",
       dataType: "text",
@@ -75,23 +77,24 @@ export class OsnaschKuzovaComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private updateOsnaschKuzova(){
+  private updateOsvetPribory(){
     var myData = {
-      "id_osnaschKuzova": this.id_osnaschKuzova,
+      "id_osvetPribory": this.id_osvetPribory,
       "typeDetali": this.typeDetali,
       "storona": this.storona,
+      "proizvoditel": this.proizvoditel,
       "garantiya": this.garantiya,
       "dopComment": this.dopComment,
       "cena": this.cena
     };
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova",
+      url: "http://127.0.0.1:8080/diplomBackEnd/OsvetPribory",
       data: JSON.stringify(myData),
       success: function(data){
-        console.log("success update data OsnaschKuzova: ", data);
+        console.log("success update data OsvetPribory: ", data);
       }, 
       error: function(data) {
-        console.log("error update data OsnaschKuzova: ", data);
+        console.log("error update data OsvetPribory: ", data);
       },
       type: "PUT",
       dataType: "text",
@@ -102,14 +105,14 @@ export class OsnaschKuzovaComponent implements OnInit {
     window.location.reload(false);
   }
 
-  private deleteOsnaschKuzova(){
+  private deleteOsvetPribory(){
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova"+ '?' + $.param({"id_osnaschKuzova": this.id_osnaschKuzova}),
+      url: "http://127.0.0.1:8080/diplomBackEnd/OsvetPribory"+ '?' + $.param({"id_osvetPribory": this.id_osvetPribory}),
       success: function(data){
-        console.log("success delete data OsnaschKuzova: ", data);
+        console.log("success delete data OsvetPribory: ", data);
       }, 
       error: function(data) {
-        console.log("error delete data OsnaschKuzova: ", data);
+        console.log("error delete data OsvetPribory: ", data);
       },
       type: "delete",
       dataType: "text",
@@ -121,9 +124,9 @@ export class OsnaschKuzovaComponent implements OnInit {
   }
 
   private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova").subscribe(
+    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/OsvetPribory").subscribe(
       (data) => {
-      this.osnaschKuzovs = data;
+      this.osvetPribors = data;
     });
   }
  
@@ -132,9 +135,10 @@ export class OsnaschKuzovaComponent implements OnInit {
   }
 
   clearData(): void {
-    this.id_osnaschKuzova = null;
+    this.id_osvetPribory = null;
     this.typeDetali = null;
     this.storona = null;
+    this.proizvoditel = null;
     this.garantiya = null;
     this.dopComment = null;
     this.cena = null;
