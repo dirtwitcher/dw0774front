@@ -2,6 +2,7 @@ declare var $: any;
 
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HeaderComponent } from 'src/app/header/header.component'
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 export class AutoComponent implements OnInit {
 
   private autos: any = [];
-  private polzovatel: String = "!NONE!";
+  static userInSystem: String = "Not Set";
 
   id_auto: number;
   win: string;
@@ -116,6 +117,7 @@ export class AutoComponent implements OnInit {
   }
  
   ngOnInit(): void {
+    // this.polzovatel = HeaderComponent.userInSystem;
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -129,6 +131,14 @@ export class AutoComponent implements OnInit {
         {title: 'cvet', data: 'cvet', defaultContent:"<i>Not set</i>"},
         {title: 'dopComment', data: 'dopComment', defaultContent:"<i>Not set</i>"}],
 
+      dom: 'Bfrtip',
+      buttons: [
+        'colvis',
+        'copy',
+        'print',
+        'excel'
+      ],
+
       rowCallback: (row: Node, data: any[] | Object, index: number) => {
         $('td', row).unbind('click');
         $('td', row).bind('click', () => {
@@ -137,6 +147,10 @@ export class AutoComponent implements OnInit {
           return row;
       }
     };
+  }
+
+  get userInSystem() {
+    return HeaderComponent.userInSystem;
   }
 
   clearData(): void {
