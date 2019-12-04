@@ -158,27 +158,4 @@
   </div>
 </div>
 
-<table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="word-break: break-all;">
-  <thead>
-    <tr>
-      <th>id_auto</th>
-      <th>win</th>
-      <th>toplivo</th>
-      <th>privod</th>
-      <th>probeg</th>
-      <th>cvet</th>
-      <th>dopComment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let Auto of autos">
-      <td>{{ Auto.id_auto }}</td>
-      <td>{{ Auto.win }}</td>
-      <td>{{ Auto.toplivo }}</td>
-      <td>{{ Auto.privod }}</td>
-      <td>{{ Auto.probeg }}</td>
-      <td>{{ Auto.cvet }}</td>
-      <td>{{ Auto.dopComment }}</td>
-    </tr>
-  </tbody>
-</table>
+<table id='datatable' datatable [dtOptions]="dtOptions" class="row-border hover"></table>

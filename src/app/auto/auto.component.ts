@@ -3,6 +3,7 @@ declare var $: any;
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-auto',
   templateUrl: './auto.component.html',
@@ -22,29 +23,19 @@ export class AutoComponent implements OnInit {
   cvet: string;
   dopComment: string;
 
-  dtOptions: DataTables.Settings = {
-    pagingType: 'full_numbers',
-    pageLength: 10,
-    // processing: true,
-
-    rowCallback: (row: Node, data: any[] | Object, index: number) => {
-      $('td', row).unbind('click');
-      $('td', row).bind('click', () => {
-        this.openModal(data);
-      });
-        return row;
-    }
-    
-  };
+  dtOptions: DataTables.Settings = { };
 
   private openModal(info: any): void {
-    this.id_auto = info[0];
-    this.win = info[1];
-    this.toplivo = info[2];
-    this.privod = info[3];
-    this.probeg = info[4];
-    this.cvet = info[5];
-    this.dopComment = info[6];
+
+    console.log("log ", info);
+
+    this.id_auto = info.id_auto;
+    this.win = info.win;
+    this.toplivo = info.toplivo;
+    this.privod = info.privod;
+    this.probeg = info.probeg;
+    this.cvet = info.cvet;
+    this.dopComment = info.dopComment;
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
@@ -63,9 +54,11 @@ export class AutoComponent implements OnInit {
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
       data: JSON.stringify(myData),
-      success: function(data){
-        console.log("success post data auto: ", data);
-      }, 
+      success: function(dataReq){
+        console.log("success post data auto: ", dataReq);
+        var table = $('#datatable').DataTable();
+        table.ajax.reload();
+      },
       error: function(data) {
         console.log("error post data auto: ", data);
       },
@@ -73,9 +66,7 @@ export class AutoComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#addModal').modal('hide');
-    window.location.reload(false);
   }
 
   private updateAuto(){
@@ -91,8 +82,10 @@ export class AutoComponent implements OnInit {
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
       data: JSON.stringify(myData),
-      success: function(data){
-        console.log("success update data auto: ", data);
+      success: function(dataReq){
+        console.log("success update data auto: ", dataReq);
+        var table = $('#datatable').DataTable();
+        table.ajax.reload();
       }, 
       error: function(data) {
         console.log("error update data auto: ", data);
@@ -101,16 +94,16 @@ export class AutoComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#updateModal').modal('hide');
-    window.location.reload(false);
   }
 
   private deleteAuto(){
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto"+ '?' + $.param({"id_auto": this.id_auto}),
-      success: function(data){
-        console.log("success delete data auto: ", data);
+      success: function(dataReq){
+        console.log("success delete data auto: ", dataReq);
+        var table = $('#datatable').DataTable();
+        table.ajax.reload();
       }, 
       error: function(data) {
         console.log("error delete data auto: ", data);
@@ -119,20 +112,31 @@ export class AutoComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#deleteModal').modal('hide');
-    window.location.reload(false);
-  }
-
-  private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/Auto").subscribe(
-      (data) => {
-      this.autos = data;
-    });
   }
  
   ngOnInit(): void {
-    this.getAllToTable();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      ajax:{url:"http://127.0.0.1:8080/diplomBackEnd/Auto", dataSrc:""},
+      columns: [
+        {title: 'id_auto', data: 'id_auto'},
+        {title: 'win', data: 'win', defaultContent:"<i>Not set</i>"},
+        {title: 'toplivo', data: 'toplivo', defaultContent:"<i>Not set</i>"}, 
+        {title: 'privod', data: 'privod', defaultContent:"<i>Not set</i>"}, 
+        {title: 'probeg', data: 'probeg', defaultContent:"<i>Not set</i>"},
+        {title: 'cvet', data: 'cvet', defaultContent:"<i>Not set</i>"},
+        {title: 'dopComment', data: 'dopComment', defaultContent:"<i>Not set</i>"}],
+
+      rowCallback: (row: Node, data: any[] | Object, index: number) => {
+        $('td', row).unbind('click');
+        $('td', row).bind('click', () => {
+          this.openModal(data);
+        });
+          return row;
+      }
+    };
   }
 
   clearData(): void {
@@ -144,5 +148,5 @@ export class AutoComponent implements OnInit {
     this.cvet = null;
     this.dopComment = null;
   }
-    
+
 }
