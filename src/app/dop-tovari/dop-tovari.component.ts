@@ -2,6 +2,7 @@ declare var $: any;
 
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dop-tovari',
@@ -11,29 +12,15 @@ import { Component, OnInit } from '@angular/core';
 
 export class DopTovariComponent implements OnInit {
 
-  private dopTovars: any = [];
-  private polzovatel: String = "!NONE!";
-
   id_dopTovari: number;
   typeDetali: string;
   garantiya: string;
   dopComment: string;
   cena: number;
 
-  dtOptions: DataTables.Settings = {
-    pagingType: 'full_numbers',
-    pageLength: 10,
-    // processing: true,
+  userInSystem: string = 'Not Set';
 
-    rowCallback: (row: Node, data: any[] | Object, index: number) => {
-      $('td', row).unbind('click');
-      $('td', row).bind('click', () => {
-        this.openModal(data);
-      });
-        return row;
-    }
-    
-  };
+  dtOptions: any = { };
 
   private openModal(info: any): void {
     this.id_dopTovari = info[0];
@@ -45,7 +32,7 @@ export class DopTovariComponent implements OnInit {
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   private addDopTovari(){
     var myData = {
@@ -54,11 +41,27 @@ export class DopTovariComponent implements OnInit {
       "dopComment": this.dopComment,
       "cena": this.cena
     };
+    var jurnalData = {
+      "FIO": sessionStorage.getItem('login'),
+      "tablica": "Авто в разборе",
+      "deistvie": "Добавление" + this.typeDetali
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/DopTovari",
       data: JSON.stringify(myData),
-      success: function(data){
-        console.log("success post data DopTovari: ", data);
+      success: function(dataReq){
+        console.log("success post data DopTovari: ", dataReq);
+        var table = $('#datatable').DataTable();
+        table.ajax.reload();
+
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+          data: JSON.stringify(jurnalData),
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });
+
       }, 
       error: function(data) {
         console.log("error post data DopTovari: ", data);
@@ -67,9 +70,7 @@ export class DopTovariComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#addModal').modal('hide');
-    window.location.reload(false);
   }
 
   private updateDopTovari(){
@@ -80,11 +81,27 @@ export class DopTovariComponent implements OnInit {
       "dopComment": this.dopComment,
       "cena": this.cena
     };
+    var jurnalData = {
+      "FIO": sessionStorage.getItem('login'),
+      "tablica": "Авто в разборе",
+      "deistvie": "Добавление" + this.typeDetali
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/DopTovari",
       data: JSON.stringify(myData),
       success: function(data){
         console.log("success update data DopTovari: ", data);
+        var table = $('#datatable').DataTable();
+        table.ajax.reload();
+
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+          data: JSON.stringify(jurnalData),
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });
+
       }, 
       error: function(data) {
         console.log("error update data DopTovari: ", data);
@@ -93,16 +110,29 @@ export class DopTovariComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#updateModal').modal('hide');
-    window.location.reload(false);
   }
 
   private deleteDopTovari(){
+    var jurnalData = {
+      "FIO": sessionStorage.getItem('login'),
+      "tablica": "Авто в разборе",
+      "deistvie": "Добавление" + this.typeDetali
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/DopTovari"+ '?' + $.param({"id_dopTovari": this.id_dopTovari}),
       success: function(data){
         console.log("success delete data DopTovari: ", data);
+        var table = $('#datatable').DataTable();
+        table.ajax.reload();
+
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+          data: JSON.stringify(jurnalData),
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });
       }, 
       error: function(data) {
         console.log("error delete data DopTovari: ", data);
@@ -111,20 +141,16 @@ export class DopTovariComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#deleteModal').modal('hide');
-    window.location.reload(false);
-  }
-
-  private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/DopTovari").subscribe(
-      (data) => {
-      this.dopTovars = data;
-    });
   }
  
   ngOnInit(): void {
-    this.getAllToTable();
+   
+  }
+
+  logExit():void{
+    sessionStorage.setItem('login','Not Set');
+    this.router.navigate(['/']);
   }
 
   clearData(): void {

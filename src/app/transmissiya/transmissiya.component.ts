@@ -2,6 +2,7 @@ declare var $: any;
 
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transmissiya',
@@ -11,29 +12,15 @@ import { Component, OnInit } from '@angular/core';
 
 export class TransmissiyaComponent implements OnInit {
 
-  private transmissiyas: any = [];
-  private polzovatel: String = "!NONE!";
-
   id_transmissiya: number;
   typeDetali: string;
   garantiya: string;
   dopComment: string;
   cena: number;
 
-  dtOptions: DataTables.Settings = {
-    pagingType: 'full_numbers',
-    pageLength: 10,
-    // processing: true,
+  userInSystem: string = 'Not Set';
 
-    rowCallback: (row: Node, data: any[] | Object, index: number) => {
-      $('td', row).unbind('click');
-      $('td', row).bind('click', () => {
-        this.openModal(data);
-      });
-        return row;
-    }
-    
-  };
+  dtOptions: any = { };
 
   private openModal(info: any): void {
     this.id_transmissiya = info[0];
@@ -45,7 +32,7 @@ export class TransmissiyaComponent implements OnInit {
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   private addTransmissiya(){
     var myData = {
@@ -67,9 +54,7 @@ export class TransmissiyaComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#addModal').modal('hide');
-    window.location.reload(false);
   }
 
   private updateTransmissiya(){
@@ -93,9 +78,7 @@ export class TransmissiyaComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#updateModal').modal('hide');
-    window.location.reload(false);
   }
 
   private deleteTransmissiya(){
@@ -111,20 +94,16 @@ export class TransmissiyaComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#deleteModal').modal('hide');
-    window.location.reload(false);
-  }
-
-  private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/Transmissiya").subscribe(
-      (data) => {
-      this.transmissiyas = data;
-    });
   }
  
   ngOnInit(): void {
-    this.getAllToTable();
+
+  }
+
+  logExit():void{
+    sessionStorage.setItem('login','Not Set');
+    this.router.navigate(['/']);
   }
 
   clearData(): void {

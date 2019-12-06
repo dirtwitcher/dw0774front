@@ -2,16 +2,15 @@ declare var $: any;
 
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-otoplenie-kondei',
   templateUrl: './otoplenie-kondei.component.html',
   styleUrls: ['./otoplenie-kondei.component.css']
 })
-export class OtoplenieKondeiComponent implements OnInit {
 
-  private otoplenieKondeis: any = [];
-  private polzovatel: String = "!NONE!";
+export class OtoplenieKondeiComponent implements OnInit {
 
   id_otoplenieKondei: number;
   typeDetali: string; 
@@ -21,20 +20,9 @@ export class OtoplenieKondeiComponent implements OnInit {
   dopComment: string;
   cena: number;
 
-  dtOptions: DataTables.Settings = {
-    pagingType: 'full_numbers',
-    pageLength: 10,
-    // processing: true,
+  userInSystem: string = 'Not Set';
 
-    rowCallback: (row: Node, data: any[] | Object, index: number) => {
-      $('td', row).unbind('click');
-      $('td', row).bind('click', () => {
-        this.openModal(data);
-      });
-        return row;
-    }
-    
-  };
+  dtOptions: any = { };
 
   private openModal(info: any): void {
     this.id_otoplenieKondei = info[0];
@@ -48,7 +36,7 @@ export class OtoplenieKondeiComponent implements OnInit {
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   private addOtoplenieKondei(){
     var myData = {
@@ -72,9 +60,7 @@ export class OtoplenieKondeiComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#addModal').modal('hide');
-    window.location.reload(false);
   }
 
   private updateOtoplenieKondei(){
@@ -100,9 +86,7 @@ export class OtoplenieKondeiComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#updateModal').modal('hide');
-    window.location.reload(false);
   }
 
   private deleteOtoplenieKondei(){
@@ -118,20 +102,16 @@ export class OtoplenieKondeiComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
-    // this.getAllToTable();
     $('#deleteModal').modal('hide');
-    window.location.reload(false);
-  }
-
-  private getAllToTable(): void {
-    this.http.get( "http://127.0.0.1:8080/diplomBackEnd/OtoplenieKondei").subscribe(
-      (data) => {
-      this.otoplenieKondeis = data;
-    });
   }
  
   ngOnInit(): void {
-    this.getAllToTable();
+    
+  }
+
+  logExit():void{
+    sessionStorage.setItem('login','Not Set');
+    this.router.navigate(['/']);
   }
 
   clearData(): void {
