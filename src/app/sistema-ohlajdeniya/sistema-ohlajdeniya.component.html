@@ -24,7 +24,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add SistemaOhlajdeniya</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Добавить систему охлаждения</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -32,34 +32,34 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">Тип детали:</label>
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">material:</label>
+            <label class="col-form-label">Материал:</label>
             <input type="text" [(ngModel)] = "material" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">proizvoditel:</label>
+            <label class="col-form-label">Производитель:</label>
             <input type="text" [(ngModel)] = "proizvoditel" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-              <label class="col-form-label">garantiya:</label>
+              <label class="col-form-label">Гарантия:</label>
               <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">Комментарии:</label>
             <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">Цена:</label>
             <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "addSistemaOhlajdeniya()">Enter</button>
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "addSistemaOhlajdeniya()">Добавить</button>
       </div>
     </div>
   </div>
@@ -69,7 +69,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update SistemaOhlajdeniya</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Изменить систему охлаждения</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -77,38 +77,38 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_sistemaOhlajdeniya:</label>
+            <label class="col-form-label">№ записи:</label>
             <label class="col-form-label">{{ id_sistemaOhlajdeniya }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">Тип детали:</label>
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">material:</label>
+            <label class="col-form-label">Материал:</label>
             <input type="text" [(ngModel)] = "material" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">proizvoditel:</label>
+            <label class="col-form-label">Производитель:</label>
             <input type="text" [(ngModel)] = "proizvoditel" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">garantiya:</label>
+            <label class="col-form-label">Гарантия:</label>
             <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">Комментарии:</label>
             <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">Цена:</label>
             <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "updateSistemaOhlajdeniya()">Update</button>
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "updateSistemaOhlajdeniya()">Изменить</button>
       </div>
     </div>
   </div>
@@ -118,7 +118,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete SistemaOhlajdeniya</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Удалить систему охлаждения</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -126,38 +126,38 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_sistemaOhlajdeniya:</label>
+            <label class="col-form-label">№ записи:</label>
             <label class="col-form-label">{{ id_sistemaOhlajdeniya }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">Тип детали:</label>
             <label class="col-form-label">{{ typeDetali }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">material:</label>
+            <label class="col-form-label">Материал:</label>
             <label class="col-form-label">{{ material }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">proizvoditel:</label>
+            <label class="col-form-label">Производитель:</label>
             <label class="col-form-label">{{ proizvoditel }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">garantiya:</label>
+            <label class="col-form-label">Гарантия:</label>
             <label class="col-form-label">{{ garantiya }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">Комментарии:</label>
             <label class="col-form-label">{{ dopComment }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">Цена:</label>
             <label class="col-form-label">{{ cena }}</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "deleteSistemaOhlajdeniya()">Delete</button>
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "deleteSistemaOhlajdeniya()">Удалить</button>
       </div>
     </div>
   </div>
