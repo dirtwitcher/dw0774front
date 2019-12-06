@@ -1,25 +1,30 @@
 
-<div>
-  Polzovatel: {{ polzovatel }}.  press on zapis to update delete 
-
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update">
-    <label class="form-check-label" for="updateRadio">updateRadio</label>
+<div style="margin-top: 5px; margin-left: 10px;">
+  <div class="left">
+    Нажмите на нужную строчку для удаления или изменения. Опция:
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update">
+      <label class="form-check-label" for="updateRadio">Изменить</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete" checked>
+      <label class="form-check-label" for="deleteRadio">Удалить</label>
+    </div>
   </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete" checked>
-    <label class="form-check-label" for="deleteRadio">deleteRadio</label>
+  <div class="right">
+    Пользователь: {{ userInSystem }}. 
+    <button type="button" class="btn btn-secondary" (click) = "logExit()" data-toggle="modal"> Выход </button>
   </div>
-
-  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add dop tavari </button>
+  <button type="button" class="btn btn-info" (click) = "clearData()" data-toggle="modal" data-target="#addModal" style="margin-left: 55%;"> Добавить </button>
 </div>
 
+<div style="margin-top: 10px;"></div>
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add dop tavari</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Добавить доп товар</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -27,26 +32,26 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">Тип детали:</label>
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-              <label class="col-form-label">garantiya:</label>
+              <label class="col-form-label">Гарантия:</label>
               <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">Комментарии:</label>
             <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">Цена:</label>
             <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "addDopTovari()">Enter</button>
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "addDopTovari()">Добавить</button>
       </div>
     </div>
   </div>
@@ -56,7 +61,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update dop tovari</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Изменить доп товар</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -64,30 +69,30 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_dopTovari:</label>
+            <label class="col-form-label">№ записи:</label>
             <label class="col-form-label">{{ id_dopTovari }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">Тип детали:</label>
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">garantiya:</label>
+            <label class="col-form-label">Гарантия:</label>
             <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">Комментарии:</label>
             <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">Цена:</label>
             <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "updateDopTovari()">Update</button>
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "updateDopTovari()">Изменить</button>
       </div>
     </div>
   </div>
@@ -97,7 +102,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete dop tovari</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Удалить доп товар</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -105,52 +110,33 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_dopTovari:</label>
+            <label class="col-form-label">№ записи:</label>
             <label class="col-form-label">{{ id_dopTovari }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">Тип детали:</label>
             <label class="col-form-label">{{ typeDetali }}</label>
           </div>
           <div class="form-group">
-              <label class="col-form-label">garantiya:</label>
+              <label class="col-form-label">Гарантия:</label>
               <label class="col-form-label">{{ garantiya }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">Комментарии:</label>
             <label class="col-form-label">{{ dopComment }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">Цена:</label>
             <label class="col-form-label">{{ cena }}</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "deleteDopTovari()">Delete</button>
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "deleteDopTovari()">Удалить</button>
       </div>
     </div>
   </div>
 </div>
 
-<table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="word-break: break-all;">
-  <thead>
-    <tr>
-      <th>id_dopTovari</th>
-      <th>typeDetali</th>
-      <th>garantiya</th>
-      <th>dopComment</th>
-      <th>cena</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let DopTovari of dopTovars">
-      <td>{{ DopTovari.id_dopTovari }}</td>
-      <td>{{ DopTovari.typeDetali }}</td>
-      <td>{{ DopTovari.garantiya }}</td>
-      <td>{{ DopTovari.dopComment }}</td>
-      <td>{{ DopTovari.cena }}</td>
-    </tr>
-  </tbody>
-</table>
+<table id='datatable' datatable [dtOptions]="dtOptions" class="row-border hover" style="word-break: break-all;"></table>

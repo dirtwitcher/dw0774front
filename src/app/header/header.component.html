@@ -1,6 +1,8 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand a1" href="#"> Баерн Бел Сервис </a>
+
+  <button type="button" class="btn btn-dark a1" (click) = "routeToMainPage()"> Баерн Бел Сервис </button>
+    
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
 
@@ -9,8 +11,8 @@
               Авто
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/typeAuto">Марка/модель</a>
-              <a class="dropdown-item" href="/auto">Авто в разборе</a>
+              <a class="dropdown-item" (click) = "routeToTypeAuto()">Марка/модель</a>
+              <a class="dropdown-item" (click) = "routeToAuto()">Авто в разборе</a>
             </div>
           </li>
 
@@ -19,11 +21,11 @@
               Подкапотное и работа двигателя
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/dvigatel">Двигатель и запчасти</a>
-              <a class="dropdown-item" href="/toplivnayaSistema">Топливная система</a>
-              <a class="dropdown-item" href="/sistemaOhlajdeniya">Система охлаждения</a>
-              <a class="dropdown-item" href="/otoplenieKondei">Отопление и кондиционер</a>
-              <a class="dropdown-item" href="/korpusaPatrubki">Бочки, курпуса, патрубки</a>
+              <a class="dropdown-item" (click) = "routeToTypeDvigatel()">Двигатель и запчасти</a>
+              <a class="dropdown-item" (click) = "routeToToplivnayaSistema()">Топливная система</a>
+              <a class="dropdown-item" (click) = "routeToSistemaOhlajdeniya()">Система охлаждения</a>
+              <a class="dropdown-item" (click) = "routeToOtoplenieKondei()">Отопление и кондиционер</a>
+              <a class="dropdown-item" (click) = "routeToKorpusaPatrubki()">Бочки, курпуса, патрубки</a>
             </div>
           </li>
 
@@ -32,10 +34,10 @@
               Кузов
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/kuzovnieDetali">Кузовные детали</a>
-              <a class="dropdown-item" href="/osnaschKuzova">Оснащение кузова</a>
-              <a class="dropdown-item" href="/elektrika">Электрика</a>
-              <a class="dropdown-item" href="/osvetPribory">Осветительные приборы</a>
+              <a class="dropdown-item" (click) = "routeToKuzovnieDetali()">Кузовные детали</a>
+              <a class="dropdown-item" (click) = "routeToOsnaschKuzova()">Оснащение кузова</a>
+              <a class="dropdown-item" (click) = "routeToElektrika()">Электрика</a>
+              <a class="dropdown-item" (click) = "routeToOsvetPribory()">Осветительные приборы</a>
             </div>
           </li>
           
@@ -44,11 +46,11 @@
               Шасси
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/kpp">КПП</a>
-              <a class="dropdown-item" href="/transmissiya">Трансмиссия</a>
-              <a class="dropdown-item" href="/rulevoeUpravlenie">Рулевое управление</a>
-              <a class="dropdown-item" href="/podveska">Подвеска</a>
-              <a class="dropdown-item" href="/tormoza">Тормоза</a>
+              <a class="dropdown-item" (click) = "routeToKpp()">КПП</a>
+              <a class="dropdown-item" (click) = "routeToTransmissiya()">Трансмиссия</a>
+              <a class="dropdown-item" (click) = "routeToRulevoeUpravlenie()">Рулевое управление</a>
+              <a class="dropdown-item" (click) = "routeToPodveska()">Подвеска</a>
+              <a class="dropdown-item" (click) = "routeToTormoza()">Тормоза</a>
             </div>
           </li>
           
@@ -57,8 +59,8 @@
               Другое
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/kolesaDiski">Шины и диски</a>
-              <a class="dropdown-item" href="/dopTovari">Сопутствующие товары</a>
+              <a class="dropdown-item" (click) = "routeToKolesaDiski()">Шины и диски</a>
+              <a class="dropdown-item" (click) = "routeToDopTovari()">Сопутствующие товары</a>
             </div>
           </li>
           
@@ -67,8 +69,8 @@
               Ведение базы
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/polzovatel">Пользователи</a>
-              <a class="dropdown-item" href="/jurnal">Журнал</a>
+              <a class="dropdown-item" (click) = "routeToPolzovatel()"href="/polzovatel">Пользователи</a>
+              <a class="dropdown-item" (click) = "routeToJurnal()"href="/jurnal">Журнал</a>
             </div>
           </li>
 

@@ -1,19 +1,24 @@
 
-<div>
-  Polzovatel: {{ polzovatel }}.  press on zapis to update delete 
-
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update">
-    <label class="form-check-label" for="updateRadio">updateRadio</label>
+<div style="margin-top: 5px; margin-left: 10px;">
+  <div class="left">
+    Нажмите на нужную строчку для удаления или изменения. Опция:
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update">
+      <label class="form-check-label" for="updateRadio">Изменить</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete" checked>
+      <label class="form-check-label" for="deleteRadio">Удалить</label>
+    </div>
   </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete" checked>
-    <label class="form-check-label" for="deleteRadio">deleteRadio</label>
+  <div class="right">
+    Пользователь: {{ userInSystem }}. 
+    <button type="button" class="btn btn-secondary" (click) = "logExit()" data-toggle="modal"> Выход </button>
   </div>
-
-  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add OsnaschKuzova </button>
+  <button type="button" class="btn btn-info" (click) = "clearData()" data-toggle="modal" data-target="#addModal" style="margin-left: 55%;"> Добавить </button>
 </div>
 
+<div style="margin-top: 10px;"></div>
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -146,25 +151,4 @@
   </div>
 </div>
 
-<table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="word-break: break-all;">
-  <thead>
-    <tr>
-      <th>id_osnaschKuzova</th>
-      <th>typeDetali</th>
-      <th>storona</th>
-      <th>garantiya</th>
-      <th>dopComment</th>
-      <th>cena</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let OsnaschKuzova of osnaschKuzovs">
-      <td>{{ OsnaschKuzova.id_osnaschKuzova }}</td>
-      <td>{{ OsnaschKuzova.typeDetali }}</td>
-      <td>{{ OsnaschKuzova.storona }}</td>
-      <td>{{ OsnaschKuzova.garantiya }}</td>
-      <td>{{ OsnaschKuzova.dopComment }}</td>
-      <td>{{ OsnaschKuzova.cena }}</td>
-    </tr>
-  </tbody>
-</table>
+<table id='datatable' datatable [dtOptions]="dtOptions" class="row-border hover" style="word-break: break-all;"></table>

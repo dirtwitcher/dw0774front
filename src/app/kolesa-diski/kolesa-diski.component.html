@@ -1,25 +1,30 @@
 
-<div>
-  Polzovatel: {{ polzovatel }}.  press on zapis to update delete 
-
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update">
-    <label class="form-check-label" for="updateRadio">updateRadio</label>
+<div style="margin-top: 5px; margin-left: 10px;">
+  <div class="left">
+    Нажмите на нужную строчку для удаления или изменения. Опция:
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update">
+      <label class="form-check-label" for="updateRadio">Изменить</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete" checked>
+      <label class="form-check-label" for="deleteRadio">Удалить</label>
+    </div>
   </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete" checked>
-    <label class="form-check-label" for="deleteRadio">deleteRadio</label>
+  <div class="right">
+    Пользователь: {{ userInSystem }}. 
+    <button type="button" class="btn btn-secondary" (click) = "logExit()" data-toggle="modal"> Выход </button>
   </div>
-
-  <button type="button" class="btn btn-primary" (click) = "clearData()" data-toggle="modal" data-target="#addModal"> add KolesaDiski </button>
+  <button type="button" class="btn btn-info" (click) = "clearData()" data-toggle="modal" data-target="#addModal" style="margin-left: 55%;"> Добавить </button>
 </div>
 
+<div style="margin-top: 10px;"></div>
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add KolesaDiski</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Добавить колесо, диск</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -27,11 +32,11 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">Тип детали:</label>
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">typeDiska:</label>
+            <label class="col-form-label">Тип диска:</label>
             <input type="text" [(ngModel)] = "typeDiska" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
@@ -39,54 +44,54 @@
             <input type="text" [(ngModel)] = "PCD" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">kolvoOtversti:</label>
+            <label class="col-form-label">Количество отверстий:</label>
             <input type="text" [(ngModel)] = "kolvoOtversti" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">diametrStupOtverstia:</label>
+            <label class="col-form-label">Диаметр ступичного отверстия:</label>
             <input type="text" [(ngModel)] = "diametrStupOtverstia" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">diametr:</label>
+            <label class="col-form-label">Диаметр:</label>
             <input type="text" [(ngModel)] = "diametr" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">firmaModel:</label>
+            <label class="col-form-label">Фирма, модель:</label>
             <input type="text" [(ngModel)] = "firmaModel" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">sezon:</label>
+            <label class="col-form-label">Сезон:</label>
             <input type="text" [(ngModel)] = "sezon" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">shirina:</label>
+            <label class="col-form-label">Ширина:</label>
             <input type="text" [(ngModel)] = "shirina" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">visota:</label>
+            <label class="col-form-label">Высота:</label>
             <input type="text" [(ngModel)] = "visota" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-              <label class="col-form-label">indexNagruzki:</label>
+              <label class="col-form-label">Индекс нагрузки:</label>
               <input type="text" [(ngModel)] = "indexNagruzki" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">garantiya:</label>
+            <label class="col-form-label">Гарантия:</label>
             <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">Комментарии:</label>
             <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">Цена:</label>
             <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "addKolesaDiski()">Enter</button>
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "addKolesaDiski()">Добавить</button>
       </div>
     </div>
   </div>
@@ -96,7 +101,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update KolesaDiski</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Изменить колесо, диск</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -104,15 +109,15 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_kolesaDiski:</label>
+            <label class="col-form-label">№ записи:</label>
             <label class="col-form-label">{{ id_kolesaDiski }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">Тип детали:</label>
             <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">typeDiska:</label>
+            <label class="col-form-label">Тип диска:</label>
             <input type="text" [(ngModel)] = "typeDiska" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
@@ -120,54 +125,54 @@
             <input type="text" [(ngModel)] = "PCD" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">kolvoOtversti:</label>
+            <label class="col-form-label">Количество отверстий:</label>
             <input type="text" [(ngModel)] = "kolvoOtversti" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">diametrStupOtverstia:</label>
+            <label class="col-form-label">Диаметр ступичного отверстия:</label>
             <input type="text" [(ngModel)] = "diametrStupOtverstia" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">diametr:</label>
+            <label class="col-form-label">Диаметр:</label>
             <input type="text" [(ngModel)] = "diametr" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">firmaModel:</label>
+            <label class="col-form-label">Фирма, модель:</label>
             <input type="text" [(ngModel)] = "firmaModel" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">sezon:</label>
+            <label class="col-form-label">Сезон:</label>
             <input type="text" [(ngModel)] = "sezon" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">shirina:</label>
+            <label class="col-form-label">Ширина:</label>
             <input type="text" [(ngModel)] = "shirina" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">visota:</label>
+            <label class="col-form-label">Высота:</label>
             <input type="text" [(ngModel)] = "visota" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-              <label class="col-form-label">indexNagruzki:</label>
+              <label class="col-form-label">Индекс нагрузки:</label>
               <input type="text" [(ngModel)] = "indexNagruzki" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">garantiya:</label>
+            <label class="col-form-label">Гарантия:</label>
             <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">Комментарии:</label>
             <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">Цена:</label>
             <input type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "updateKolesaDiski()">Update</button>
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "updateKolesaDiski()">Изменить</button>
       </div>
     </div>
   </div>
@@ -177,7 +182,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete KolesaDiski</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Удалить колесо, диск</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -185,102 +190,69 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="col-form-label">id_kolesaDiski:</label>
+            <label class="col-form-label">№ записи:</label>
             <label class="col-form-label">{{ id_kolesaDiski }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">typeDetali:</label>
+            <label class="col-form-label">Тип детали:</label>
             <label class="col-form-label">{{ typeDetali }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Тип диска:</label>
+            <label class="col-form-label">{{ typeDiska }}</label>
           </div>
           <div class="form-group">
             <label class="col-form-label">PCD:</label>
             <label class="col-form-label">{{ PCD }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">kolvoOtversti:</label>
+            <label class="col-form-label">Количество отверстий:</label>
             <label class="col-form-label">{{ kolvoOtversti }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">diametrStupOtverstia:</label>
+            <label class="col-form-label">Диаметр ступичного отверстия:</label>
             <label class="col-form-label">{{ diametrStupOtverstia }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">diametr:</label>
+            <label class="col-form-label">Диаметр:</label>
             <label class="col-form-label">{{ diametr }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">sezon:</label>
+            <label class="col-form-label">Сезон:</label>
             <label class="col-form-label">{{ sezon }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">shirina:</label>
+            <label class="col-form-label">Ширина:</label>
             <label class="col-form-label">{{ shirina }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">visota:</label>
+            <label class="col-form-label">Высота:</label>
             <label class="col-form-label">{{ visota }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">indexNagruzki:</label>
+            <label class="col-form-label">Индекс нагрузки:</label>
             <label class="col-form-label">{{ indexNagruzki }}</label>
           </div>          
           <div class="form-group">
-            <label class="col-form-label">garantiya:</label>
+            <label class="col-form-label">Гарантия:</label>
             <label class="col-form-label">{{ garantiya }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">dopComment:</label>
+            <label class="col-form-label">Комментарии:</label>
             <label class="col-form-label">{{ dopComment }}</label>
           </div>
           <div class="form-group">
-            <label class="col-form-label">cena:</label>
+            <label class="col-form-label">Цена:</label>
             <label class="col-form-label">{{ cena }}</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click) = "deleteKolesaDiski()">Delete</button>
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "deleteKolesaDiski()">Удалить</button>
       </div>
     </div>
   </div>
 </div>
 
-<table datatable id="autoTable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="word-break: break-all;">
-  <thead>
-    <tr>
-      <th>id_kolesaDiski</th>
-      <th>typeDetali</th>
-      <th>typeDiska</th>
-      <th>PCD</th>
-      <th>diametrStupOtverstia</th>
-      <th>diametr</th>
-      <th>firmaModel</th>
-      <th>sezon</th>
-      <th>shirina</th>
-      <th>visota</th>
-      <th>indexNagruzki</th>
-      <th>garantiya</th>
-      <th>dopComment</th>
-      <th>cena</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let KolesaDiski of kolesaDisks">
-      <td>{{ KolesaDiski.id_kolesaDiski }}</td>
-      <td>{{ KolesaDiski.typeDetali }}</td>
-      <td>{{ KolesaDiski.typeDiska }}</td>
-      <td>{{ KolesaDiski.PCD }}</td>
-      <td>{{ KolesaDiski.diametrStupOtverstia }}</td>
-      <td>{{ KolesaDiski.diametr }}</td>
-      <td>{{ KolesaDiski.firmaModel }}</td>
-      <td>{{ KolesaDiski.sezon }}</td>
-      <td>{{ KolesaDiski.shirina }}</td>
-      <td>{{ KolesaDiski.visota }}</td>
-      <td>{{ KolesaDiski.indexNagruzki }}</td>
-      <td>{{ KolesaDiski.garantiya }}</td>
-      <td style="width: 50px" > {{ KolesaDiski.dopComment }}</td>
-      <td>{{ KolesaDiski.cena }}</td>
-    </tr>
-  </tbody>
-</table>
+<table id='datatable' datatable [dtOptions]="dtOptions" class="row-border hover" style="word-break: break-all;"></table>

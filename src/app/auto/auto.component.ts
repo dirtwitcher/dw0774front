@@ -2,8 +2,7 @@ declare var $: any;
 
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from 'src/app/header/header.component'
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auto',
@@ -13,9 +12,6 @@ import { HeaderComponent } from 'src/app/header/header.component'
 
 export class AutoComponent implements OnInit {
 
-  private autos: any = [];
-  static userInSystem: String = "Not Set";
-
   id_auto: number;
   win: string;
   toplivo: string;
@@ -24,12 +20,11 @@ export class AutoComponent implements OnInit {
   cvet: string;
   dopComment: string;
 
-  dtOptions: DataTables.Settings = { };
+  userInSystem: string = 'Not Set';
+
+  dtOptions: any = { };
 
   private openModal(info: any): void {
-
-    console.log("log ", info);
-
     this.id_auto = info.id_auto;
     this.win = info.win;
     this.toplivo = info.toplivo;
@@ -41,7 +36,7 @@ export class AutoComponent implements OnInit {
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   private addAuto(){
     var myData = {
@@ -52,6 +47,11 @@ export class AutoComponent implements OnInit {
       "cvet": this.cvet,
       "dopComment": this.dopComment
     };
+    var jurnalData = {
+      "FIO": sessionStorage.getItem('login'),
+      "tablica": "Авто в разборе",
+      "deistvie": "Добавление" + this.win
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
       data: JSON.stringify(myData),
@@ -59,6 +59,15 @@ export class AutoComponent implements OnInit {
         console.log("success post data auto: ", dataReq);
         var table = $('#datatable').DataTable();
         table.ajax.reload();
+
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+          data: JSON.stringify(jurnalData),
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });
+
       },
       error: function(data) {
         console.log("error post data auto: ", data);
@@ -80,6 +89,11 @@ export class AutoComponent implements OnInit {
       "cvet": this.cvet,
       "dopComment": this.dopComment
     };
+    var jurnalData = {
+      "FIO": sessionStorage.getItem('login'),
+      "tablica": "Авто в разборе",
+      "deistvie": "Добавление" + this.win
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
       data: JSON.stringify(myData),
@@ -87,6 +101,15 @@ export class AutoComponent implements OnInit {
         console.log("success update data auto: ", dataReq);
         var table = $('#datatable').DataTable();
         table.ajax.reload();
+
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+          data: JSON.stringify(jurnalData),
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });
+
       }, 
       error: function(data) {
         console.log("error update data auto: ", data);
@@ -99,12 +122,26 @@ export class AutoComponent implements OnInit {
   }
 
   private deleteAuto(){
+    var jurnalData = {
+      "FIO": sessionStorage.getItem('login'),
+      "tablica": "Авто в разборе",
+      "deistvie": "Добавление" + this.win
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto"+ '?' + $.param({"id_auto": this.id_auto}),
       success: function(dataReq){
         console.log("success delete data auto: ", dataReq);
         var table = $('#datatable').DataTable();
         table.ajax.reload();
+
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+          data: JSON.stringify(jurnalData),
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });
+
       }, 
       error: function(data) {
         console.log("error delete data auto: ", data);
@@ -117,7 +154,7 @@ export class AutoComponent implements OnInit {
   }
  
   ngOnInit(): void {
-    // this.polzovatel = HeaderComponent.userInSystem;
+    this.userInSystem = sessionStorage.getItem('login');
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -149,8 +186,9 @@ export class AutoComponent implements OnInit {
     };
   }
 
-  get userInSystem() {
-    return HeaderComponent.userInSystem;
+  logExit():void{
+    sessionStorage.setItem('login','Not Set');
+    this.router.navigate(['/']);
   }
 
   clearData(): void {
