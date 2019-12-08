@@ -47,11 +47,27 @@ export class TormozaComponent implements OnInit {
       "dopComment": this.dopComment,
       "cena": this.cena
     };
+    var jurnalData = {
+      "FIO": sessionStorage.getItem('login'),
+      "tablica": "Тормоза",
+      "deistvie": "Добавление - " + this.typeDetali
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Tormoza",
       data: JSON.stringify(myData),
       success: function(data){
         console.log("success post data Tormoza: ", data);
+        var table = $('#datatable').DataTable();
+        table.ajax.reload();
+
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+          data: JSON.stringify(jurnalData),
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });
+
       }, 
       error: function(data) {
         console.log("error post data Tormoza: ", data);
@@ -73,11 +89,27 @@ export class TormozaComponent implements OnInit {
       "dopComment": this.dopComment,
       "cena": this.cena
     };
+    var jurnalData = {
+      "FIO": sessionStorage.getItem('login'),
+      "tablica": "Тормоза",
+      "deistvie": "Изменение - " + this.typeDetali
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Tormoza",
       data: JSON.stringify(myData),
       success: function(data){
         console.log("success update data Tormoza: ", data);
+        var table = $('#datatable').DataTable();
+        table.ajax.reload();
+
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+          data: JSON.stringify(jurnalData),
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });
+
       }, 
       error: function(data) {
         console.log("error update data Tormoza: ", data);
@@ -90,10 +122,26 @@ export class TormozaComponent implements OnInit {
   }
 
   private deleteTormoza(){
+    var jurnalData = {
+      "FIO": sessionStorage.getItem('login'),
+      "tablica": "Тормоза",
+      "deistvie": "Удаление - " + this.typeDetali
+    };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Tormoza"+ '?' + $.param({"id_tormoza": this.id_tormoza}),
       success: function(data){
         console.log("success delete data Tormoza: ", data);
+        var table = $('#datatable').DataTable();
+        table.ajax.reload();
+
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+          data: JSON.stringify(jurnalData),
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });
+
       }, 
       error: function(data) {
         console.log("error delete data Tormoza: ", data);
@@ -106,7 +154,36 @@ export class TormozaComponent implements OnInit {
   }
  
   ngOnInit(): void {
-    
+    this.userInSystem = sessionStorage.getItem('login');
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      ajax:{url:"http://127.0.0.1:8080/diplomBackEnd/Auto", dataSrc:""},
+      columns: [
+        {title: '№ записи', data: 'id_auto'},
+        {title: 'WIN', data: 'win', defaultContent:"<i>Not set</i>"},
+        {title: 'Топливо', data: 'toplivo', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Привод', data: 'privod', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Пробег', data: 'probeg', defaultContent:"<i>Not set</i>"},
+        {title: 'Цвет', data: 'cvet', defaultContent:"<i>Not set</i>"},
+        {title: 'Комментарии', data: 'dopComment', defaultContent:"<i>Not set</i>"}],
+
+      dom: 'Bfrtip',
+      buttons: [
+        'colvis',
+        'copy',
+        'print',
+        'excel'
+      ],
+
+      rowCallback: (row: Node, data: any[] | Object, index: number) => {
+        $('td', row).unbind('click');
+        $('td', row).bind('click', () => {
+          this.openModal(data);
+        });
+          return row;
+      }
+    };
   }
 
   logExit():void{

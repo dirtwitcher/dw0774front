@@ -43,8 +43,8 @@ export class DopTovariComponent implements OnInit {
     };
     var jurnalData = {
       "FIO": sessionStorage.getItem('login'),
-      "tablica": "Авто в разборе",
-      "deistvie": "Добавление" + this.typeDetali
+      "tablica": "Сопутствующие товары",
+      "deistvie": "Добавление - " + this.typeDetali
     };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/DopTovari",
@@ -83,8 +83,8 @@ export class DopTovariComponent implements OnInit {
     };
     var jurnalData = {
       "FIO": sessionStorage.getItem('login'),
-      "tablica": "Авто в разборе",
-      "deistvie": "Добавление" + this.typeDetali
+      "tablica": "Сопутствующие товары",
+      "deistvie": "Изменение - " + this.typeDetali
     };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/DopTovari",
@@ -116,8 +116,8 @@ export class DopTovariComponent implements OnInit {
   private deleteDopTovari(){
     var jurnalData = {
       "FIO": sessionStorage.getItem('login'),
-      "tablica": "Авто в разборе",
-      "deistvie": "Добавление" + this.typeDetali
+      "tablica": "Сопутствующие товары",
+      "deistvie": "Удаление - " + this.typeDetali
     };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/DopTovari"+ '?' + $.param({"id_dopTovari": this.id_dopTovari}),
@@ -145,7 +145,36 @@ export class DopTovariComponent implements OnInit {
   }
  
   ngOnInit(): void {
-   
+    this.userInSystem = sessionStorage.getItem('login');
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      ajax:{url:"http://127.0.0.1:8080/diplomBackEnd/Auto", dataSrc:""},
+      columns: [
+        {title: '№ записи', data: 'id_auto'},
+        {title: 'WIN', data: 'win', defaultContent:"<i>Not set</i>"},
+        {title: 'Топливо', data: 'toplivo', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Привод', data: 'privod', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Пробег', data: 'probeg', defaultContent:"<i>Not set</i>"},
+        {title: 'Цвет', data: 'cvet', defaultContent:"<i>Not set</i>"},
+        {title: 'Комментарии', data: 'dopComment', defaultContent:"<i>Not set</i>"}],
+
+      dom: 'Bfrtip',
+      buttons: [
+        'colvis',
+        'copy',
+        'print',
+        'excel'
+      ],
+
+      rowCallback: (row: Node, data: any[] | Object, index: number) => {
+        $('td', row).unbind('click');
+        $('td', row).bind('click', () => {
+          this.openModal(data);
+        });
+          return row;
+      }
+    };
   }
 
   logExit():void{

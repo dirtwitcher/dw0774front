@@ -30,16 +30,20 @@ export class HeaderComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer, public http: HttpClient, private router: Router) { }
 
   auth() {
-    var jurnalData = {
-      "FIO": sessionStorage.getItem('login'),
-      "deistvie": "Авторизовался"
-    };
     this.http.get<authImpl>( "http://127.0.0.1:8080/diplomBackEnd/Polzovatel").subscribe(
       (data:any) => {
         data.forEach(element => {
           if (this.authLog == element.login && this.authPass == element.password){
             sessionStorage.setItem('login', element.login);
             $('#authModal').modal('hide');
+
+            this.authLog = '';
+            this.authPass = '';
+
+            var jurnalData = {
+              "FIO": sessionStorage.getItem('login'),
+              "deistvie": "Авторизовался"
+            };
 
             jQuery.ajax({
               url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
@@ -64,7 +68,24 @@ export class HeaderComponent implements OnInit {
         url: "http://127.0.0.1:8080/diplomBackEnd/Polzovatel",
         data: JSON.stringify(myData),
         success: function(dataReq){
-          console.log("success post data polzovatel: ", dataReq);
+          // console.log("success post data polzovatel: ", dataReq);
+
+          var jurnalData = {
+            "FIO": this.regLog,
+            "deistvie": "Регистрация"
+          };
+
+          jQuery.ajax({
+            url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
+            data: JSON.stringify(jurnalData),
+            type: "post",
+            dataType: "text",
+            timeout: 30000
+          });
+
+          this.authLog = '';
+          this.authPass = '';
+
         },
         error: function(data) {
           console.log("error post data polzovatel: ", data);

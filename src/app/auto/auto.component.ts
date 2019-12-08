@@ -50,7 +50,7 @@ export class AutoComponent implements OnInit {
     var jurnalData = {
       "FIO": sessionStorage.getItem('login'),
       "tablica": "Авто в разборе",
-      "deistvie": "Добавление" + this.win
+      "deistvie": "Добавление - " + this.win
     };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
@@ -92,7 +92,7 @@ export class AutoComponent implements OnInit {
     var jurnalData = {
       "FIO": sessionStorage.getItem('login'),
       "tablica": "Авто в разборе",
-      "deistvie": "Добавление" + this.win
+      "deistvie": "Изменение - " + this.win
     };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
@@ -125,7 +125,7 @@ export class AutoComponent implements OnInit {
     var jurnalData = {
       "FIO": sessionStorage.getItem('login'),
       "tablica": "Авто в разборе",
-      "deistvie": "Добавление" + this.win
+      "deistvie": "Удаление - " + this.win
     };
     jQuery.ajax({
       url: "http://127.0.0.1:8080/diplomBackEnd/Auto"+ '?' + $.param({"id_auto": this.id_auto}),
@@ -160,13 +160,13 @@ export class AutoComponent implements OnInit {
       pageLength: 10,
       ajax:{url:"http://127.0.0.1:8080/diplomBackEnd/Auto", dataSrc:""},
       columns: [
-        {title: 'id_auto', data: 'id_auto'},
-        {title: 'win', data: 'win', defaultContent:"<i>Not set</i>"},
-        {title: 'toplivo', data: 'toplivo', defaultContent:"<i>Not set</i>"}, 
-        {title: 'privod', data: 'privod', defaultContent:"<i>Not set</i>"}, 
-        {title: 'probeg', data: 'probeg', defaultContent:"<i>Not set</i>"},
-        {title: 'cvet', data: 'cvet', defaultContent:"<i>Not set</i>"},
-        {title: 'dopComment', data: 'dopComment', defaultContent:"<i>Not set</i>"}],
+        {title: '№ записи', data: 'id_auto'},
+        {title: 'WIN', data: 'win', defaultContent:"<i>Not set</i>"},
+        {title: 'Топливо', data: 'toplivo', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Привод', data: 'privod', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Пробег', data: 'probeg', defaultContent:"<i>Not set</i>"},
+        {title: 'Цвет', data: 'cvet', defaultContent:"<i>Not set</i>"},
+        {title: 'Комментарии', data: 'dopComment', defaultContent:"<i>Not set</i>"}],
 
       dom: 'Bfrtip',
       buttons: [
