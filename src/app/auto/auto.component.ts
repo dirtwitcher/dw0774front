@@ -154,6 +154,7 @@ export class AutoComponent implements OnInit {
   }
  
   ngOnInit(): void {
+    if (sessionStorage.getItem('login') === 'Not Set') { this.logExit(); };
     this.userInSystem = sessionStorage.getItem('login');
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -187,6 +188,7 @@ export class AutoComponent implements OnInit {
   }
 
   logExit():void{
+    this.userInSystem = 'Not Set';
     sessionStorage.setItem('login','Not Set');
     this.router.navigate(['/']);
   }

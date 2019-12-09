@@ -145,19 +145,18 @@ export class DopTovariComponent implements OnInit {
   }
  
   ngOnInit(): void {
+    if (sessionStorage.getItem('login') === 'Not Set') { this.logExit(); };
     this.userInSystem = sessionStorage.getItem('login');
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      ajax:{url:"http://127.0.0.1:8080/diplomBackEnd/Auto", dataSrc:""},
+      ajax:{url:"http://127.0.0.1:8080/diplomBackEnd/DopTovari", dataSrc:""},
       columns: [
-        {title: '№ записи', data: 'id_auto'},
-        {title: 'WIN', data: 'win', defaultContent:"<i>Not set</i>"},
-        {title: 'Топливо', data: 'toplivo', defaultContent:"<i>Not set</i>"}, 
-        {title: 'Привод', data: 'privod', defaultContent:"<i>Not set</i>"}, 
-        {title: 'Пробег', data: 'probeg', defaultContent:"<i>Not set</i>"},
-        {title: 'Цвет', data: 'cvet', defaultContent:"<i>Not set</i>"},
-        {title: 'Комментарии', data: 'dopComment', defaultContent:"<i>Not set</i>"}],
+        {title: '№ записи', data: 'id_dopTovari'},
+        {title: 'Тип детали', data: 'typeDetali', defaultContent:"<i>Not set</i>"},
+        {title: 'Гарантия', data: 'garantiya', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Комментарии', data: 'dopComment', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Цена', data: 'cena', defaultContent:"<i>Not set</i>"}],
 
       dom: 'Bfrtip',
       buttons: [
@@ -178,6 +177,7 @@ export class DopTovariComponent implements OnInit {
   }
 
   logExit():void{
+    this.userInSystem = 'Not Set';
     sessionStorage.setItem('login','Not Set');
     this.router.navigate(['/']);
   }

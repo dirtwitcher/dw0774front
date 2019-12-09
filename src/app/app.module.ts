@@ -30,7 +30,9 @@ import { RulevoeUpravlenieComponent } from './rulevoe-upravlenie/rulevoe-upravle
 import { SistemaOhlajdeniyaComponent } from './sistema-ohlajdeniya/sistema-ohlajdeniya.component';
 import { ToplivnayaSistemaComponent } from './toplivnaya-sistema/toplivnaya-sistema.component';
 import { TormozaComponent } from './tormoza/tormoza.component';
-import { TransmissiyaComponent } from './transmissiya/transmissiya.component'; 
+import { TransmissiyaComponent } from './transmissiya/transmissiya.component';
+import { PolzovatelComponent } from './polzovatel/polzovatel.component';
+import { JurnalComponent } from './jurnal/jurnal.component'; 
 
 const appRoutes: Routes = [
   {path:'', component: BodyComponent},  
@@ -51,7 +53,9 @@ const appRoutes: Routes = [
   {path:'sistemaOhlajdeniya', component: SistemaOhlajdeniyaComponent},
   {path:'toplivnayaSistema', component: ToplivnayaSistemaComponent},
   {path:'tormoza', component: TormozaComponent},
-  {path:'transmissiya', component: TransmissiyaComponent}
+  {path:'transmissiya', component: TransmissiyaComponent},
+  {path:'polzovatel', component: PolzovatelComponent},
+  {path:'jurnal', component: JurnalComponent}
 ]
 
 @NgModule({
@@ -77,7 +81,9 @@ const appRoutes: Routes = [
     SistemaOhlajdeniyaComponent,
     ToplivnayaSistemaComponent,
     TormozaComponent,
-    TransmissiyaComponent
+    TransmissiyaComponent,
+    PolzovatelComponent,
+    JurnalComponent
   ],
   imports: [
     BrowserModule,

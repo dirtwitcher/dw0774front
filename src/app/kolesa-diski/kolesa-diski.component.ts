@@ -24,6 +24,7 @@ export class KolesaDiskiComponent implements OnInit {
   shirina: number;
   visota: number;
   indexNagruzki: number;
+  indexSkorosti: number;
   garantiya: string;
   dopComment: string;
   cena: number;
@@ -45,9 +46,10 @@ export class KolesaDiskiComponent implements OnInit {
     this.shirina = info[9];
     this.visota = info[10];
     this.indexNagruzki = info[11];
-    this.garantiya = info[12];
-    this.dopComment = info[13];
-    this.cena = info[14];
+    this.indexSkorosti = info[12];
+    this.garantiya = info[13];
+    this.dopComment = info[14];
+    this.cena = info[15];
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
@@ -67,6 +69,7 @@ export class KolesaDiskiComponent implements OnInit {
       "shirina": this.shirina,
       "visota": this.visota,
       "indexNagruzki": this.indexNagruzki,
+      "indexSkorosti": this.indexSkorosti,
       "garantiya": this.garantiya,
       "dopComment": this.dopComment,
       "cena": this.cena
@@ -117,6 +120,7 @@ export class KolesaDiskiComponent implements OnInit {
       "shirina": this.shirina,
       "visota": this.visota,
       "indexNagruzki": this.indexNagruzki,
+      "indexSkorosti": this.indexSkorosti,
       "garantiya": this.garantiya,
       "dopComment": this.dopComment,
       "cena": this.cena
@@ -186,19 +190,29 @@ export class KolesaDiskiComponent implements OnInit {
   }
  
   ngOnInit(): void {
+    if (sessionStorage.getItem('login') === 'Not Set') { this.logExit(); };
     this.userInSystem = sessionStorage.getItem('login');
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      ajax:{url:"http://127.0.0.1:8080/diplomBackEnd/Auto", dataSrc:""},
+      ajax:{url:"http://127.0.0.1:8080/diplomBackEnd/KolesaDiski", dataSrc:""},
       columns: [
-        {title: '№ записи', data: 'id_auto'},
-        {title: 'WIN', data: 'win', defaultContent:"<i>Not set</i>"},
-        {title: 'Топливо', data: 'toplivo', defaultContent:"<i>Not set</i>"}, 
-        {title: 'Привод', data: 'privod', defaultContent:"<i>Not set</i>"}, 
-        {title: 'Пробег', data: 'probeg', defaultContent:"<i>Not set</i>"},
-        {title: 'Цвет', data: 'cvet', defaultContent:"<i>Not set</i>"},
-        {title: 'Комментарии', data: 'dopComment', defaultContent:"<i>Not set</i>"}],
+        {title: '№ записи', data: 'id_kolesaDiski'},
+        {title: 'Тип детали', data: 'typeDetali', defaultContent:"<i>Not set</i>"},
+        {title: 'Тип диска', data: 'typeDiska', defaultContent:"<i>Not set</i>"}, 
+        {title: 'PCD', data: 'PCD', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Кол-во отверстий', data: 'kolvoOtversti', defaultContent:"<i>Not set</i>"},
+        {title: 'Диаметр ступ отверстия', data: 'diametrStupOtverstia', defaultContent:"<i>Not set</i>"},
+        {title: 'Диаметр', data: 'diametr', defaultContent:"<i>Not set</i>"},
+        {title: 'Фирма, модель', data: 'firmaModel', defaultContent:"<i>Not set</i>"},
+        {title: 'Сезон', data: 'sezon', defaultContent:"<i>Not set</i>"},
+        {title: 'Ширина', data: 'shirina', defaultContent:"<i>Not set</i>"},
+        {title: 'Высота', data: 'visota', defaultContent:"<i>Not set</i>"},
+        {title: 'Индекс нагрузки', data: 'indexNagruzki', defaultContent:"<i>Not set</i>"},
+        {title: 'Индекс скорости', data: 'indexSkorosti', defaultContent:"<i>Not set</i>"},
+        {title: 'Гарантия', data: 'garantiya', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Комментарии', data: 'dopComment', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Цена', data: 'cena', defaultContent:"<i>Not set</i>"}],
 
       dom: 'Bfrtip',
       buttons: [
@@ -219,6 +233,7 @@ export class KolesaDiskiComponent implements OnInit {
   }
 
   logExit():void{
+    this.userInSystem = 'Not Set';
     sessionStorage.setItem('login','Not Set');
     this.router.navigate(['/']);
   }
@@ -236,6 +251,7 @@ export class KolesaDiskiComponent implements OnInit {
     this.shirina = null;
     this.visota = null;
     this.indexNagruzki = null;
+    this.indexSkorosti = null;
     this.garantiya = null;
     this.dopComment = null;
     this.cena = null;
