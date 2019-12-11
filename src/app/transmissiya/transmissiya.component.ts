@@ -23,11 +23,11 @@ export class TransmissiyaComponent implements OnInit {
   dtOptions: any = { };
 
   private openModal(info: any): void {
-    this.id_transmissiya = info[0];
-    this.typeDetali = info[1];
-    this.garantiya = info[2];
-    this.dopComment = info[3];
-    this.cena = info[4];
+    this.id_transmissiya = info.id_transmissiya;
+    this.typeDetali = info.typeDetali;
+    this.garantiya = info.garantiya;
+    this.dopComment = info.dopComment;
+    this.cena = info.cena;
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
@@ -181,6 +181,14 @@ export class TransmissiyaComponent implements OnInit {
     this.userInSystem = 'Not Set';
     sessionStorage.setItem('login','Not Set');
     this.router.navigate(['/']);
+  }
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 
   clearData(): void {

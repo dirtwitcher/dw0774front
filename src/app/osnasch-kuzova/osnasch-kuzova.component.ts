@@ -24,12 +24,12 @@ export class OsnaschKuzovaComponent implements OnInit {
   dtOptions: any = { };
 
   private openModal(info: any): void {
-    this.id_osnaschKuzova = info[0];
-    this.typeDetali = info[1];
-    this.storona = info[2];
-    this.garantiya = info[3];
-    this.dopComment = info[4];
-    this.cena = info[5];
+    this.id_osnaschKuzova = info.id_osnaschKuzova;
+    this.typeDetali = info.typeDetali;
+    this.storona = info.storona;
+    this.garantiya = info.garantiya;
+    this.dopComment = info.dopComment;
+    this.cena = info.cena;
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
@@ -186,6 +186,14 @@ export class OsnaschKuzovaComponent implements OnInit {
     this.userInSystem = 'Not Set';
     sessionStorage.setItem('login','Not Set');
     this.router.navigate(['/']);
+  }
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 
   clearData(): void {

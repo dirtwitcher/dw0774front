@@ -21,9 +21,9 @@ export class MarkaModelComponent implements OnInit {
   dtOptions: any = { };
 
   private openModal(info: any): void {
-    this.id_typeAuto = info[0];
-    this.marka = info[1];
-    this.model = info[2];
+    this.id_typeAuto = info.id_typeAuto;
+    this.marka = info.marka;
+    this.model = info.model;
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }

@@ -33,27 +33,27 @@
         <form>
           <div class="form-group">
             <label class="col-form-label">WIN:</label>
-            <input type="text" [(ngModel)] = "win" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" [(ngModel)] = "win" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="25">
           </div>
           <div class="form-group">
               <label class="col-form-label">Вид топлива:</label>
-              <input type="text" [(ngModel)] = "toplivo" [ngModelOptions]="{standalone: true}" class="form-control">
+              <input type="text" [(ngModel)] = "toplivo" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="25">
           </div>
           <div class="form-group">
             <label class="col-form-label">Привод:</label>
-            <input type="text" [(ngModel)] = "privod" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" [(ngModel)] = "privod" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="20">
           </div>
           <div class="form-group">
             <label class="col-form-label">Пробег:</label>
-            <input type="text" [(ngModel)] = "probeg" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input (keypress)="numberOnly($event)" type="text" [(ngModel)] = "probeg" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="11">
           </div>
           <div class="form-group">
             <label class="col-form-label">Цвет:</label>
-            <input type="text" [(ngModel)] = "cvet" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" [(ngModel)] = "cvet" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="20">
           </div>
           <div class="form-group">
             <label class="col-form-label">Комментарии:</label>
-            <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
           </div>
         </form>
       </div>
@@ -82,27 +82,27 @@
           </div>
           <div class="form-group">
             <label class="col-form-label">WIN:</label>
-            <input type="text" [(ngModel)] = "win" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" [(ngModel)] = "win" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="25">
           </div>
           <div class="form-group">
             <label class="col-form-label">Вид топлива:</label>
-            <input type="text" [(ngModel)] = "toplivo" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" [(ngModel)] = "toplivo" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="25">
           </div>
           <div class="form-group">
             <label class="col-form-label">Привод:</label>
-            <input type="text" [(ngModel)] = "privod" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" [(ngModel)] = "privod" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="20">
           </div>
           <div class="form-group">
             <label class="col-form-label">Пробег:</label>
-            <input type="text" [(ngModel)] = "probeg" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input (keypress)="numberOnly($event)" type="text" [(ngModel)] = "probeg" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="11">
           </div>
           <div class="form-group">
             <label class="col-form-label">Цвет:</label>
-            <input type="text" [(ngModel)] = "cvet" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" [(ngModel)] = "cvet" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="20">
           </div>
           <div class="form-group">
             <label class="col-form-label">Комментарии:</label>
-            <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
           </div>
         </form>
       </div>

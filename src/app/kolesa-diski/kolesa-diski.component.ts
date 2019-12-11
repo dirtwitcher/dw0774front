@@ -34,22 +34,22 @@ export class KolesaDiskiComponent implements OnInit {
   dtOptions: any = { };
 
   private openModal(info: any): void {
-    this.id_kolesaDiski = info[0];
-    this.typeDetali = info[1];
-    this.typeDiska = info[2];
-    this.PCD = info[3];
-    this.kolvoOtversti = info[4];
-    this.diametrStupOtverstia = info[5];
-    this.diametr = info[6];
-    this.firmaModel = info[7];
-    this.sezon = info[8];
-    this.shirina = info[9];
-    this.visota = info[10];
-    this.indexNagruzki = info[11];
-    this.indexSkorosti = info[12];
-    this.garantiya = info[13];
-    this.dopComment = info[14];
-    this.cena = info[15];
+    this.id_kolesaDiski = info.id_kolesaDiski;
+    this.typeDetali = info.typeDetali;
+    this.typeDiska = info.typeDiska;
+    this.PCD = info.PCD;
+    this.kolvoOtversti = info.kolvoOtversti;
+    this.diametrStupOtverstia = info.diametrStupOtverstia;
+    this.diametr = info.diametr;
+    this.firmaModel = info.firmaModel;
+    this.sezon = info.sezon;
+    this.shirina = info.shirina;
+    this.visota = info.visota;
+    this.indexNagruzki = info.indexNagruzki;
+    this.indexSkorosti = info.indexSkorosti;
+    this.garantiya = info.garantiya;
+    this.dopComment = info.dopComment;
+    this.cena = info.cena;
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
@@ -236,6 +236,14 @@ export class KolesaDiskiComponent implements OnInit {
     this.userInSystem = 'Not Set';
     sessionStorage.setItem('login','Not Set');
     this.router.navigate(['/']);
+  }
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 
   clearData(): void {
