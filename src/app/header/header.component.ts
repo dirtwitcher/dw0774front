@@ -10,7 +10,7 @@ interface authImpl{
   password : string;
 }
 
-const trueKeyPass : string = "qq123";
+const trueKeyPass : string = "Баерн2019";
 
 @Component({
   selector: 'app-header',
@@ -64,6 +64,7 @@ export class HeaderComponent implements OnInit {
       "password": this.regPass,
     };
     if (this.keyPass == trueKeyPass) {
+      sessionStorage.setItem('regLogin',this.regLog),
       jQuery.ajax({
         url: "http://127.0.0.1:8080/diplomBackEnd/Polzovatel",
         data: JSON.stringify(myData),
@@ -71,7 +72,7 @@ export class HeaderComponent implements OnInit {
           // console.log("success post data polzovatel: ", dataReq);
 
           var jurnalData = {
-            "FIO": this.regLog,
+            "FIO": sessionStorage.getItem('regLogin'),
             "deistvie": "Регистрация"
           };
 
@@ -83,9 +84,6 @@ export class HeaderComponent implements OnInit {
             timeout: 30000
           });
 
-          this.authLog = '';
-          this.authPass = '';
-
         },
         error: function(data) {
           console.log("error post data polzovatel: ", data);
@@ -95,6 +93,9 @@ export class HeaderComponent implements OnInit {
         timeout: 30000
       });
       $('#registrModal').modal('hide');
+      this.regLog = '';
+      this.regPass = '';
+      this.keyPass = '';
     }
   }
 

@@ -46,7 +46,7 @@ export class KorpusaPatrubkiComponent implements OnInit {
     };
     var jurnalData = {
       "FIO": sessionStorage.getItem('login'),
-      "tablica": "Бочки, корпуса, патрубки",
+      "tablica": "Бачки, корпуса, патрубки",
       "deistvie": "Добавление - " + this.typeDetali
     };
     jQuery.ajax({
@@ -87,7 +87,7 @@ export class KorpusaPatrubkiComponent implements OnInit {
     };
     var jurnalData = {
       "FIO": sessionStorage.getItem('login'),
-      "tablica": "Бочки, корпуса, патрубки",
+      "tablica": "Бачки, корпуса, патрубки",
       "deistvie": "Изменение - " + this.typeDetali
     };
     jQuery.ajax({
@@ -120,7 +120,7 @@ export class KorpusaPatrubkiComponent implements OnInit {
   private deleteKorpusaPatrubki(){
     var jurnalData = {
       "FIO": sessionStorage.getItem('login'),
-      "tablica": "Бочки, корпуса, патрубки",
+      "tablica": "Бачки, корпуса, патрубки",
       "deistvie": "Удаление - " + this.typeDetali
     };
     jQuery.ajax({

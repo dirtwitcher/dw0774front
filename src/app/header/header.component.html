@@ -25,7 +25,7 @@
               <a class="dropdown-item" (click) = "routeToToplivnayaSistema()">Топливная система</a>
               <a class="dropdown-item" (click) = "routeToSistemaOhlajdeniya()">Система охлаждения</a>
               <a class="dropdown-item" (click) = "routeToOtoplenieKondei()">Отопление и кондиционер</a>
-              <a class="dropdown-item" (click) = "routeToKorpusaPatrubki()">Бочки, курпуса, патрубки</a>
+              <a class="dropdown-item" (click) = "routeToKorpusaPatrubki()">Бачки, курпуса, патрубки</a>
             </div>
           </li>
 
@@ -102,11 +102,11 @@
               <form>
                 <div class="form-group">
                   <label class="col-form-label">Логин:</label>
-                  <input type="text" [(ngModel)] = "authLog" [ngModelOptions]="{standalone: true}" class="form-control">
+                  <input type="text" [(ngModel)] = "authLog" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
                 </div>
                 <div class="form-group">
                     <label class="col-form-label">Пароль:</label>
-                    <input type="password" [(ngModel)] = "authPass" [ngModelOptions]="{standalone: true}" class="form-control">
+                    <input type="password" [(ngModel)] = "authPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
                   </div>
               </form>
             </div>
@@ -132,15 +132,15 @@
               <form>
                 <div class="form-group">
                   <label class="col-form-label">Логин:</label>
-                  <input type="text" [(ngModel)] = "regLog" [ngModelOptions]="{standalone: true}" class="form-control">
+                  <input type="text" [(ngModel)] = "regLog" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Пароль:</label>
-                  <input type="password" [(ngModel)] = "regPass" [ngModelOptions]="{standalone: true}" class="form-control">
+                  <input type="password" [(ngModel)] = "regPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
                   </div>
                 <div class="form-group">
                   <label class="col-form-label">Ключ регистрации:</label>
-                  <input type="password" [(ngModel)] = "keyPass" [ngModelOptions]="{standalone: true}" class="form-control">
+                  <input type="password" [(ngModel)] = "keyPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
                 </div>
               </form>
             </div>
