@@ -1,142 +1,16 @@
 {
-  "/diplomBackEnd/Auto": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/Auto",
+  "/dw0774/Profille": {
+    "target": "http://127.0.0.1:8080/dw0774/Profile",
     "secure": false,
     "pathRewrite": {
-      "^/diplomBackEnd/Auto": ""
+      "^/dw0774/Profile": ""
     }
   },
-  "/diplomBackEnd/DopTovari": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/DopTovari",
+  "/dw0774/Zakaz": {
+    "target": "http://127.0.0.1:8080/dw0774/Zakaz",
     "secure": false,
     "pathRewrite": {
-      "^/diplomBackEnd/DopTovari": ""
-    }
-  },
-  "/diplomBackEnd/Dvigatel": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/Dvigatel",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/Dvigatel": ""
-    }
-  },
-  "/diplomBackEnd/Elektrika": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/Elektrika",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/Elektrika": ""
-    }
-  },
-  "/diplomBackEnd/Jurnal": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/Jurnal": ""
-    }
-  },
-  "/diplomBackEnd/KolesaDiski": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/KolesaDiski",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/KolesaDiski": ""
-    }
-  },
-  "/diplomBackEnd/KorpusaPatrubki": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/KorpusaPatrubki",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/KorpusaPatrubki": ""
-    }
-  },
-  "/diplomBackEnd/Kpp": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/Kpp",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/Kpp": ""
-    }
-  },
-  "/diplomBackEnd/KuzovnieDetali": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/KuzovnieDetali",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/KuzovnieDetali": ""
-    }
-  },
-  "/diplomBackEnd/OsnaschKuzova": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/OsnaschKuzova",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/OsnaschKuzova": ""
-    }
-  },
-  "/diplomBackEnd/OsvetPribory": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/OsvetPribory",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/OsvetPribory": ""
-    }
-  },
-  "/diplomBackEnd/OtoplenieKondei": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/OtoplenieKondei",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/OtoplenieKondei": ""
-    }
-  },
-  "/diplomBackEnd/Podveska": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/Podveska",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/Podveska": ""
-    }
-  },
-  "/diplomBackEnd/Polzovatel": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/Polzovatel",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/Polzovatel": ""
-    }
-  },
-  "/diplomBackEnd/RulevoeUpravlenie": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/RulevoeUpravlenie",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/RulevoeUpravlenie": ""
-    }
-  },
-  "/diplomBackEnd/SistemaOhlajdeniya": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/SistemaOhlajdeniya",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/SistemaOhlajdeniya": ""
-    }
-  },
-  "/diplomBackEnd/ToplivnayaSistema": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/ToplivnayaSistema",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/ToplivnayaSistema": ""
-    }
-  },
-  "/diplomBackEnd/Tormoza": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/Tormoza",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/Tormoza": ""
-    }
-  },
-  "/diplomBackEnd/Transmissiya": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/Transmissiya",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/Transmissiya": ""
-    }
-  },
-  "/diplomBackEnd/TypeAuto": {
-    "target": "http://127.0.0.1:8080/diplomBackEnd/TypeAuto",
-    "secure": false,
-    "pathRewrite": {
-      "^/diplomBackEnd/TypeAuto": ""
+      "^/dw0774/Zakaz": ""
     }
   }
 }

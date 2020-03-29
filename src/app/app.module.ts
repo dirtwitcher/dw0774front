@@ -10,51 +10,18 @@ import { AppComponent } from './app.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; //connect bootstrap
 import { DataTablesModule } from 'angular-datatables'; // connect dat atable
+
 import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
-import { AutoComponent } from './auto/auto.component';
-import { MarkaModelComponent } from './marka-model/marka-model.component';
-import { DvigatelComponent } from './dvigatel/dvigatel.component';
-import { DopTovariComponent } from './dop-tovari/dop-tovari.component';
-import { ElektrikaComponent } from './elektrika/elektrika.component';
-import { KolesaDiskiComponent } from './kolesa-diski/kolesa-diski.component';
-import { KorpusaPatrubkiComponent } from './korpusa-patrubki/korpusa-patrubki.component';
-import { KppComponent } from './kpp/kpp.component';
-import { KuzovnieDetaliComponent } from './kuzovnie-detali/kuzovnie-detali.component';
-import { OsnaschKuzovaComponent } from './osnasch-kuzova/osnasch-kuzova.component';
-import { OsvetPriboryComponent } from './osvet-pribory/osvet-pribory.component';
-import { OtoplenieKondeiComponent } from './otoplenie-kondei/otoplenie-kondei.component';
-import { PodveskaComponent } from './podveska/podveska.component';
-import { RulevoeUpravlenieComponent } from './rulevoe-upravlenie/rulevoe-upravlenie.component';
-import { SistemaOhlajdeniyaComponent } from './sistema-ohlajdeniya/sistema-ohlajdeniya.component';
-import { ToplivnayaSistemaComponent } from './toplivnaya-sistema/toplivnaya-sistema.component';
-import { TormozaComponent } from './tormoza/tormoza.component';
-import { TransmissiyaComponent } from './transmissiya/transmissiya.component';
-import { PolzovatelComponent } from './polzovatel/polzovatel.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ZakazComponent } from './zakaz/zakaz.component';
 import { JurnalComponent } from './jurnal/jurnal.component'; 
 
 const appRoutes: Routes = [
   {path:'', component: BodyComponent},  
-  {path:'auto', component: AutoComponent},
-  {path:'typeAuto', component: MarkaModelComponent},
-  {path:'dvigatel', component: DvigatelComponent},
-  {path:'dopTovari', component: DopTovariComponent},
-  {path:'elektrika', component: ElektrikaComponent},
-  {path:'kolesaDiski', component: KolesaDiskiComponent},
-  {path:'korpusaPatrubki', component: KorpusaPatrubkiComponent},
-  {path:'kpp', component: KppComponent},
-  {path:'kuzovnieDetali', component: KuzovnieDetaliComponent},
-  {path:'osnaschKuzova', component: OsnaschKuzovaComponent},
-  {path:'osvetPribory', component: OsvetPriboryComponent},
-  {path:'otoplenieKondei', component: OtoplenieKondeiComponent},
-  {path:'podveska', component: PodveskaComponent},
-  {path:'rulevoeUpravlenie', component: RulevoeUpravlenieComponent},
-  {path:'sistemaOhlajdeniya', component: SistemaOhlajdeniyaComponent},
-  {path:'toplivnayaSistema', component: ToplivnayaSistemaComponent},
-  {path:'tormoza', component: TormozaComponent},
-  {path:'transmissiya', component: TransmissiyaComponent},
-  {path:'polzovatel', component: PolzovatelComponent},
+  {path:'profile', component: ProfileComponent},
+  {path:'zakaz', component: ZakazComponent},
   {path:'jurnal', component: JurnalComponent}
 ]
 
@@ -64,25 +31,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     BodyComponent,
     FooterComponent,
-    AutoComponent,
-    MarkaModelComponent,
-    DvigatelComponent,
-    DopTovariComponent,
-    ElektrikaComponent,
-    KolesaDiskiComponent,
-    KorpusaPatrubkiComponent,
-    KppComponent,
-    KuzovnieDetaliComponent,
-    OsnaschKuzovaComponent,
-    OsvetPriboryComponent,
-    OtoplenieKondeiComponent,
-    PodveskaComponent,
-    RulevoeUpravlenieComponent,
-    SistemaOhlajdeniyaComponent,
-    ToplivnayaSistemaComponent,
-    TormozaComponent,
-    TransmissiyaComponent,
-    PolzovatelComponent,
+    ProfileComponent,
+    ZakazComponent,
     JurnalComponent
   ],
   imports: [
