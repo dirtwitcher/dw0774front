@@ -15,14 +15,14 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ZakazComponent } from './zakaz/zakaz.component';
-import { JurnalComponent } from './jurnal/jurnal.component'; 
+import { PostZakazComponent } from './postZakaz/postZakaz.component';
+import { GetZakazComponent } from './getZakaz/getZakaz.component'; 
 
 const appRoutes: Routes = [
-  {path:'', component: BodyComponent},  
+  {path:'', component: BodyComponent},
   {path:'profile', component: ProfileComponent},
-  {path:'zakaz', component: ZakazComponent},
-  {path:'jurnal', component: JurnalComponent}
+  {path:'postZakaz', component: PostZakazComponent},
+  {path:'getZakaz', component: GetZakazComponent}
 ]
 
 @NgModule({
@@ -32,8 +32,8 @@ const appRoutes: Routes = [
     BodyComponent,
     FooterComponent,
     ProfileComponent,
-    ZakazComponent,
-    JurnalComponent
+    PostZakazComponent,
+    GetZakazComponent
   ],
   imports: [
     BrowserModule,

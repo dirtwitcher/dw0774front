@@ -5,12 +5,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-zakaz',
-  templateUrl: './zakaz.component.html',
-  styleUrls: ['./zakaz.component.css']
+  selector: 'app-postZakaz',
+  templateUrl: './postZakaz.component.html',
+  styleUrls: ['./postZakaz.component.css']
 })
 
-export class ZakazComponent implements OnInit {
+export class PostZakazComponent implements OnInit {
 
   id_dopTovari: number;
   typeDetali: string;

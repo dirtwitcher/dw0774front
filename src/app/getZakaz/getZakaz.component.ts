@@ -5,12 +5,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-jurnal',
-  templateUrl: './jurnal.component.html',
-  styleUrls: ['./jurnal.component.css']
+  selector: 'app-getZakaz',
+  templateUrl: './getZakaz.component.html',
+  styleUrls: ['./getZakaz.component.css']
 })
 
-export class JurnalComponent implements OnInit {
+export class GetZakazComponent implements OnInit {
 
   userInSystem: string = 'Not Set';
 

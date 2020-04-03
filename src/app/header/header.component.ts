@@ -101,163 +101,16 @@ export class HeaderComponent implements OnInit {
 
   routeToMainPage():void{ this.router.navigate(['/']); }
 
-  routeToTypeAuto():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/typeAuto']);
-    }
-  }
+  routeToProfile():void{ this.router.navigate(['/profile']); }
 
-  routeToAuto():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/auto']);
-    }
-  }
+  routeToGetZakaz():void{ this.router.navigate(['/getZakaz']); }
 
-  routeToTypeDvigatel():void{ 
+  routeToPostZakaz():void{ 
     if (sessionStorage.getItem('login') === "Not Set"){
       this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/dvigatel']);
-    }
-  }
-  
-  routeToToplivnayaSistema():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/toplivnayaSistema']);
-    }
-  }
-
-  routeToSistemaOhlajdeniya():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/sistemaOhlajdeniya']);
-    }
-  }
-  
-  routeToOtoplenieKondei():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/otoplenieKondei']);
-    }
-  }
-
-  routeToKorpusaPatrubki():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/korpusaPatrubki']);
-    }
-  }
-
-  routeToKuzovnieDetali():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/kuzovnieDetali']);
-    }
-  }
-
-  routeToOsnaschKuzova():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/osnaschKuzova']);
-    }
-  }
-
-  routeToElektrika():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/elektrika']);
-    }
-  }
-
-  routeToOsvetPribory():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/osvetPribory']);
-    }
-  }
-
-  routeToKpp():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/kpp']);
-    }
-  }
-
-  routeToTransmissiya():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/transmissiya']);
-    }
-  }
-
-  routeToRulevoeUpravlenie():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/rulevoeUpravlenie']);
-    }
-  }
-
-  routeToPodveska():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/podveska']);
-    }
-  }
-
-  routeToTormoza():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/tormoza']);
-    }
-  }
-
-  routeToKolesaDiski():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/kolesaDiski']);
-    }
-  }
-
-  routeToDopTovari():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/dopTovari']);
-    }
-  }
-
-  routeToPolzovatel():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/polzovatel']);
-    }
-  }
-
-  routeToJurnal():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
-    } else{
-      this.router.navigate(['/jurnal']);
+      $("#myToast").toast('show');
+    } else {
+      this.router.navigate(['/postZakaz']);
     }
   }
 

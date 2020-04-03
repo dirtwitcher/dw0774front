@@ -1,83 +1,32 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
-  <button type="button" class="btn btn-dark a1" (click) = "routeToMainPage()"> Belarus Helper </button>
+  <button type="button" class="btn btn-dark a1" (click) = "routeToMainPage()"> dw0774 Helper </button>
     
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Авто
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" (click) = "routeToTypeAuto()">Марка, модель</a>
-              <a class="dropdown-item" (click) = "routeToAuto()">Авто в разборе</a>
-            </div>
-          </li>
+          <button type="button" class="btn btn-dark" (click) = "routeToPostZakaz()"> Оставь заявку </button>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Подкапотное и работа двигателя
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" (click) = "routeToTypeDvigatel()">Двигатель и запчасти</a>
-              <a class="dropdown-item" (click) = "routeToToplivnayaSistema()">Топливная система</a>
-              <a class="dropdown-item" (click) = "routeToSistemaOhlajdeniya()">Система охлаждения</a>
-              <a class="dropdown-item" (click) = "routeToOtoplenieKondei()">Отопление и кондиционер</a>
-              <a class="dropdown-item" (click) = "routeToKorpusaPatrubki()">Бачки, курпуса, патрубки</a>
-            </div>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Кузов
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" (click) = "routeToKuzovnieDetali()">Кузовные детали</a>
-              <a class="dropdown-item" (click) = "routeToOsnaschKuzova()">Оснащение кузова</a>
-              <a class="dropdown-item" (click) = "routeToElektrika()">Электрика</a>
-              <a class="dropdown-item" (click) = "routeToOsvetPribory()">Осветительные приборы</a>
-            </div>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Шасси
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" (click) = "routeToKpp()">КПП</a>
-              <a class="dropdown-item" (click) = "routeToTransmissiya()">Трансмиссия</a>
-              <a class="dropdown-item" (click) = "routeToRulevoeUpravlenie()">Рулевое управление</a>
-              <a class="dropdown-item" (click) = "routeToPodveska()">Подвеска</a>
-              <a class="dropdown-item" (click) = "routeToTormoza()">Тормоза</a>
-            </div>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Другое
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" (click) = "routeToKolesaDiski()">Шины и диски</a>
-              <a class="dropdown-item" (click) = "routeToDopTovari()">Сопутствующие товары</a>
-            </div>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Ведение базы
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" (click) = "routeToPolzovatel()">Пользователи</a>
-              <a class="dropdown-item" (click) = "routeToJurnal()">Журнал</a>
-            </div>
-          </li>
+          <button type="button" class="btn btn-dark" (click) = "routeToGetZakaz()"> Помоги другому </button>
 
       </ul>
   </div>
+
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 10px;">
+                Контакты
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="https://www.linkedin.com/in/dw0774" target="_blank">LinkedIn</a>
+                  <a class="dropdown-item" href="https://vk.com/id39019195" target="_blank">VKontakte</a>
+                  <a class="dropdown-item" href="https://github.com/dirtwitcher?tab=repositories" target="_blank">GitHub</a>
+                  <a class="dropdown-item" href="https://jobs.tut.by/resume/ced4b78cff034998820039ed1f514e6c673558" target="_blank">Jobs tut.by</a>
+                  <a style="color:darkgoldenrod; margin-left: 35px;" class="label">Ищу работу</a>
+              </div>
+            </li>
           <li class="nav-item">
                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#authModal"> Авторизация </button>
           </li>
@@ -90,65 +39,66 @@
 
 
 <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Авторизация</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label class="col-form-label">Логин:</label>
-                  <input type="text" [(ngModel)] = "authLog" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
-                </div>
-                <div class="form-group">
-                    <label class="col-form-label">Пароль:</label>
-                    <input type="password" [(ngModel)] = "authPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
-                  </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-              <button type="button" class="btn btn-primary" (click) = "auth()">Ввод</button>
-            </div>
-          </div>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Авторизация</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">Логин:</label>
+            <input type="text" [(ngModel)] = "authLog" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Пароль:</label>
+            <input type="password" [(ngModel)] = "authPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary" (click) = "auth()">Ввод</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div class="modal fade" id="registrModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Регистрация</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label class="col-form-label">Логин:</label>
-                  <input type="text" [(ngModel)] = "regLog" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
-                </div>
-                <div class="form-group">
-                  <label class="col-form-label">Пароль:</label>
-                  <input type="password" [(ngModel)] = "regPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
-                  </div>
-                <div class="form-group">
-                  <label class="col-form-label">Ключ регистрации:</label>
-                  <input type="password" [(ngModel)] = "keyPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-              <button type="button" class="btn btn-primary" (click) = "registr()">Ввод</button>
-            </div>
-          </div>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Регистрация</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">Логин:</label>
+            <input type="text" [(ngModel)] = "regLog" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Пароль:</label>
+            <input type="password" [(ngModel)] = "regPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Ключ регистрации:</label>
+            <input type="password" [(ngModel)] = "keyPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary" (click) = "registr()">Ввод</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+      
