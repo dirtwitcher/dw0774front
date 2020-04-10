@@ -107,7 +107,7 @@ export class HeaderComponent implements OnInit {
 
   routeToPostZakaz():void{ 
     if (sessionStorage.getItem('login') === "Not Set"){
-      this.router.navigate(['/']);
+     // this.router.navigate(['/']);
       $("#myToast").toast('show');
     } else {
       this.router.navigate(['/postZakaz']);

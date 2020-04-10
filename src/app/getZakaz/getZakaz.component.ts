@@ -11,6 +11,56 @@ import { Router } from '@angular/router';
 })
 
 export class GetZakazComponent implements OnInit {
+  
+  cards = [
+    {
+      title: 'Card Title 1',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button',
+      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
+    },
+    {
+      title: 'Card Title 2',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button',
+      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
+    },
+    {
+      title: 'Card Title 3',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button',
+      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
+    },
+    {
+      title: 'Card Title 4',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button',
+      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
+    },
+    {
+      title: 'Card Title 4',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button',
+      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
+    },
+    {
+      title: 'Card Title 4',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button',
+      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
+    },
+    {
+      title: 'Card Title 4',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button',
+      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
+    },
+
+  ];
+
+  ngOnInit(): void {
+    throw new Error("Method not implemented.");
+  }
 
   userInSystem: string = 'Not Set';
 
@@ -18,6 +68,7 @@ export class GetZakazComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  /*
   ngOnInit(): void {
     if (sessionStorage.getItem('login') === 'Not Set') { this.logExit(); };
     this.userInSystem = sessionStorage.getItem('login');
@@ -41,6 +92,7 @@ export class GetZakazComponent implements OnInit {
 
     };
   }
+*/
 
   logExit():void{
     this.userInSystem = 'Not Set';
