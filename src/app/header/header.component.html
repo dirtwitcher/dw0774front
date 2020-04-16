@@ -11,6 +11,9 @@
       <button type="button" class="btn btn-dark" (click) = "routeToGetZakaz()"> Помоги другому </button>
 
     </ul>
+
+    <button type="button" class="btn btn-dark" (click) = "profile()" style="color: yellow;"> {{user}} </button>
+    
   </div>
 
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
@@ -24,14 +27,14 @@
           <a class="dropdown-item" href="https://vk.com/id39019195" target="_blank">VKontakte</a>
           <a class="dropdown-item" href="https://github.com/dirtwitcher?tab=repositories" target="_blank">GitHub</a>
           <a class="dropdown-item" href="https://jobs.tut.by/resume/ced4b78cff034998820039ed1f514e6c673558" target="_blank">Jobs tut.by</a>
-          <a style="color:darkgoldenrod; margin-left: 35px;" class="label">Ищу работу</a>
+          <a style="color:darkblue; margin-left: 35px;" class="label">Ищу работу</a>
         </div>
       </li>
       <li class="nav-item">
         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#authModal"> Авторизация </button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#registrModal"> Регистрация </button>
+        <button type="button" class="btn btn-secondary" (click) = "capchaChange()" data-toggle="modal" data-target="#registrModal"> Регистрация </button>
       </li>
       <li>
         <input type="image" src="../../assets/info.png" width="33" height="33" data-toggle="modal" data-target="#infoModal"/>
@@ -91,8 +94,24 @@
             <input type="password" [(ngModel)] = "regPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
           </div>
           <div class="form-group">
-            <label class="col-form-label">Ключ регистрации:</label>
-            <input type="password" [(ngModel)] = "keyPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+            <label class="col-form-label">Не робот? Пройди проверку: ... {{capchaInfo}}</label>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <input type="image" src="../../assets/{{rand_1}}.png" width="45" height="45"/>
+            </div>
+            <div class="col">
+              <input type="image" src="../../assets/{{rand_znak}}.png" width="45" height="45"/>
+            </div>
+            <div class="col">
+              <input type="image" src="../../assets/{{rand_2}}.png" width="45" height="45"/>
+            </div>
+            <div class="col">
+              <input type="image" src="../../assets/=.png" width="45" height="45"/>
+            </div>
+            <div class="col">
+              <input type="text" [(ngModel)] = "capchaUserAnswer" (input)="checkAnswer()" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="9" style="width: 220px;">
+            </div>       
           </div>
         </form>
       </div>
@@ -155,3 +174,4 @@
       </div>
     </div>
   </div>
+

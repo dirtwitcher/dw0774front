@@ -10,8 +10,6 @@ interface authImpl{
   password : string;
 }
 
-const trueKeyPass : string = "Баерн2019";
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -19,39 +17,36 @@ const trueKeyPass : string = "Баерн2019";
 })
 
 export class HeaderComponent implements OnInit {  
+
+  private rand_1 : number = 0;
+  private rand_2 : number = 0;
+  private rand_znak : string = "+";
+  private capchaAnswer : number = null;
+  private capchaUserAnswer : number = null;
+  private capchaInfo : string = "Жду ответ";
+
+  private user: string = "Вы не в системе";
   
   private authLog: string;
   private authPass : string;
 
   private regLog : string;
   private regPass : string;
-  private keyPass : string;
   
   constructor(private _sanitizer: DomSanitizer, public http: HttpClient, private router: Router) { }
 
   auth() {
-    this.http.get<authImpl>( "http://127.0.0.1:8080/diplomBackEnd/Polzovatel").subscribe(
+    this.http.get<authImpl>( "http://127.0.0.1:8080/dw0774/Profile").subscribe(
       (data:any) => {
         data.forEach(element => {
           if (this.authLog == element.login && this.authPass == element.password){
             sessionStorage.setItem('login', element.login);
             $('#authModal').modal('hide');
 
+            this.user = this.authLog;
+
             this.authLog = '';
             this.authPass = '';
-
-            var jurnalData = {
-              "FIO": sessionStorage.getItem('login'),
-              "deistvie": "Авторизовался"
-            };
-
-            jQuery.ajax({
-              url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
-              data: JSON.stringify(jurnalData),
-              type: "post",
-              dataType: "text",
-              timeout: 30000
-            });
     
           }
         });
@@ -63,30 +58,20 @@ export class HeaderComponent implements OnInit {
       "login": this.regLog,
       "password": this.regPass,
     };
-    if (this.keyPass == trueKeyPass) {
-      sessionStorage.setItem('regLogin',this.regLog),
+
+    if (this.capchaAnswer != this.capchaUserAnswer){
+      this.capchaChange();
+     } else {
+      
+      // sessionStorage.setItem('regLogin',this.regLog),
       jQuery.ajax({
-        url: "http://127.0.0.1:8080/diplomBackEnd/Polzovatel",
+        url: "http://127.0.0.1:8080/dw0774/Profile",
         data: JSON.stringify(myData),
         success: function(dataReq){
-          // console.log("success post data polzovatel: ", dataReq);
-
-          var jurnalData = {
-            "FIO": sessionStorage.getItem('regLogin'),
-            "deistvie": "Регистрация"
-          };
-
-          jQuery.ajax({
-            url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
-            data: JSON.stringify(jurnalData),
-            type: "post",
-            dataType: "text",
-            timeout: 30000
-          });
-
+          console.log("data Profile: ", dataReq);
         },
         error: function(data) {
-          console.log("error post data polzovatel: ", data);
+          console.log("error post data Profile: ", data);
         },
         type: "post",
         dataType: "text",
@@ -95,8 +80,8 @@ export class HeaderComponent implements OnInit {
       $('#registrModal').modal('hide');
       this.regLog = '';
       this.regPass = '';
-      this.keyPass = '';
-    }
+
+     }
   }
 
   routeToMainPage():void{ this.router.navigate(['/']); }
@@ -107,10 +92,38 @@ export class HeaderComponent implements OnInit {
 
   routeToPostZakaz():void{ 
     if (sessionStorage.getItem('login') === "Not Set"){
-     // this.router.navigate(['/']);
       $("#myToast").toast('show');
     } else {
       this.router.navigate(['/postZakaz']);
+    }
+  }
+
+  capchaChange(){
+    this.rand_1 = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+    this.rand_2 = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+
+    if (Math.floor(Math.random() * (1 - 0 + 1)) + 0 === 0) this.rand_znak = "-";
+    if (Math.floor(Math.random() * (1 - 0 + 1)) + 0 === 0) this.rand_znak = "+";
+    if (this.rand_znak === "+") this.capchaAnswer = this.rand_1 + this.rand_2;
+    if (this.rand_znak === "-") this.capchaAnswer = this.rand_1 - this.rand_2;
+
+    this.capchaUserAnswer=null;
+    this.capchaInfo = "Жду ответ"
+  }
+
+  checkAnswer(){
+    if (this.capchaAnswer != this.capchaUserAnswer){
+      this.capchaInfo = "Ответ неверен"
+    } else {
+      this.capchaInfo = "Ответ верен"
+    }
+  }
+
+  profile(){
+    if (sessionStorage.getItem('login') === "Not Set"){
+      $("#myToast").toast('show');
+    } else {
+      
     }
   }
 
