@@ -3,6 +3,7 @@ declare var $: any;
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {UserNameService} from '../service/user-name-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,8 +21,6 @@ export class ProfileComponent implements OnInit {
   cvet: string;
   dopComment: string;
 
-  userInSystem: string = 'Not Set';
-
   dtOptions: any = { };
 
   private openModal(info: any): void {
@@ -36,7 +35,7 @@ export class ProfileComponent implements OnInit {
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private UserNameService: UserNameService) {}
 
   private addAuto(){
     var myData = {
@@ -154,8 +153,11 @@ export class ProfileComponent implements OnInit {
   }
  
   ngOnInit(): void {
+    
+    /*
     if (sessionStorage.getItem('login') === 'Not Set') { this.logExit(); };
     this.userInSystem = sessionStorage.getItem('login');
+    
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -184,12 +186,12 @@ export class ProfileComponent implements OnInit {
         });
           return row;
       }
-    };
+    }; */
   }
 
   logExit():void{
-    this.userInSystem = 'Not Set';
-    sessionStorage.setItem('login','Not Set');
+    localStorage.setItem('login','Вы не в системе');
+    this.UserNameService.setUserName(localStorage.getItem('login'));
     this.router.navigate(['/']);
   }
 

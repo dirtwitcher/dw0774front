@@ -10,10 +10,9 @@
 
       <button type="button" class="btn btn-dark" (click) = "routeToGetZakaz()"> Помоги другому </button>
 
+      <button type="button" class="btn btn-dark" (click) = "routeToProfile()" style="color: yellow;"> {{user}} </button>
+      
     </ul>
-
-    <button type="button" class="btn btn-dark" (click) = "profile()" style="color: yellow;"> {{user}} </button>
-    
   </div>
 
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
@@ -31,10 +30,10 @@
         </div>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#authModal"> Авторизация </button>
+        <button type="button" class="btn btn-secondary" (click) = "refreshAuth()" data-toggle="modal" data-target="#authModal"> Авторизация </button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-secondary" (click) = "capchaChange()" data-toggle="modal" data-target="#registrModal"> Регистрация </button>
+        <button type="button" class="btn btn-secondary" (click) = "capchaChange()" (click) = "refreshRegistr()" data-toggle="modal" data-target="#registrModal"> Регистрация </button>
       </li>
       <li>
         <input type="image" src="../../assets/info.png" width="33" height="33" data-toggle="modal" data-target="#infoModal"/>
@@ -87,11 +86,35 @@
         <form>
           <div class="form-group">
             <label class="col-form-label">Логин:</label>
-            <input type="text" [(ngModel)] = "regLog" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+            <input type="text" [(ngModel)] = "regLog" (input)="checkLoginValid()" [ngModelOptions]="{standalone: true}" class="form-control" aria-describedby="loginHelpBlock" maxlength="25">
+            <small id="loginHelpBlock" class="form-text text-muted">
+             <font color="red">{{logNotValid}}</font>
+            </small>
           </div>
           <div class="form-group">
             <label class="col-form-label">Пароль:</label>
-            <input type="password" [(ngModel)] = "regPass" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+            <input type="password" [(ngModel)] = "regPass" (input)="checkPassValid()" [ngModelOptions]="{standalone: true}" class="form-control" aria-describedby="passHelpBlock" maxlength="25">
+            <small id="passHelpBlock" class="form-text text-muted">
+              <font color="red">{{passNotValid}}</font>
+             </small>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">ФИО:</label>
+            <input type="text" [(ngModel)] = "regFIO" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Петро Петр Петрович" maxlength="135">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Тел. номер:</label>
+            <input type="text" [(ngModel)] = "regNumber" (input)="checkNumberValid()" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="(25) 111-22-33" aria-describedby="phoneHelpBlock" maxlength="25">
+            <small id="loginHelpBlock" class="form-text text-muted">
+              <font color="red">{{numberNotValid}}</font>
+             </small>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Почта или профиль в сети:</label>
+            <input type="text" [(ngModel)] = "regMail" (input)="checkMailValid()" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="example@gmail.com или site.com/myprofile" aria-describedby="mailHelpBlock" maxlength="150">
+            <small id="mailHelpBlock" class="form-text text-muted">
+              <font color="red">{{mailNotValid}}</font>
+             </small>
           </div>
           <div class="form-group">
             <label class="col-form-label">Не робот? Пройди проверку: ... {{capchaInfo}}</label>
@@ -110,7 +133,7 @@
               <input type="image" src="../../assets/=.png" width="45" height="45"/>
             </div>
             <div class="col">
-              <input type="text" [(ngModel)] = "capchaUserAnswer" (input)="checkAnswer()" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="9" style="width: 220px;">
+              <input type="number" [(ngModel)] = "capchaUserAnswer" (input)="checkAnswer()" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="9" style="width: 220px;">
             </div>       
           </div>
         </form>
@@ -162,7 +185,8 @@
               </p>
               
               <p>
-                <i>Разработчик снимает с себя любую ответственность.</i>
+                <i>Разработчик снимает с себя любую ответственность.</i><br>
+                <i>Сайт не адаптирован к просмотру с некоторых устройств.</i>
               </p>
 
             </div>

@@ -1,9 +1,10 @@
 declare var $: any;
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {UserNameService} from '../service/user-name-service.service';
 
 interface authImpl{
   login : string;
@@ -16,7 +17,7 @@ interface authImpl{
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements OnInit {  
+export class HeaderComponent implements OnInit {
 
   private rand_1 : number = 0;
   private rand_2 : number = 0;
@@ -25,29 +26,35 @@ export class HeaderComponent implements OnInit {
   private capchaUserAnswer : number = null;
   private capchaInfo : string = "Жду ответ";
 
-  private user: string = "Вы не в системе";
-  
+  user: string = "Вы не в системе";
+
   private authLog: string;
   private authPass : string;
 
   private regLog : string;
   private regPass : string;
-  
-  constructor(private _sanitizer: DomSanitizer, public http: HttpClient, private router: Router) { }
+  private regFIO : string;
+  private regNumber : string;
+  private regMail : string;
+
+  private logNotValid : string = " * Ваш логин должен составлять 4-25 символов.";
+  private passNotValid : string = " * Ваш пароль должен составлять 8-25 символов.";
+  private numberNotValid : string = " * Пожалуйста, укажите Ваш номер телефона в формате (12) 345-67-89";
+  private mailNotValid : string = " * Пожалуйста, укажите Ваш профиль в соц сети.";
+
+  constructor(private _sanitizer: DomSanitizer, public http: HttpClient, private router: Router, private UserNameService: UserNameService) { }
 
   auth() {
     this.http.get<authImpl>( "http://127.0.0.1:8080/dw0774/Profile").subscribe(
       (data:any) => {
         data.forEach(element => {
+          console.log(element);
           if (this.authLog == element.login && this.authPass == element.password){
-            sessionStorage.setItem('login', element.login);
             $('#authModal').modal('hide');
-
-            this.user = this.authLog;
-
-            this.authLog = '';
-            this.authPass = '';
-    
+            localStorage.setItem('login', this.authLog);
+            this.user = localStorage.getItem('login');
+          } else {
+            $("#myToast3").toast('show');
           }
         });
     });
@@ -57,41 +64,72 @@ export class HeaderComponent implements OnInit {
     var myData = {
       "login": this.regLog,
       "password": this.regPass,
+      "FIO": this.regFIO,
+      "callNumber":this.regNumber,
+      "email":this.regMail
     };
+    
+    if (this.logNotValid == '' && this.passNotValid == '' && this.numberNotValid == '' && this.mailNotValid == '' ){
+      if (this.capchaAnswer != this.capchaUserAnswer){
+        this.capchaChange();
+      } else {
 
-    if (this.capchaAnswer != this.capchaUserAnswer){
-      this.capchaChange();
-     } else {
-      
-      // sessionStorage.setItem('regLogin',this.regLog),
-      jQuery.ajax({
-        url: "http://127.0.0.1:8080/dw0774/Profile",
-        data: JSON.stringify(myData),
-        success: function(dataReq){
-          console.log("data Profile: ", dataReq);
-        },
-        error: function(data) {
-          console.log("error post data Profile: ", data);
-        },
-        type: "post",
-        dataType: "text",
-        timeout: 30000
-      });
-      $('#registrModal').modal('hide');
-      this.regLog = '';
-      this.regPass = '';
+        jQuery.ajax({
+          url: "http://127.0.0.1:8080/dw0774/Profile",
+          data: JSON.stringify(myData),
+          success: function(dataReq){
+            console.log("data Profile: ", dataReq);
+            if (dataReq === "bad post") {
+              $("#myToast2").toast('show');
+            } else 
+            if (dataReq === "good post"){
+              $('#registrModal').modal('hide');
+            }
+          },
+          error: function(data) {
+            console.log("error post data Profile: ", data);
+          },
+          type: "post",
+          dataType: "text",
+          timeout: 30000
+        });    
 
-     }
+      }
+    }
+  }
+
+  refreshRegistr(){
+    this.regLog = '';
+    this.regPass = '';
+    this.regFIO = '';
+    this.regNumber = '';
+    this.regMail = '';
+
+    this.logNotValid = " * Ваш логин должен составлять 4-25 символов.";
+    this.passNotValid = " * Ваш пароль должен составлять 8-25 символов.";
+    this.numberNotValid = " * Пожалуйста, укажите Ваш номер телефона в формате (12) 345-67-89";
+    this.mailNotValid = " * Пожалуйста, укажите Ваш профиль в соц сети.";
+  }
+
+  refreshAuth(){
+    this.authLog = '';
+    this.authPass = '';
   }
 
   routeToMainPage():void{ this.router.navigate(['/']); }
 
-  routeToProfile():void{ this.router.navigate(['/profile']); }
+  routeToProfile(){
+    if (localStorage.getItem('login') === "Вы не в системе"){
+      $("#myToast").toast('show');
+    } else {
+      this.router.navigate(['/profile']);
+    }
+  }
 
   routeToGetZakaz():void{ this.router.navigate(['/getZakaz']); }
 
   routeToPostZakaz():void{ 
-    if (sessionStorage.getItem('login') === "Not Set"){
+    if (localStorage.getItem('login') === "Вы не в системе"){
       $("#myToast").toast('show');
     } else {
       this.router.navigate(['/postZakaz']);
@@ -114,20 +152,53 @@ export class HeaderComponent implements OnInit {
   checkAnswer(){
     if (this.capchaAnswer != this.capchaUserAnswer){
       this.capchaInfo = "Ответ неверен"
-    } else {
+    } else 
+    if (this.capchaAnswer == this.capchaUserAnswer){
       this.capchaInfo = "Ответ верен"
+    }
+    if (this.capchaUserAnswer == null){
+      this.capchaInfo = "Жду ответ"
     }
   }
 
-  profile(){
-    if (sessionStorage.getItem('login') === "Not Set"){
-      $("#myToast").toast('show');
+  checkLoginValid(){
+    if (this.regLog.length < 4){
+      this.logNotValid = " * Ваш логин должен составлять 4-25 символов."
     } else {
-      
+      this.logNotValid = "";
+    }
+  }
+
+  checkPassValid(){
+    if (this.regPass.length < 8){
+      this.passNotValid = " * Ваш пароль должен составлять 8-25 символов."
+    } else {
+      this.passNotValid = "";
+    }
+  }
+
+  checkNumberValid(){
+    if (this.regNumber.length < 9){
+      this.numberNotValid = " * Пожалуйста, укажите Ваш номер телефона в формате (12) 345-67-89"
+    } else {
+      this.numberNotValid = "";
+    }
+  }
+
+  checkMailValid(){
+    if (this.regMail.length < 1){
+      this.mailNotValid = " * Пожалуйста, укажите Ваш профиль в соц сети."
+    } else {
+      this.mailNotValid = "";
     }
   }
 
   ngOnInit() {
+    this.user = localStorage.getItem('login');
+
+    this.UserNameService.user.subscribe((userName: string) => {
+      this.user = userName;
+  });
   }
 
 }

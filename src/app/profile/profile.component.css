@@ -1,12 +1,20 @@
 
-.left, .right {
-    display: inline-block;
-    width: 100%;
-    margin-right: -100%;
-    vertical-align: bottom;
-}
 
 .right {
+    display: inline-block;
+    width: 100%;
+    margin-right: -70%;
+    vertical-align: bottom;
+    margin-bottom: -22px;
+
     text-align: right;
-    padding-right: 5px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding-right: 50px;
+}
+
+.top {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    margin-left: 50%;
 }

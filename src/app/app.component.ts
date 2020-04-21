@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   ngOnInit(): void {
-    sessionStorage.setItem('login','Not Set');
+    if (localStorage.getItem('login') == null){
+      localStorage.setItem('login','Вы не в системе');
+    }
   }
 
 }

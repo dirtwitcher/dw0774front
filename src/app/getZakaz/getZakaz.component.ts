@@ -55,11 +55,9 @@ export class GetZakazComponent implements OnInit {
       buttonText: 'Button',
       img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
     },
-
   ];
 
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
   }
 
   userInSystem: string = 'Not Set';
@@ -70,8 +68,8 @@ export class GetZakazComponent implements OnInit {
 
   /*
   ngOnInit(): void {
-    if (sessionStorage.getItem('login') === 'Not Set') { this.logExit(); };
-    this.userInSystem = sessionStorage.getItem('login');
+    if (locaStorage.getItem('login') === 'Not Set') { this.logExit(); };
+    this.userInSystem = localStorage.getItem('login');
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -96,7 +94,7 @@ export class GetZakazComponent implements OnInit {
 
   logExit():void{
     this.userInSystem = 'Not Set';
-    sessionStorage.setItem('login','Not Set');
+    localStorage.setItem('login','Not Set');
     this.router.navigate(['/']);
   }
 
