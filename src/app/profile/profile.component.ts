@@ -1,9 +1,17 @@
 declare var $: any;
 
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {UserNameService} from '../service/user-name-service.service';
+import { UserNameService } from '../service/user-name-service.service';
+
+interface getImpl{
+  login : string;
+  password : string;
+  FIO : string;
+  callNumber : string;
+  email : string;
+}
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +20,17 @@ import {UserNameService} from '../service/user-name-service.service';
 })
 
 export class ProfileComponent implements OnInit {
+
+  private profLog : string;
+  private profPass : string;
+  private profFIO : string;
+  private profNumber : string;
+  private profMail : string;
+
+  private logNotValid : string;
+  private passNotValid : string;
+  private numberNotValid : string;
+  private mailNotValid : string;
 
   id_auto: number;
   win: string;
@@ -151,11 +170,27 @@ export class ProfileComponent implements OnInit {
     });
     $('#deleteModal').modal('hide');
   }
- 
+
   ngOnInit(): void {
     
+    if (localStorage.getItem('login') === 'Вы не в системе') { this.logExit(); };
+
+    //const params = new HttpParams().set('login', localStorage.getItem('login'));
+
+    this.http.get<getImpl>( 'http://127.0.0.1:8080/dw0774/Profile/' + localStorage.getItem('login')).subscribe(
+      (data:any) => {
+        data.forEach(element => {
+          console.log(element.login);
+          this.profLog = element.login;
+          this.profPass = element.password;
+          this.profFIO = element.FIO;
+          this.profMail = element.email;
+          this.profNumber = element.number;
+        });
+    });
+
+
     /*
-    if (sessionStorage.getItem('login') === 'Not Set') { this.logExit(); };
     this.userInSystem = sessionStorage.getItem('login');
     
     this.dtOptions = {
@@ -195,6 +230,23 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  deleteProfile():void{
+    var that=this;
+    jQuery.ajax({
+      url: "http://127.0.0.1:8080/dw0774/Profile"+ '?' + $.param({"login": localStorage.getItem('login')}),
+      success: function(dataReq){ 
+        console.log("success delete profile: ", dataReq);
+        that.logExit();
+      }, 
+      error: function(data) {
+        console.log("error delete data auto: ", data);
+      },
+      type: "delete",
+      dataType: "text",
+      timeout: 30000
+    });
+  }
+
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -211,6 +263,47 @@ export class ProfileComponent implements OnInit {
     this.probeg = null;
     this.cvet = null;
     this.dopComment = null;
+  }
+
+
+
+
+  checkLoginValid(){
+    if (this.profLog.length < 4){
+      this.logNotValid = " * Ваш логин должен составлять 4-25 символов."
+    } else {
+      this.logNotValid = "";
+    }
+  }
+
+  checkPassValid(){
+    if (this.profPass.length < 8){
+      this.passNotValid = " * Ваш пароль должен составлять 8-25 символов."
+    } else {
+      this.passNotValid = "";
+    }
+  }
+
+  checkNumberValid(){
+    if (this.profNumber.length < 9){
+      this.numberNotValid = " * Пожалуйста, укажите Ваш номер телефона в формате (12) 345-67-89"
+    } else {
+      this.numberNotValid = "";
+    }
+  }
+
+  checkMailValid(){
+    if (this.profMail.length < 1){
+      this.mailNotValid = " * Пожалуйста, укажите Ваш профиль в соц сети."
+    } else {
+      this.mailNotValid = "";
+    }
+  }
+
+  save(){
+    if (this.logNotValid == '' && this.passNotValid == '' && this.numberNotValid == '' && this.mailNotValid == '' ){
+    
+    }
   }
 
 }

@@ -3,14 +3,14 @@
 .right {
     display: inline-block;
     width: 100%;
-    margin-right: -70%;
+    margin-right: -400px;
     vertical-align: bottom;
     margin-bottom: -22px;
 
     text-align: right;
     margin-top: 15px;
     margin-bottom: 0px;
-    padding-right: 50px;
+    padding-right: 36px;
 }
 
 .top {

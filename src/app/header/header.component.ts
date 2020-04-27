@@ -45,18 +45,21 @@ export class HeaderComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer, public http: HttpClient, private router: Router, private UserNameService: UserNameService) { }
 
   auth() {
+    var check : boolean = false;
     this.http.get<authImpl>( "http://127.0.0.1:8080/dw0774/Profile").subscribe(
       (data:any) => {
         data.forEach(element => {
-          console.log(element);
+          // console.log(element);
           if (this.authLog == element.login && this.authPass == element.password){
+            check = true;
             $('#authModal').modal('hide');
             localStorage.setItem('login', this.authLog);
             this.user = localStorage.getItem('login');
-          } else {
-            $("#myToast3").toast('show');
-          }
+          };
         });
+        if (check == false) {
+          $("#myToast3").toast('show');
+        };
     });
   }
 

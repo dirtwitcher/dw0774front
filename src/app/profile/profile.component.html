@@ -1,44 +1,85 @@
 
-        <div class="top">
-            <div class="right">
-              <button type="button" class="btn btn-secondary" (click) = "logExit()" data-toggle="modal"> Выход </button>
-            </div>
-            <button type="button" class="btn btn-danger" (click) = "deleteProfile()" data-toggle="modal"> Удалить профиль </button>
-          </div>
+<div class="top">
+  <div class="right">
+    <button type="button" class="btn btn-danger" (click) = "deleteProfile()" data-toggle="modal"> Удалить профиль </button>
+  </div>
+  <button type="button" class="btn btn-info" (click) = "logExit()" data-toggle="modal"> Выход из аккаунта </button>
+</div>
 
 <div class="row" style="margin-left:20px; margin-top: 35px; max-width: 1300px;">
-  <div class="col-4">
+  <div class="col-3">
     <div class="list-group" id="list-tab" role="tablist">
       <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Настройки профиля</a>
       <a class="list-group-item list-group-item-action" id="list-zakaz-list" data-toggle="list" href="#list-zakaz" role="tab" aria-controls="zakaz">Мои заявки</a>
     </div>
   </div>
-  <div class="col-8">
+  <div class="col-9">
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 
+      <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
         <div class="media">
           <img src="../../assets/simon.gif" class="mr-3" alt="..." style="max-height: 100px; max-height: 100px;">
           <div class="media-body">
-            <h5 class="mt-0">Media heading</h5>
+    
+            <form>
+              <div class="form-group">
+                <label class="col-form-label">Аватар</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile1" aria-describedby="inputGroupFileAddon01">
+                  <label class="custom-file-label" for="inputGroupFile">Выберите файл</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Логин:</label>
+                <input type="text" [(ngModel)] = "profLog" (input)="checkLoginValid()" [ngModelOptions]="{standalone: true}" class="form-control" aria-describedby="loginHelpBlock" maxlength="25">
+                <small id="loginHelpBlock" class="form-text text-muted">
+                  <font color="red">{{logNotValid}}</font>
+                </small>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Пароль:</label>
+                <input type="password" [(ngModel)] = "profPass" (input)="checkPassValid()" [ngModelOptions]="{standalone: true}" class="form-control" aria-describedby="passHelpBlock" maxlength="25">
+                <small id="passHelpBlock" class="form-text text-muted">
+                  <font color="red">{{passNotValid}}</font>
+                 </small>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">ФИО:</label>
+                <input type="text" [(ngModel)] = "profFIO" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Петро Петр Петрович" maxlength="135">
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Тел. номер:</label>
+                <input type="text" [(ngModel)] = "profNumber" (input)="checkNumberValid()" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="(25) 111-22-33" aria-describedby="phoneHelpBlock" maxlength="25">
+                <small id="loginHelpBlock" class="form-text text-muted">
+                  <font color="red">{{numberNotValid}}</font>
+                 </small>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Почта или профиль в сети:</label>
+                <input type="text" [(ngModel)] = "profMail" (input)="checkMailValid()" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="example@gmail.com или site.com/myprofile" aria-describedby="mailHelpBlock" maxlength="150">
+                <small id="mailHelpBlock" class="form-text text-muted">
+                  <font color="red">{{mailNotValid}}</font>
+                 </small>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Ваш рейтинг: <i>//В разработке//</i> </label>
+              </div>
+              <div class="right">
+                <button type="submit" class="btn btn-primary" (click) = "save()">Сохранить</button>
+              </div>
+            </form>
+
+            <br>
+
           </div>
         </div>
-
-        <div class="input-group">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile1" aria-describedby="inputGroupFileAddon04">
-            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-          </div>
-        </div>
-
       </div>
 
 
       <div class="tab-pane fade" id="list-zakaz" role="tabpanel" aria-labelledby="list-zakaz-list">
-
         <table id='datatable' datatable [dtOptions]="dtOptions" class="row-border hover" style="word-break: break-all;"></table>
-
       </div>
+
     </div>
   </div>
 </div>
