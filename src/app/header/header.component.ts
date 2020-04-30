@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import {UserNameService} from '../service/user-name-service.service';
 
 interface authImpl{
+  id_profile : string;
   login : string;
   password : string;
 }
@@ -53,6 +54,7 @@ export class HeaderComponent implements OnInit {
           if (this.authLog == element.login && this.authPass == element.password){
             check = true;
             $('#authModal').modal('hide');
+            localStorage.setItem('id_profile', element.id_profile);
             localStorage.setItem('login', this.authLog);
             this.user = localStorage.getItem('login');
           };

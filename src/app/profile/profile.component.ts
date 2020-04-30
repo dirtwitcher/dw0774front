@@ -27,10 +27,10 @@ export class ProfileComponent implements OnInit {
   private profNumber : string;
   private profMail : string;
 
-  private logNotValid : string;
-  private passNotValid : string;
-  private numberNotValid : string;
-  private mailNotValid : string;
+  private logNotValid : string = "";
+  private passNotValid : string = "";
+  private numberNotValid : string = "";
+  private mailNotValid : string = "";
 
   id_auto: number;
   win: string;
@@ -175,20 +175,15 @@ export class ProfileComponent implements OnInit {
     
     if (localStorage.getItem('login') === 'Вы не в системе') { this.logExit(); };
 
-    //const params = new HttpParams().set('login', localStorage.getItem('login'));
-
-    this.http.get<getImpl>( 'http://127.0.0.1:8080/dw0774/Profile/' + localStorage.getItem('login')).subscribe(
+    this.http.get<getImpl>( "http://127.0.0.1:8080/dw0774/Profile"+ '?' + $.param({"id_profile": localStorage.getItem('id_profile')})).subscribe(
       (data:any) => {
-        data.forEach(element => {
-          console.log(element.login);
-          this.profLog = element.login;
-          this.profPass = element.password;
-          this.profFIO = element.FIO;
-          this.profMail = element.email;
-          this.profNumber = element.number;
-        });
-    });
-
+          this.profLog = data.login;
+          this.profPass = data.password;
+          this.profFIO = data.FIO;
+          this.profNumber = data.callNumber;
+          this.profMail = data.email;
+          // console.log(data);
+      });
 
     /*
     this.userInSystem = sessionStorage.getItem('login');
@@ -226,6 +221,7 @@ export class ProfileComponent implements OnInit {
 
   logExit():void{
     localStorage.setItem('login','Вы не в системе');
+    localStorage.setItem('id_profile', "");
     this.UserNameService.setUserName(localStorage.getItem('login'));
     this.router.navigate(['/']);
   }
@@ -233,7 +229,7 @@ export class ProfileComponent implements OnInit {
   deleteProfile():void{
     var that=this;
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/dw0774/Profile"+ '?' + $.param({"login": localStorage.getItem('login')}),
+      url: "http://127.0.0.1:8080/dw0774/Profile"+ '?' + $.param({"id_profile": localStorage.getItem('id_profile')}),
       success: function(dataReq){ 
         console.log("success delete profile: ", dataReq);
         that.logExit();
@@ -245,6 +241,38 @@ export class ProfileComponent implements OnInit {
       dataType: "text",
       timeout: 30000
     });
+  }
+
+  updateProfile():void{
+    if (this.logNotValid == '' && this.passNotValid == '' && this.numberNotValid == '' && this.mailNotValid == '' ){
+      var myData = {
+        "id_profile" : localStorage.getItem('id_profile'),
+        "login" : this.profLog,
+        "password" : this.profPass,
+        "FIO" : this.profFIO,
+        "callNumber" : this.profNumber,
+        "email" : this.profMail
+      };
+
+      jQuery.ajax({
+        url: "http://127.0.0.1:8080/dw0774/Profile",
+        data: JSON.stringify(myData),
+        success: function(dataReq){
+          console.log("success update data profile: ", dataReq);
+          this.profLog = dataReq.login;
+          this.profPass = dataReq.password;
+          this.profFIO = dataReq.FIO;
+          this.profNumber = dataReq.callNumber;
+          this.profMail = dataReq.email;
+        }, 
+        error: function(data) {
+          console.log("error update data profile: ", data);
+        },
+        type: "PUT",
+        dataType: "text",
+        timeout: 30000
+      });
+    }
   }
 
   numberOnly(event): boolean {
@@ -297,12 +325,6 @@ export class ProfileComponent implements OnInit {
       this.mailNotValid = " * Пожалуйста, укажите Ваш профиль в соц сети."
     } else {
       this.mailNotValid = "";
-    }
-  }
-
-  save(){
-    if (this.logNotValid == '' && this.passNotValid == '' && this.numberNotValid == '' && this.mailNotValid == '' ){
-    
     }
   }
 
