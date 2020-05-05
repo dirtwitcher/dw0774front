@@ -1,142 +1,95 @@
 
-<div style="margin-top: 5px; margin-left: 10px;">
-  <div class="left">
-    Нажмите на нужную строчку для удаления или изменения. Опция:
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update">
-      <label class="form-check-label" for="updateRadio">Изменить</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete" checked>
-      <label class="form-check-label" for="deleteRadio">Удалить</label>
+<!--
+
+@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+@JoinColumn(name = "id_profile")
+private Profile id_profile;
+
+@Column(name = "zakazDate")
+private Date zakazDate;
+
+@Column(name = "place", length = 250)
+private String place;
+
+@Column(name = "aim", length = 250)
+private String aim;
+
+@Column(name = "price", length = 250)
+private String price;
+
+@Column(name = "status", length = 25)
+private String status;
+
+-->
+
+<br>
+
+<form style="max-width: 90%; margin-left: 5%;">
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">В чем заключается просьба</label>
+    <textarea class="form-control" rows="3"  maxlength="250"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Место</label>
+    <input type="text" class="form-control" placeholder="Минск, проспект Независимости 103, подъезд 2" maxlength="250">
+  </div>
+
+  <div class="form-group">
+    <label for="example-date-input" class="col-2 col-form-label">Дата</label>
+    <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+  </div>
+
+  <div class="form-group">
+    <label for="example-time-input" class="col-2 col-form-label">Время</label>
+    <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+  </div>
+    
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Вознаграждение</label>
+    <input type="text" class="form-control" placeholder="Сок яблочный, 2 рубля, огромное спасибо, поход в кино" maxlength="250">
+  </div>
+
+  <div class="form-group">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Статус</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect01">
+        <option value="1" selected>Не к спеху</option>
+        <option value="2">В томном ожидании</option>
+        <option value="3">Очень, очень надо</option>
+      </select>
     </div>
   </div>
-  <div class="right">
-    Пользователь: {{ userInSystem }}. 
-    <button type="button" class="btn btn-secondary" (click) = "logExit()" data-toggle="modal"> Выход </button>
+
+</form>
+
+<br>
+
+<div class="toast" id="myToast2" role="alert" aria-live="polite" aria-atomic="true" data-delay="5000" style="position: fixed; top: 70px; left: 20px;">
+  <div class="toast-header">
+    <strong class="mr-auto"><i class="fa fa-grav"></i> Упс</strong>
+    <small>Close</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  <button type="button" class="btn btn-info" (click) = "clearData()" data-toggle="modal" data-target="#addModal" style="margin-left: 55%;"> Добавить </button>
-</div>
-
-<div style="margin-top: 10px;"></div>
-
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Добавить доп товар</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label class="col-form-label">Тип детали:</label>
-            <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="120">
-          </div>
-          <div class="form-group">
-              <label class="col-form-label">Гарантия:</label>
-              <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="25">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Комментарии:</label>
-            <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Цена:</label>
-            <input (keypress)="numberOnly($event)" type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="9">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
-        <button type="submit" class="btn btn-primary" (click) = "addDopTovari()">Добавить</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Изменить доп товар</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label class="col-form-label">№ записи:</label>
-            <label class="col-form-label">{{ id_dopTovari }}</label>
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Тип детали:</label>
-            <input type="text" [(ngModel)] = "typeDetali" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="120">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Гарантия:</label>
-            <input type="text" [(ngModel)] = "garantiya" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="25">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Комментарии:</label>
-            <input type="text" [(ngModel)] = "dopComment" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Цена:</label>
-            <input (keypress)="numberOnly($event)" type="text" [(ngModel)] = "cena" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="9">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
-        <button type="submit" class="btn btn-primary" (click) = "updateDopTovari()">Изменить</button>
-      </div>
-    </div>
+  <div class="toast-body">
+    <div>Такой пользователь уже существует.</div>
   </div>
 </div>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Удалить доп товар</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label class="col-form-label">№ записи:</label>
-            <label class="col-form-label">{{ id_dopTovari }}</label>
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Тип детали:</label>
-            <label class="col-form-label">{{ typeDetali }}</label>
-          </div>
-          <div class="form-group">
-              <label class="col-form-label">Гарантия:</label>
-              <label class="col-form-label">{{ garantiya }}</label>
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Комментарии:</label>
-            <label class="col-form-label">{{ dopComment }}</label>
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Цена:</label>
-            <label class="col-form-label">{{ cena }}</label>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
-        <button type="submit" class="btn btn-primary" (click) = "deleteDopTovari()">Удалить</button>
-      </div>
-    </div>
+<div class="toast" id="myToast3" role="alert" aria-live="polite" aria-atomic="true" data-delay="5000" style="position: fixed; top: 70px; left: 20px;">
+  <div class="toast-header">
+    <strong class="mr-auto"><i class="fa fa-grav"></i> Упс</strong>
+    <small>Close</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    <div>Проверьте логин и пароль.</div>
   </div>
 </div>
-
-<table id='datatable' datatable [dtOptions]="dtOptions" class="row-border hover" style="word-break: break-all;"></table>

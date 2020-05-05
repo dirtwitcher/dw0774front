@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   ngOnInit(): void {
+    // console.log(localStorage.getItem('login'));
     if (localStorage.getItem('login') == null){
       localStorage.setItem('login','Вы не в системе');
     }
