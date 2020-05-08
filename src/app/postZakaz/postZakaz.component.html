@@ -1,67 +1,55 @@
 
-<!--
-
-@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-@JoinColumn(name = "id_profile")
-private Profile id_profile;
-
-@Column(name = "zakazDate")
-private Date zakazDate;
-
-@Column(name = "place", length = 250)
-private String place;
-
-@Column(name = "aim", length = 250)
-private String aim;
-
-@Column(name = "price", length = 250)
-private String price;
-
-@Column(name = "status", length = 25)
-private String status;
-
--->
-
 <br>
 
 <form style="max-width: 90%; margin-left: 5%;">
 
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">В чем заключается просьба</label>
-    <textarea class="form-control" rows="3"  maxlength="250"></textarea>
+    <label for="textarea1">В чем заключается просьба</label>
+    <textarea class="form-control" rows="3" maxlength="250" [(ngModel)] = "aim" [ngModelOptions]="{standalone: true}"></textarea>
   </div>
 
   <div class="form-group">
-    <label for="exampleFormControlInput1">Место</label>
-    <input type="text" class="form-control" placeholder="Минск, проспект Независимости 103, подъезд 2" maxlength="250">
+    <label for="input1">Место</label>
+    <input type="text" class="form-control" placeholder="Минск, проспект Независимости 103, подъезд 2" maxlength="250" [(ngModel)] = "place" [ngModelOptions]="{standalone: true}">
   </div>
 
   <div class="form-group">
-    <label for="example-date-input" class="col-2 col-form-label">Дата</label>
-    <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+    <label for="date-input1">Актуальная дата</label>
+    <input class="form-control" type="date" value={{zakazDate}} [(ngModel)] = "zakazDate" [ngModelOptions]="{standalone: true}">
   </div>
 
   <div class="form-group">
-    <label for="example-time-input" class="col-2 col-form-label">Время</label>
-    <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+    <label for="time-input1">Актуальное время</label>
+    <input class="form-control" type="time" id="time-input1" [(ngModel)] = "zakazTime" [ngModelOptions]="{standalone: true}">
   </div>
     
   <div class="form-group">
-    <label for="exampleFormControlInput1">Вознаграждение</label>
-    <input type="text" class="form-control" placeholder="Сок яблочный, 2 рубля, огромное спасибо, поход в кино" maxlength="250">
+    <label for="input2">Вознаграждение</label>
+    <input type="text" class="form-control" placeholder="Сок яблочный / 2 рубля / огромное спасибо / поход в кино" maxlength="250" [(ngModel)] = "price" [ngModelOptions]="{standalone: true}">
   </div>
 
   <div class="form-group">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">Статус</label>
-      </div>
-      <select class="custom-select" id="inputGroupSelect01">
-        <option value="1" selected>Не к спеху</option>
-        <option value="2">В томном ожидании</option>
-        <option value="3">Очень, очень надо</option>
-      </select>
+      <label for="input3">Статус</label> <br>
+    <div class="form-check form-check-inline" style="margin-left: 2%">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="greenRadio" value="green" checked>
+      <label class="form-check-label" for="greenRadio" style="color:green;">Не к спеху</label>
     </div>
+    <br>
+    <div class="form-check form-check-inline" style="margin-left: 2%">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="orangeRadio" value="orange">
+      <label class="form-check-label" for="orangeRadio"style="color:orange;">В томном ожидании</label>
+    </div>
+    <br>
+    <div class="form-check form-check-inline" style="margin-left: 2%">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="redRadio" value="red">
+      <label class="form-check-label" for="redRadio" style="color:red;">Очень, очень надо</label>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="right">
+    <button type="submit" class="btn btn-primary" (click) = "postIt()">Отправить</button>
   </div>
 
 </form>
@@ -91,5 +79,31 @@ private String status;
   </div>
   <div class="toast-body">
     <div>Проверьте логин и пароль.</div>
+  </div>
+</div>
+
+<div class="toast" id="myToast4" role="alert" aria-live="polite" aria-atomic="true" data-delay="5000" style="position: fixed; top: 70px; left: 20px;">
+  <div class="toast-header">
+    <strong class="mr-auto"><i class="fa fa-grav"></i> Все хорошо</strong>
+    <small>Close</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    <div>Ваша заявка принята.</div>
+  </div>
+</div>
+
+<div class="toast" id="myToast5" role="alert" aria-live="polite" aria-atomic="true" data-delay="5000" style="position: fixed; top: 70px; left: 20px;">
+  <div class="toast-header">
+    <strong class="mr-auto"><i class="fa fa-grav"></i> Что-то пошло не так</strong>
+    <small>Close</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    <div>Разработчик накосячил. =( </div>
   </div>
 </div>

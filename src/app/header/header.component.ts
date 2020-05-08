@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private _sanitizer: DomSanitizer, public http: HttpClient, private router: Router, private UserNameService: UserNameService) { }
 
-  auth() {
+  private auth() {
     var check : boolean = false;
     this.http.get<authImpl>( "http://127.0.0.1:8080/dw0774/Profile").subscribe(
       (data:any) => {
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  registr() {
+  private registr() {
     var myData = {
       "login": this.regLog,
       "password": this.regPass,
@@ -103,7 +103,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  refreshRegistr(){
+  private refreshRegistr(){
     this.regLog = '';
     this.regPass = '';
     this.regFIO = '';
@@ -116,14 +116,14 @@ export class HeaderComponent implements OnInit {
     this.mailNotValid = " * Пожалуйста, укажите Ваш профиль в соц сети.";
   }
 
-  refreshAuth(){
+  private refreshAuth(){
     this.authLog = '';
     this.authPass = '';
   }
 
-  routeToMainPage():void{ this.router.navigate(['/']); }
+  private routeToMainPage():void{ this.router.navigate(['/']); }
 
-  routeToProfile(){
+  private routeToProfile(){
     if (localStorage.getItem('login') === "Вы не в системе"){
       $("#myToast").toast('show');
     } else {
@@ -131,9 +131,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  routeToGetZakaz():void{ this.router.navigate(['/getZakaz']); }
+  private routeToGetZakaz():void{ this.router.navigate(['/getZakaz']); }
 
-  routeToPostZakaz():void{ 
+  private routeToPostZakaz():void{ 
     if (localStorage.getItem('login') === "Вы не в системе"){
       $("#myToast").toast('show');
     } else {
@@ -141,7 +141,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  capchaChange(){
+  private capchaChange(){
     this.rand_1 = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
     this.rand_2 = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
 
@@ -154,7 +154,7 @@ export class HeaderComponent implements OnInit {
     this.capchaInfo = "Жду ответ"
   }
 
-  checkAnswer(){
+  private checkAnswer(){
     if (this.capchaAnswer != this.capchaUserAnswer){
       this.capchaInfo = "Ответ неверен"
     } else 
@@ -166,7 +166,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  checkLoginValid(){
+  private checkLoginValid(){
     if (this.regLog.length < 4){
       this.logNotValid = " * Ваш логин должен составлять 4-25 символов."
     } else {
@@ -174,7 +174,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  checkPassValid(){
+  private checkPassValid(){
     if (this.regPass.length < 8){
       this.passNotValid = " * Ваш пароль должен составлять 8-25 символов."
     } else {
@@ -182,7 +182,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  checkNumberValid(){
+  private checkNumberValid(){
     if (this.regNumber.length < 9){
       this.numberNotValid = " * Пожалуйста, укажите Ваш номер телефона в формате (12) 345-67-89"
     } else {
@@ -190,7 +190,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  checkMailValid(){
+  private checkMailValid(){
     if (this.regMail.length < 1){
       this.mailNotValid = " * Пожалуйста, укажите Ваш профиль в соц сети."
     } else {

@@ -32,105 +32,50 @@ export class ProfileComponent implements OnInit {
   private numberNotValid : string = "";
   private mailNotValid : string = "";
 
-  id_auto: number;
-  win: string;
-  toplivo: string;
-  privod: string;
-  probeg: number;
-  cvet: string;
-  dopComment: string;
+  private id_profile: string = localStorage.getItem('id_profile');
+  private zakazDate: string = null;
+  private zakazTime: string = null;
+  private aim: string = null;
+  private place: string = null;
+  private price: string = null;
+  private status: string = null;
 
   dtOptions: any = { };
 
   private openModal(info: any): void {
-    this.id_auto = info.id_auto;
-    this.win = info.win;
-    this.toplivo = info.toplivo;
-    this.privod = info.privod;
-    this.probeg = info.probeg;
-    this.cvet = info.cvet;
-    this.dopComment = info.dopComment;
+    this.zakazDate = info.zakazDate;
+    this.zakazTime = info.zakazTime;
+    this.aim = info.aim;
+    this.place = info.place;
+    this.price = info.price;
+    this.status = info.status;
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
     if ($('#deleteRadio').is(':checked')) $('#deleteModal').modal('show');
   }
 
   constructor(private http: HttpClient, private router: Router, private UserNameService: UserNameService) {}
 
-  private addAuto(){
+  private updateZakaz(){
     var myData = {
-      "win": this.win,
-      "toplivo": this.toplivo,
-      "privod": this.privod,
-      "probeg": this.probeg,
-      "cvet": this.cvet,
-      "dopComment": this.dopComment
+      "id_profile": this.id_profile,
+      "aim": this.aim,
+      "place": this.place,
+      "zakazDate":this.zakazDate,
+      "zakazTime":this.zakazTime,
+      "price": this.price,
+      "status": this.status
     };
-    var jurnalData = {
-      "FIO": sessionStorage.getItem('login'),
-      "tablica": "Авто в разборе",
-      "deistvie": "Добавление - " + this.win
-    };
+    
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
+      url: "http://127.0.0.1:8080/dw0774/Zakaz",
       data: JSON.stringify(myData),
       success: function(dataReq){
-        console.log("success post data auto: ", dataReq);
+        console.log("success update data zakaz: ", dataReq);
         var table = $('#datatable').DataTable();
         table.ajax.reload();
-
-        jQuery.ajax({
-          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
-          data: JSON.stringify(jurnalData),
-          type: "post",
-          dataType: "text",
-          timeout: 30000
-        });
-
-      },
-      error: function(data) {
-        console.log("error post data auto: ", data);
-      },
-      type: "post",
-      dataType: "text",
-      timeout: 30000
-    });
-    $('#addModal').modal('hide');
-  }
-
-  private updateAuto(){
-    var myData = {
-      "id_auto": this.id_auto,
-      "win": this.win,
-      "toplivo": this.toplivo,
-      "privod": this.privod,
-      "probeg": this.probeg,
-      "cvet": this.cvet,
-      "dopComment": this.dopComment
-    };
-    var jurnalData = {
-      "FIO": sessionStorage.getItem('login'),
-      "tablica": "Авто в разборе",
-      "deistvie": "Изменение - " + this.win
-    };
-    jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto",
-      data: JSON.stringify(myData),
-      success: function(dataReq){
-        console.log("success update data auto: ", dataReq);
-        var table = $('#datatable').DataTable();
-        table.ajax.reload();
-
-        jQuery.ajax({
-          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
-          data: JSON.stringify(jurnalData),
-          type: "post",
-          dataType: "text",
-          timeout: 30000
-        });
-
       }, 
       error: function(data) {
-        console.log("error update data auto: ", data);
+        console.log("error update data zakaz: ", data);
       },
       type: "PUT",
       dataType: "text",
@@ -139,30 +84,26 @@ export class ProfileComponent implements OnInit {
     $('#updateModal').modal('hide');
   }
 
-  private deleteAuto(){
+  private deleteZakaz(){
     var jurnalData = {
-      "FIO": sessionStorage.getItem('login'),
-      "tablica": "Авто в разборе",
-      "deistvie": "Удаление - " + this.win
+      "id_profile": this.id_profile,
+      "aim": this.aim,
+      "place": this.place,
+      "zakazDate":this.zakazDate,
+      "zakazTime":this.zakazTime,
+      "price": this.price,
+      "status": this.status
     };
+
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/diplomBackEnd/Auto"+ '?' + $.param({"id_auto": this.id_auto}),
+      url: "http://127.0.0.1:8080/dw0774/Zakaz"+ '?' + $.param({"id_profile": this.id_profile}),
       success: function(dataReq){
-        console.log("success delete data auto: ", dataReq);
+        console.log("success delete data zakaz: ", dataReq);
         var table = $('#datatable').DataTable();
         table.ajax.reload();
-
-        jQuery.ajax({
-          url: "http://127.0.0.1:8080/diplomBackEnd/Jurnal",
-          data: JSON.stringify(jurnalData),
-          type: "post",
-          dataType: "text",
-          timeout: 30000
-        });
-
       }, 
       error: function(data) {
-        console.log("error delete data auto: ", data);
+        console.log("error delete data zakaz: ", data);
       },
       type: "delete",
       dataType: "text",
@@ -175,31 +116,26 @@ export class ProfileComponent implements OnInit {
     
     if (localStorage.getItem('login') === 'Вы не в системе') { this.logExit(); };
 
-    this.http.get<getImpl>( "http://127.0.0.1:8080/dw0774/Profile"+ '?' + $.param({"id_profile": localStorage.getItem('id_profile')})).subscribe(
+    this.http.get<getImpl>( "http://127.0.0.1:8080/dw0774/Profile"+ '?' + $.param({"id_profile": this.id_profile})).subscribe(
       (data:any) => {
-          this.profLog = data.login;
-          this.profPass = data.password;
-          this.profFIO = data.FIO;
-          this.profNumber = data.callNumber;
-          this.profMail = data.email;
-          // console.log(data);
+        this.profLog = data.login;
+        this.profPass = data.password;
+        this.profFIO = data.FIO;
+        this.profNumber = data.callNumber;
+        this.profMail = data.email;
       });
-
-    /*
-    this.userInSystem = sessionStorage.getItem('login');
     
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      ajax:{url:"http://127.0.0.1:8080/diplomBackEnd/Auto", dataSrc:""},
+      ajax:{url:"http://127.0.0.1:8080/dw0774/Zakaz", dataSrc:""},
       columns: [
-        {title: '№ записи', data: 'id_auto'},
-        {title: 'WIN', data: 'win', defaultContent:"<i>Not set</i>"},
-        {title: 'Топливо', data: 'toplivo', defaultContent:"<i>Not set</i>"}, 
-        {title: 'Привод', data: 'privod', defaultContent:"<i>Not set</i>"}, 
-        {title: 'Пробег', data: 'probeg', defaultContent:"<i>Not set</i>"},
-        {title: 'Цвет', data: 'cvet', defaultContent:"<i>Not set</i>"},
-        {title: 'Комментарии', data: 'dopComment', defaultContent:"<i>Not set</i>"}],
+        {title: 'Просьба', data: 'aim', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Место', data: 'place', defaultContent:"<i>Not set</i>"},
+        {title: 'Дата', data: 'zakazDate', defaultContent:"<i>Not set</i>"},
+        {title: 'Время', data: 'zakazTime', defaultContent:"<i>Not set</i>"}, 
+        {title: 'Вознаграждение', data: 'price', defaultContent:"<i>Not set</i>"},
+        {title: 'Статус', data: 'status', defaultContent:"<i>Not set</i>"}],
 
       dom: 'Bfrtip',
       buttons: [
@@ -216,20 +152,20 @@ export class ProfileComponent implements OnInit {
         });
           return row;
       }
-    }; */
+    };
   }
 
-  logExit():void{
+  private logExit():void{
     localStorage.setItem('login','Вы не в системе');
     localStorage.setItem('id_profile', "");
     this.UserNameService.setUserName(localStorage.getItem('login'));
     this.router.navigate(['/']);
   }
 
-  deleteProfile():void{
+  private deleteProfile():void{
     var that=this;
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/dw0774/Profile"+ '?' + $.param({"id_profile": localStorage.getItem('id_profile')}),
+      url: "http://127.0.0.1:8080/dw0774/Profile"+ '?' + $.param({"id_profile": this.id_profile}),
       success: function(dataReq){ 
         console.log("success delete profile: ", dataReq);
         that.logExit();
@@ -243,7 +179,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  updateProfile():void{
+  private updateProfile():void{
     if (this.logNotValid == '' && this.passNotValid == '' && this.numberNotValid == '' && this.mailNotValid == '' ){
       var myData = {
         "id_profile" : localStorage.getItem('id_profile'),
@@ -264,6 +200,7 @@ export class ProfileComponent implements OnInit {
           this.profFIO = dataReq.FIO;
           this.profNumber = dataReq.callNumber;
           this.profMail = dataReq.email;
+          $("#myToast4").toast('show');
         }, 
         error: function(data) {
           console.log("error update data profile: ", data);
@@ -283,20 +220,16 @@ export class ProfileComponent implements OnInit {
     return true;
   }
 
-  clearData(): void {
-    this.id_auto = null;
-    this.win = null;
-    this.toplivo = null;
-    this.privod = null;
-    this.probeg = null;
-    this.cvet = null;
-    this.dopComment = null;
-  }
+  private clearData(): void {
+    this.zakazDate = null;
+    this.zakazTime = null;
+    this.aim = null;
+    this.place = null;
+    this.price = null;
+    this.status = null;
+  } 
 
-
-
-
-  checkLoginValid(){
+  private checkLoginValid(){
     if (this.profLog.length < 4){
       this.logNotValid = " * Ваш логин должен составлять 4-25 символов."
     } else {
@@ -304,7 +237,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  checkPassValid(){
+  private checkPassValid(){
     if (this.profPass.length < 8){
       this.passNotValid = " * Ваш пароль должен составлять 8-25 символов."
     } else {
@@ -312,7 +245,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  checkNumberValid(){
+  private checkNumberValid(){
     if (this.profNumber.length < 9){
       this.numberNotValid = " * Пожалуйста, укажите Ваш номер телефона в формате (12) 345-67-89"
     } else {
@@ -320,7 +253,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  checkMailValid(){
+  private checkMailValid(){
     if (this.profMail.length < 1){
       this.mailNotValid = " * Пожалуйста, укажите Ваш профиль в соц сети."
     } else {

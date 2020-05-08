@@ -6,6 +6,7 @@
   <button type="button" class="btn btn-info" (click) = "logExit()" data-toggle="modal"> Выход из аккаунта </button>
 </div>
 
+
 <div class="row" style="margin-left:20px; margin-top: 35px; max-width: 1300px;">
   <div class="col-3">
     <div class="list-group" id="list-tab" role="tablist">
@@ -62,7 +63,7 @@
                  </small>
               </div>
               <div class="form-group">
-                <label class="col-form-label">Ваш рейтинг: <i>//В разработке//</i> </label>
+                <label class="col-form-label">Ваш рейтинг:&#160; <i>//В разработке//</i> </label>
               </div>
               <div class="right">
                 <button type="submit" class="btn btn-primary" (click) = "updateProfile()">Сохранить</button>
@@ -70,23 +71,117 @@
             </form>
 
             <br>
-
           </div>
         </div>
       </div>
 
-
-      <div class="tab-pane fade" id="list-zakaz" role="tabpanel" aria-labelledby="list-zakaz-list">
-        <table id='datatable' datatable [dtOptions]="dtOptions" class="row-border hover" style="word-break: break-all;"></table>
-      </div>
+      <div class="tab-pane fade" id="list-zakaz" role="tabpanel" aria-labelledby="list-zakaz-list" style="min-height: 450px;">
+        <div class="form-check form-check-inline" style="margin-left: 2%">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deleteRadio" value="delete">
+          <label class="form-check-label" for="deleteRadio">Удалить</label>
+        </div>
+        <div class="form-check form-check-inline" style="margin-left: 2%">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="updateRadio" value="update" checked>
+          <label class="form-check-label" for="updateRadio">Изменить</label>
+        </div>
+        <table id='datatable' datatable [dtOptions]="dtOptions" class="row-border hover" style="word-break: break-all; min-width: 100%;"></table>
+      </div> 
 
     </div>
   </div>
 </div>
 
 
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Изменить просьбу</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">Просьба:</label>
+            <input type="text" [(ngModel)] = "aim" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Место:</label>
+            <input type="text" [(ngModel)] = "place" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Дата:&#160;</label>
+            <label class="col-form-label">{{ zakazDate }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Время:&#160;</label>
+            <label class="col-form-label">{{ zakazTime }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Вознаграждение:</label>
+            <input type="text" [(ngModel)] = "price" [ngModelOptions]="{standalone: true}" class="form-control" maxlength="250">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Статус:&#160;</label>
+            <label class="col-form-label">{{ status }}</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "updateZakaz()">Изменить</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Удалить просьбу</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">Просьба:&#160;</label>
+            <label class="col-form-label">{{ aim }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Место:&#160;</label>
+            <label class="col-form-label">{{ place }}</label>
+          </div>
+          <div class="form-group">
+              <label class="col-form-label">Дата:&#160;</label>
+              <label class="col-form-label">{{ zakazDate }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Время:&#160;</label>
+            <label class="col-form-label">{{ zakazTime }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Вознаграждение:&#160;</label>
+            <label class="col-form-label">{{ price }}</label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Статус:&#160;</label>
+            <label class="col-form-label">{{ status }}</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" (click) = "clearData()" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" (click) = "deleteZakaz()">Удалить</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div class="toast" id="myToast2" role="alert" aria-live="polite" aria-atomic="true" data-delay="5000" style="position: fixed; top: 70px; left: 20px;">
@@ -112,5 +207,18 @@
   </div>
   <div class="toast-body">
     <div>Проверьте логин и пароль.</div>
+  </div>
+</div>
+
+<div class="toast" id="myToast4" role="alert" aria-live="polite" aria-atomic="true" data-delay="5000" style="position: fixed; top: 70px; left: 20px;">
+  <div class="toast-header">
+    <strong class="mr-auto"><i class="fa fa-grav"></i> Все хорошо</strong>
+    <small>Close</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    <div>Изменения приняты</div>
   </div>
 </div>
