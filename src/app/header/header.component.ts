@@ -62,7 +62,8 @@ export class HeaderComponent implements OnInit {
         if (check == false) {
           $("#myToast3").toast('show');
         };
-    });
+      }
+    );
   }
 
   private registr() {
@@ -83,7 +84,7 @@ export class HeaderComponent implements OnInit {
           url: "http://127.0.0.1:8080/dw0774/Profile",
           data: JSON.stringify(myData),
           success: function(dataReq){
-            console.log("data Profile: ", dataReq);
+            // console.log("data Profile: ", dataReq);
             if (dataReq === "bad post") {
               $("#myToast2").toast('show');
             } else 
@@ -92,7 +93,7 @@ export class HeaderComponent implements OnInit {
             }
           },
           error: function(data) {
-            console.log("error post data Profile: ", data);
+            // console.log("error post data Profile: ", data);
           },
           type: "post",
           dataType: "text",

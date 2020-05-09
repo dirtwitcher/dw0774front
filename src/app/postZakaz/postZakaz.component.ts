@@ -48,6 +48,9 @@ export class PostZakazComponent implements OnInit {
     if ($('#orangeRadio').is(':checked')) this.status='В томном ожидании';
     if ($('#redRadio').is(':checked')) this.status='Очень, очень надо';
 
+    if (this.zakazDate == '') this.zakazDate = formatDate((new Date).toLocaleDateString(),'yyyy-dd-MM','en-US');
+    if (this.zakazTime == '') this.zakazTime = '23.59';
+
     var myData = {
       "id_profile": this.id_profile,
       "aim": this.aim,
@@ -64,7 +67,7 @@ export class PostZakazComponent implements OnInit {
       url: "http://127.0.0.1:8080/dw0774/Zakaz",
       data: JSON.stringify(myData),
       success: function(dataReq){
-        console.log("data Zakaz: ", dataReq);
+        // console.log("data Zakaz: ", dataReq);
         if (dataReq === "good post"){
           $("#myToast4").toast('show');
           that.clearData();
@@ -73,7 +76,7 @@ export class PostZakazComponent implements OnInit {
         }
       },
       error: function(data) {
-        console.log("error post data Zakaz: ", data);
+        // console.log("error post data Zakaz: ", data);
       },
       type: "post",
       dataType: "text",

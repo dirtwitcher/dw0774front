@@ -1,21 +1,20 @@
 
-
-
-
- <p><span class="ymaps-geolink">Минск, ул. Гинтовта, 30</span> — тест тест раз два три.</p>
-
- <a href="tel:+380985554433">+380985554433</a>
-
 <div class="card-deck" style="padding-left: 90px; margin-right: 20px;">
-    <div class="card" *ngFor="let card of cards" style="margin: 25px; min-width: 20%; max-width: 20%;">
-      <div class="card-body">
-        <h5 class="card-title">{{card.title}}</h5>
-        <p class="card-text"> {{card.description}} </p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
+  <div class="card" *ngFor="let card of cards" style="margin: 25px; min-width: 20%; max-width: 20%;">
+    <div class="card-body">
+      <h4 class="card-title">Суть:&#160;{{card.aim}}</h4>
+      <p class="card-text"> Место:&#160; <span class="ymaps-geolink">{{card.place}}</span> </p>
+      <p class="card-text"> Цена:&#160;{{card.price}} </p>
+      <p class="card-text"> Статус:&#160;{{card.status}} </p>
+      <br>
+      <p class="card-text"> ФИО:&#160;{{card.profFIO}} </p>
+      <p class="card-text"> Номер:&#160; <a href="tel:{{card.profNumber}}">{{card.profNumber}}</a> </p>
+      <p class="card-text"> Сеть:&#160; <a href="mailto:{{card.profMail}}">{{card.profMail}}</a> </p>
     </div>
+    <div class="card-footer">
+      <small class="text-muted" style="text-align: right; display: inline-block; width: 100%; vertical-align: bottom;">Дата/время:&#160;{{card.zakazDate}}&#160;{{card.zakazTime}}</small>
+    </div>
+  </div>
 </div>
 
 

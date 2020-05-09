@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
   private numberNotValid : string = "";
   private mailNotValid : string = "";
 
+  private id_zakaz: string = null;
   private id_profile: string = localStorage.getItem('id_profile');
   private zakazDate: string = null;
   private zakazTime: string = null;
@@ -43,10 +44,11 @@ export class ProfileComponent implements OnInit {
   dtOptions: any = { };
 
   private openModal(info: any): void {
-    this.zakazDate = info.zakazDate;
-    this.zakazTime = info.zakazTime;
+    this.id_zakaz = info.id_zakaz;
     this.aim = info.aim;
     this.place = info.place;
+    this.zakazDate = info.zakazDate;
+    this.zakazTime = info.zakazTime;
     this.price = info.price;
     this.status = info.status;
     if ($('#updateRadio').is(':checked')) $('#updateModal').modal('show');
@@ -57,6 +59,7 @@ export class ProfileComponent implements OnInit {
 
   private updateZakaz(){
     var myData = {
+      "id_zakaz": this.id_zakaz,
       "id_profile": this.id_profile,
       "aim": this.aim,
       "place": this.place,
@@ -70,12 +73,12 @@ export class ProfileComponent implements OnInit {
       url: "http://127.0.0.1:8080/dw0774/Zakaz",
       data: JSON.stringify(myData),
       success: function(dataReq){
-        console.log("success update data zakaz: ", dataReq);
+        // console.log("success update data zakaz: ", dataReq);
         var table = $('#datatable').DataTable();
         table.ajax.reload();
       }, 
       error: function(data) {
-        console.log("error update data zakaz: ", data);
+        // console.log("error update data zakaz: ", data);
       },
       type: "PUT",
       dataType: "text",
@@ -85,25 +88,15 @@ export class ProfileComponent implements OnInit {
   }
 
   private deleteZakaz(){
-    var jurnalData = {
-      "id_profile": this.id_profile,
-      "aim": this.aim,
-      "place": this.place,
-      "zakazDate":this.zakazDate,
-      "zakazTime":this.zakazTime,
-      "price": this.price,
-      "status": this.status
-    };
-
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/dw0774/Zakaz"+ '?' + $.param({"id_profile": this.id_profile}),
+      url: "http://127.0.0.1:8080/dw0774/Zakaz"+ '?' + $.param({"id_zakaz": this.id_zakaz}),
       success: function(dataReq){
-        console.log("success delete data zakaz: ", dataReq);
+        // console.log("success delete data zakaz: ", dataReq);
         var table = $('#datatable').DataTable();
         table.ajax.reload();
       }, 
       error: function(data) {
-        console.log("error delete data zakaz: ", data);
+        // console.log("error delete data zakaz: ", data);
       },
       type: "delete",
       dataType: "text",
@@ -128,8 +121,9 @@ export class ProfileComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      ajax:{url:"http://127.0.0.1:8080/dw0774/Zakaz", dataSrc:""},
+      ajax:{url:"http://127.0.0.1:8080/dw0774/Zakaz"+ '?' + $.param({"id_profile": this.id_profile}), dataSrc:""},
       columns: [
+        {title: '#', data: 'id_zakaz'}, 
         {title: 'Просьба', data: 'aim', defaultContent:"<i>Not set</i>"}, 
         {title: 'Место', data: 'place', defaultContent:"<i>Not set</i>"},
         {title: 'Дата', data: 'zakazDate', defaultContent:"<i>Not set</i>"},
@@ -167,11 +161,11 @@ export class ProfileComponent implements OnInit {
     jQuery.ajax({
       url: "http://127.0.0.1:8080/dw0774/Profile"+ '?' + $.param({"id_profile": this.id_profile}),
       success: function(dataReq){ 
-        console.log("success delete profile: ", dataReq);
+        // console.log("success delete profile: ", dataReq);
         that.logExit();
       }, 
       error: function(data) {
-        console.log("error delete data auto: ", data);
+        // console.log("error delete data auto: ", data);
       },
       type: "delete",
       dataType: "text",
@@ -194,7 +188,7 @@ export class ProfileComponent implements OnInit {
         url: "http://127.0.0.1:8080/dw0774/Profile",
         data: JSON.stringify(myData),
         success: function(dataReq){
-          console.log("success update data profile: ", dataReq);
+          // console.log("success update data profile: ", dataReq);
           this.profLog = dataReq.login;
           this.profPass = dataReq.password;
           this.profFIO = dataReq.FIO;
@@ -203,7 +197,7 @@ export class ProfileComponent implements OnInit {
           $("#myToast4").toast('show');
         }, 
         error: function(data) {
-          console.log("error update data profile: ", data);
+          // console.log("error update data profile: ", data);
         },
         type: "PUT",
         dataType: "text",

@@ -20,7 +20,6 @@ export class BodyComponent implements OnInit {
         zoom: 9
       });
     })
-
     .catch(error => console.log('Failed to load Yandex Maps', error));
 
   }
