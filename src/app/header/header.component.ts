@@ -5,6 +5,7 @@ import { DomSanitizer} from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {UserNameService} from '../service/user-name-service.service';
+import { timer } from 'rxjs';
 
 interface authImpl{
   id_profile : string;
@@ -20,53 +21,49 @@ interface authImpl{
 
 export class HeaderComponent implements OnInit {
 
-  private rand_1 : number = 0;
-  private rand_2 : number = 0;
-  private rand_znak : string = "+";
-  private capchaAnswer : number = null;
-  private capchaUserAnswer : number = null;
-  private capchaInfo : string = "Жду ответ";
+  rand_1 : number = 0;
+  rand_2 : number = 0;
+  rand_znak : string = "+";
+  capchaAnswer : number = null;
+  capchaUserAnswer : number = null;
+  capchaInfo : string = "Жду ответ";
 
-  user: string = "Вы не в системе";
+  user : string = "Вы не в системе";
 
-  private authLog: string;
-  private authPass : string;
+  authLog : string;
+  authPass : string;
 
-  private regLog : string;
-  private regPass : string;
-  private regFIO : string;
-  private regNumber : string;
-  private regMail : string;
+  regLog : string;
+  regPass : string;
+  regFIO : string;
+  regNumber : string;
+  regMail : string;
 
-  private logNotValid : string = " * Ваш логин должен составлять 4-25 символов.";
-  private passNotValid : string = " * Ваш пароль должен составлять 8-25 символов.";
-  private numberNotValid : string = " * Пожалуйста, укажите Ваш номер телефона в формате (12) 345-67-89";
-  private mailNotValid : string = " * Пожалуйста, укажите Ваш профиль в соц сети.";
+  logNotValid : string = " * Ваш логин должен составлять 4-25 символов.";
+  passNotValid : string = " * Ваш пароль должен составлять 8-25 символов.";
+  numberNotValid : string = " * Пожалуйста, укажите Ваш номер телефона в формате (12) 345-67-89";
+  mailNotValid : string = " * Пожалуйста, укажите Ваш профиль в соц сети.";
 
   constructor(private _sanitizer: DomSanitizer, public http: HttpClient, private router: Router, private UserNameService: UserNameService) { }
 
-  private auth() {
-    var check : boolean = false;
-    this.http.get<authImpl>( "http://127.0.0.1:8080/dw0774/Profile").subscribe(
+  auth() {
+    this.http.get<authImpl>( "http://127.0.0.1:8080/dw0774Server/Profile"+ '?' + $.param({"action": "auth", "login": this.authLog, "password": this.authPass})).subscribe(
       (data:any) => {
-        data.forEach(element => {
-          // console.log(element);
-          if (this.authLog == element.login && this.authPass == element.password){
-            check = true;
-            $('#authModal').modal('hide');
-            localStorage.setItem('id_profile', element.id_profile);
-            localStorage.setItem('login', this.authLog);
-            this.user = localStorage.getItem('login');
-          };
-        });
-        if (check == false) {
+        if (data !== "bad response"){
+          $('#authModal').modal('hide');
+          localStorage.setItem('id_profile', data);
+          localStorage.setItem('login', this.authLog);
+          localStorage.setItem('password', this.authPass);
+          this.user = localStorage.getItem('login');
+          this.router.navigate(['/']);
+        } else {
           $("#myToast3").toast('show');
-        };
+        }
       }
     );
   }
 
-  private registr() {
+  registr() {
     var myData = {
       "login": this.regLog,
       "password": this.regPass,
@@ -81,14 +78,14 @@ export class HeaderComponent implements OnInit {
       } else {
 
         jQuery.ajax({
-          url: "http://127.0.0.1:8080/dw0774/Profile",
+          url: "http://127.0.0.1:8080/dw0774Server/Profile",
           data: JSON.stringify(myData),
           success: function(dataReq){
             // console.log("data Profile: ", dataReq);
-            if (dataReq === "bad post") {
+            if (JSON.parse(dataReq) === "bad post") {
               $("#myToast2").toast('show');
             } else 
-            if (dataReq === "good post"){
+            if (JSON.parse(dataReq) === "good post"){
               $('#registrModal').modal('hide');
             }
           },
@@ -104,7 +101,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  private refreshRegistr(){
+  refreshRegistr(){
     this.regLog = '';
     this.regPass = '';
     this.regFIO = '';
@@ -117,14 +114,14 @@ export class HeaderComponent implements OnInit {
     this.mailNotValid = " * Пожалуйста, укажите Ваш профиль в соц сети.";
   }
 
-  private refreshAuth(){
+  refreshAuth(){
     this.authLog = '';
     this.authPass = '';
   }
 
-  private routeToMainPage():void{ this.router.navigate(['/']); }
+  routeToMainPage():void{ this.router.navigate(['/']); }
 
-  private routeToProfile(){
+  routeToProfile(){
     if (localStorage.getItem('login') === "Вы не в системе"){
       $("#myToast").toast('show');
     } else {
@@ -132,9 +129,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  private routeToGetZakaz():void{ this.router.navigate(['/getZakaz']); }
+  routeToGetZakaz():void{ this.router.navigate(['/getZakaz']); }
 
-  private routeToPostZakaz():void{ 
+  routeToPostZakaz():void{ 
     if (localStorage.getItem('login') === "Вы не в системе"){
       $("#myToast").toast('show');
     } else {
@@ -142,7 +139,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  private capchaChange(){
+  capchaChange(){
     this.rand_1 = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
     this.rand_2 = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
 
@@ -155,7 +152,7 @@ export class HeaderComponent implements OnInit {
     this.capchaInfo = "Жду ответ"
   }
 
-  private checkAnswer(){
+  checkAnswer(){
     if (this.capchaAnswer != this.capchaUserAnswer){
       this.capchaInfo = "Ответ неверен"
     } else 
@@ -167,7 +164,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  private checkLoginValid(){
+  checkLoginValid(){
     if (this.regLog.length < 4){
       this.logNotValid = " * Ваш логин должен составлять 4-25 символов."
     } else {
@@ -175,7 +172,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  private checkPassValid(){
+  checkPassValid(){
     if (this.regPass.length < 8){
       this.passNotValid = " * Ваш пароль должен составлять 8-25 символов."
     } else {
@@ -183,7 +180,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  private checkNumberValid(){
+  checkNumberValid(){
     if (this.regNumber.length < 9){
       this.numberNotValid = " * Пожалуйста, укажите Ваш номер телефона в формате (12) 345-67-89"
     } else {
@@ -191,7 +188,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  private checkMailValid(){
+  checkMailValid(){
     if (this.regMail.length < 1){
       this.mailNotValid = " * Пожалуйста, укажите Ваш профиль в соц сети."
     } else {

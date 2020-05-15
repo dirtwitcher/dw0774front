@@ -32,7 +32,7 @@ export class GetZakazComponent implements OnInit {
       zakazDate: '2020-05-09',
       zakazTime: '12:00',
       price: 'Спасибо',
-      status: 'Пишу, что хочу, потому-что могу :)',
+      status: 'Сделай это',
       profFIO: 'Биркос Владислав',
       profNumber: '(29) 119-07-74',
       profMail: 'email@yandex.ru',
@@ -42,7 +42,7 @@ export class GetZakazComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.http.get<zakazProfileImpl>( "http://127.0.0.1:8080/dw0774/Zakaz").subscribe(
+    this.http.get<zakazProfileImpl>( "http://127.0.0.1:8080/dw0774Server/Zakaz" + "?" + $.param({"action": "getZakaz"})).subscribe(
       (data:any) => {
         data.forEach(element => {
           this.cards.push({

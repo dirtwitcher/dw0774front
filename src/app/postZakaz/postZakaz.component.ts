@@ -13,13 +13,12 @@ import { formatDate } from '@angular/common';
 
 export class PostZakazComponent implements OnInit {
 
-  private id_profile: string = localStorage.getItem('id_profile');
-  private zakazDate: string = formatDate((new Date).toLocaleDateString(),'yyyy-dd-MM','en-US');
-  private zakazTime: string = '23:59';
-  private aim: string = null;
-  private place: string = null;
-  private price: string = null;
-  private status: string = null;
+  zakazDate: string = formatDate((new Date),'yyyy-MM-dd','en-US');
+  zakazTime: string = '23:59';
+  aim: string = null;
+  place: string = null;
+  price: string = null;
+  status: string = null;
 
   constructor(private http: HttpClient, private router: Router) {}
  
@@ -34,8 +33,8 @@ export class PostZakazComponent implements OnInit {
     return true;
   }
   
-  private clearData(): void {
-    this.zakazDate = formatDate((new Date).toLocaleDateString(),'yyyy-dd-MM','en-US');
+  clearData(): void {
+    this.zakazDate = formatDate((new Date),'yyyy-MM-dd','en-US');
     this.zakazTime = '23:59';
     this.aim = null;
     this.place = null;
@@ -43,16 +42,16 @@ export class PostZakazComponent implements OnInit {
     this.status = null;
   } 
 
-  private postIt(){
+  postIt(){
     if ($('#greenRadio').is(':checked')) this.status='Не к спеху';
     if ($('#orangeRadio').is(':checked')) this.status='В томном ожидании';
     if ($('#redRadio').is(':checked')) this.status='Очень, очень надо';
 
-    if (this.zakazDate == '') this.zakazDate = formatDate((new Date).toLocaleDateString(),'yyyy-dd-MM','en-US');
+    if (this.zakazDate == '') this.zakazDate = formatDate((new Date),'yyyy-MM-dd','en-US');
     if (this.zakazTime == '') this.zakazTime = '23.59';
 
     var myData = {
-      "id_profile": this.id_profile,
+      "id_profile": localStorage.getItem('id_profile'),
       "aim": this.aim,
       "place": this.place,
       "zakazDate":this.zakazDate,
@@ -64,11 +63,10 @@ export class PostZakazComponent implements OnInit {
     var that=this;
   
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/dw0774/Zakaz",
+      url: "http://127.0.0.1:8080/dw0774Server/Zakaz" + "?" + $.param({"login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
       data: JSON.stringify(myData),
       success: function(dataReq){
-        // console.log("data Zakaz: ", dataReq);
-        if (dataReq === "good post"){
+        if (JSON.parse(dataReq) === "good response"){
           $("#myToast4").toast('show');
           that.clearData();
         } else {

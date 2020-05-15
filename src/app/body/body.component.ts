@@ -17,7 +17,7 @@ export class BodyComponent implements OnInit {
     .then(maps => {
       const map = new maps.Map('YMapsID', {
         center: [53.902512, 27.561481],
-        zoom: 9
+        zoom: 3
       });
     })
     .catch(error => console.log('Failed to load Yandex Maps', error));
