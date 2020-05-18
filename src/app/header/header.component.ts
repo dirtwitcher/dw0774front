@@ -5,7 +5,6 @@ import { DomSanitizer} from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {UserNameService} from '../service/user-name-service.service';
-import { timer } from 'rxjs';
 
 interface authImpl{
   id_profile : string;
@@ -119,7 +118,7 @@ export class HeaderComponent implements OnInit {
     this.authPass = '';
   }
 
-  routeToMainPage():void{ this.router.navigate(['/dw0774']); }
+  routeToMainPage():void{ this.router.navigate(['/']); }
 
   routeToProfile(){
     if (localStorage.getItem('login') === "Вы не в системе"){
