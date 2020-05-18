@@ -19,7 +19,7 @@ import { PostZakazComponent } from './postZakaz/postZakaz.component';
 import { GetZakazComponent } from './getZakaz/getZakaz.component'; 
 
 const appRoutes: Routes = [
-  {path:'', component: BodyComponent},
+  {path:'dw0774', component: BodyComponent, pathMatch: 'full'},
   {path:'profile', component: ProfileComponent},
   {path:'postZakaz', component: PostZakazComponent},
   {path:'getZakaz', component: GetZakazComponent}

@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer, public http: HttpClient, private router: Router, private UserNameService: UserNameService) { }
 
   auth() {
-    this.http.get<authImpl>( "http://127.0.0.1:8080/dw0774Server/Profile"+ '?' + $.param({"action": "auth", "login": this.authLog, "password": this.authPass})).subscribe(
+    this.http.get<authImpl>( "http://dw0774.duckdns.org/dw0774Server/Profile"+ '?' + $.param({"action": "auth", "login": this.authLog, "password": this.authPass})).subscribe(
       (data:any) => {
         if (data !== "bad response"){
           $('#authModal').modal('hide');
@@ -78,7 +78,7 @@ export class HeaderComponent implements OnInit {
       } else {
 
         jQuery.ajax({
-          url: "http://127.0.0.1:8080/dw0774Server/Profile",
+          url: "http://dw0774.duckdns.org/dw0774Server/Profile",
           data: JSON.stringify(myData),
           success: function(dataReq){
             // console.log("data Profile: ", dataReq);
@@ -119,7 +119,7 @@ export class HeaderComponent implements OnInit {
     this.authPass = '';
   }
 
-  routeToMainPage():void{ this.router.navigate(['/']); }
+  routeToMainPage():void{ this.router.navigate(['/dw0774']); }
 
   routeToProfile(){
     if (localStorage.getItem('login') === "Вы не в системе"){

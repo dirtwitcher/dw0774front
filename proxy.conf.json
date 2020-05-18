@@ -6,7 +6,7 @@
       "^/dw0774Server/Profile": ""
     }
   },
-  "/dw0774/Zakaz": {
+  "/dw0774Server/Zakaz": {
     "target": "http://127.0.0.1:8080/dw0774Server/Zakaz",
     "secure": false,
     "pathRewrite": {

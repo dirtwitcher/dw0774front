@@ -42,7 +42,7 @@ export class GetZakazComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.http.get<zakazProfileImpl>( "http://127.0.0.1:8080/dw0774Server/Zakaz" + "?" + $.param({"action": "getZakaz"})).subscribe(
+    this.http.get<zakazProfileImpl>( "http://dw0774.duckdns.org/dw0774Server/Zakaz" + "?" + $.param({"action": "getZakaz"})).subscribe(
       (data:any) => {
         data.forEach(element => {
           this.cards.push({

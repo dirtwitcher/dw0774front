@@ -63,7 +63,7 @@ export class PostZakazComponent implements OnInit {
     var that=this;
   
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/dw0774Server/Zakaz" + "?" + $.param({"login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
+      url: "http://dw0774.duckdns.org/dw0774Server/Zakaz" + "?" + $.param({"login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
       data: JSON.stringify(myData),
       success: function(dataReq){
         if (JSON.parse(dataReq) === "good response"){

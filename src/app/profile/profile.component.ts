@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
     };
     
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/dw0774Server/Zakaz" + "?" + $.param({"login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
+      url: "http://dw0774.duckdns.org/dw0774Server/Zakaz" + "?" + $.param({"login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
       data: JSON.stringify(myData),
       success: function(dataReq){
         // console.log("success update data zakaz: ", dataReq);
@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit {
 
   deleteZakaz(){
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/dw0774Server/Zakaz"+ '?' + $.param({"id_zakaz": this.id_zakaz, "login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
+      url: "http://dw0774.duckdns.org/dw0774Server/Zakaz"+ '?' + $.param({"id_zakaz": this.id_zakaz, "login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
       success: function(dataReq){
         // console.log("success delete data zakaz: ", dataReq);
         var table = $('#datatable').DataTable();
@@ -108,7 +108,7 @@ export class ProfileComponent implements OnInit {
     
     if (localStorage.getItem('login') === 'Вы не в системе') { this.logExit(); };
 
-    this.http.get<getImpl>( "http://127.0.0.1:8080/dw0774Server/Profile"+ '?' + $.param({"action": "profile", "id_profile": localStorage.getItem('id_profile'), "login": localStorage.getItem('login'), "password": localStorage.getItem('password')})).subscribe(
+    this.http.get<getImpl>( "http://dw0774.duckdns.org/dw0774Server/Profile"+ '?' + $.param({"action": "profile", "id_profile": localStorage.getItem('id_profile'), "login": localStorage.getItem('login'), "password": localStorage.getItem('password')})).subscribe(
       (data:any) => {
         this.profLog = data.login;
         this.profPass = data.password;
@@ -120,7 +120,7 @@ export class ProfileComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      ajax:{url:"http://127.0.0.1:8080/dw0774Server/Zakaz"+ '?' + $.param({"action": "profile", "id_profile": localStorage.getItem('id_profile'), "login": localStorage.getItem('login'), "password": localStorage.getItem('password')}), dataSrc:""},
+      ajax:{url:"http://dw0774.duckdns.org/dw0774Server/Zakaz"+ '?' + $.param({"action": "profile", "id_profile": localStorage.getItem('id_profile'), "login": localStorage.getItem('login'), "password": localStorage.getItem('password')}), dataSrc:""},
       columns: [
         {title: '#', data: [0]}, 
         {title: 'Просьба', data: [1], defaultContent:"<i>Not set</i>"}, 
@@ -159,7 +159,7 @@ export class ProfileComponent implements OnInit {
   deleteProfile():void{
     var that=this;
     jQuery.ajax({
-      url: "http://127.0.0.1:8080/dw0774Server/Profile" + '?' + $.param({"login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
+      url: "http://dw0774.duckdns.org/dw0774Server/Profile" + '?' + $.param({"login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
       success: function(dataReq){ 
         // console.log("success delete profile: ", dataReq);
         that.logExit();
@@ -185,7 +185,7 @@ export class ProfileComponent implements OnInit {
       };
 
       jQuery.ajax({
-        url: "http://127.0.0.1:8080/dw0774Server/Profile" + "?" + $.param({"login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
+        url: "http://dw0774.duckdns.org/dw0774Server/Profile" + "?" + $.param({"login": localStorage.getItem('login'), "password": localStorage.getItem('password')}),
         data: JSON.stringify(myData),
         success: function(dataReq){
           // console.log("success update data profile: ", dataReq);
