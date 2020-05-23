@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PostZakazComponent } from './postZakaz/postZakaz.component';
 import { GetZakazComponent } from './getZakaz/getZakaz.component'; 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const appRoutes: Routes = [
   {path:'', component: BodyComponent, pathMatch: 'full'},
@@ -44,7 +45,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes), //connect routes
     DataTablesModule // datatable
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
